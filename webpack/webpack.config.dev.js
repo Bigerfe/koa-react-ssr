@@ -32,7 +32,7 @@ const getOneEntrys = () => {
     //         'webpack/hot/only-dev-server', resolvePath('../src/app/index.js')]
     // };
     return {
-        main: [resolvePath('../src/app/index.js')]
+        main: ['react-hot-loader/patch',resolvePath('../src/app/index.js')]
     };
 }
 
@@ -92,24 +92,29 @@ module.exports = {
     },
     devServer:{
         port:8809,
-        host:'127.0.0.1',
+        host:'localhost',
         contentBase: resolvePath('../dist'),
         overlay:{error:true},
         publicPath: '/',
         //open:true,
         hot:true,
         compress: true,
+        watchContentBase: true,
         watchOptions: {
             ignored: /node_modules/,
             //当第一个文件更改，会在重新构建前增加延迟。
             //这个选项允许 webpack 将这段时间内进行的任何其他更改都聚合到一次重新构建里。以毫秒为单位：
             aggregateTimeout: 500,
             //指定毫秒为单位进行轮询
-            poll: 500
+            //poll: 500
         },
-        historyApiFallback: {
-            disableDotRule: true
-        }
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        historyApiFallback:true,
+        // historyApiFallback: {
+        //     disableDotRule: true
+        // }
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -130,7 +135,7 @@ module.exports = {
         }),
         // 删除文件 保留新文件
         new CleanWebpackPlugin(),
-        //new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
     ],
 }

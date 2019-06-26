@@ -8,7 +8,7 @@ const ENV_DEV = 'dev';
 
 
 module.exports = {
-    jsCdnHost:'',
+    jsCdnHost:'/',
     cssCdnHost:'http://c1',
     appPort: '8809', //默认服务端口号
     pageModule:{
