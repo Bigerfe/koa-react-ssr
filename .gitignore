@@ -1,0 +1,13 @@
+node_modules
+.vscode
+.DS_Store
+npm-debug.log
+npm-debug.log.*
+.idea
+dist
+build
+package-lock.json
+build/*
+server_compiled
+server_compiled/*
+.history/

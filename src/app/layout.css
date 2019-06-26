@@ -1,0 +1,13 @@
+.mainTop ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainTop ul li {
+  width: 120px;
+}
+
+.mainTop a {
+  color: blue;
+  text-decoration: none;
+}

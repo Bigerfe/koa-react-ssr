@@ -1,0 +1,13 @@
+.mainTop{
+    ul{
+        display: flex;
+        flex-direction: row;
+        li{
+            width: 120px;
+        }
+    }
+    a{
+        color:blue;
+        text-decoration: none;
+    }
+}
