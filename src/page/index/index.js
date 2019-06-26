@@ -1,10 +1,12 @@
-import React,{Component} from 'react';
+import React, {
+    Component
+} from 'react';
 import './css/index.scss';
 
 export default class Index extends Component {
 
     render() {
-        return <div>fdfdfdsfadsfafad</div>
+        return <div> 我是首页的内容 </div>
     }
 
 }

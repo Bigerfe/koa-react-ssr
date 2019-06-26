@@ -46,6 +46,7 @@ const getOutput = () => {
         return {
             //filename: '[name].[hash:8].js',
             filename: '[name].js',
+            chunkFilename:'[name].js',
             path: resolvePath('../dist'),
             publicPath:config.jsCdnHost
         }
@@ -106,14 +107,14 @@ module.exports = {
             //这个选项允许 webpack 将这段时间内进行的任何其他更改都聚合到一次重新构建里。以毫秒为单位：
             aggregateTimeout: 500,
             //指定毫秒为单位进行轮询
-            //poll: 500
+            poll: 500
         },
         headers: {
             'Access-Control-Allow-Origin': '*'
         },
         historyApiFallback:true,
         // historyApiFallback: {
-        //     disableDotRule: true
+        //     disableDotRule: true  用不到这个情况 
         // }
     },
     plugins: [

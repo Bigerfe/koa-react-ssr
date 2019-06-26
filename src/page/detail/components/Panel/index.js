@@ -8,6 +8,6 @@ export default class Index extends React.Component{
     }
 
     render(){
-        return <div className="panelName">{this.props.title}</div>
+        return <div className="panelName">{this.props.title} <span>我是 panel</span> </div>
     }
 }
