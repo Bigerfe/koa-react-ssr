@@ -5,9 +5,8 @@ import Panel from './components/Panel';
 export default class Index extends React.Component{
 
     render(){
-        return <div>详情ddd111
+        return <div>我是详情页面
             <Panel title="数据统计模块1123"></Panel>
         </div>
     }
-
 }

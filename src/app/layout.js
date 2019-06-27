@@ -19,6 +19,9 @@ export default class Layout extends React.Component{
                         <li>
                             <Link to="/list">列表</Link>
                         </li>
+                        <li>
+                            <Link to="/test">test</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="mainTop1">

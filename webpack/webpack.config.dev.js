@@ -61,6 +61,7 @@ const getOutput = () => {
 module.exports = {
     //mode: 'development',
     devtool:'cheap-module-eval-source-map',
+    devtool:'none',
     entry: getEntrys(),
     output: getOutput(),
     module: {
@@ -122,7 +123,7 @@ module.exports = {
             // 类似 webpackOptions.output里面的配置 可以忽略
             //filename: '[name].[contenthash:8].css',
             filename: '[name].css',
-            chunkFilename: '[id].css',
+            chunkFilename: '[name].css',
         }),
         new HtmlWebPackPlugin({
             title:'this is the title',
