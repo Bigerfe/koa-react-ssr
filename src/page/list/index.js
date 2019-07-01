@@ -1,5 +1,7 @@
 import React, { Component} from 'react';
 import utils from '../../common/module/utils';
+import { Switch } from 'antd';
+
 export default class Index extends React.Component {
     constructor(props){
         super(props);
@@ -32,6 +34,10 @@ export default class Index extends React.Component {
         // }, 'search')
     }
 
+    onChange(checked){
+        console.log('checked is ',checked);
+    }
+
     render() {
 
         return <div>
@@ -42,6 +48,7 @@ export default class Index extends React.Component {
             <li>4</li>
             <li>4</li>
             <li>4</li>
+            <Switch defaultChecked onChange={this.onChange} />
         </div>
     }
 }
