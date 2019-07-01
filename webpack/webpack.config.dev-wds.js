@@ -7,6 +7,13 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const resolvePath = p => path.resolve(__dirname, p);
 
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+
 
 const isONEntry = true;
 
@@ -59,9 +66,8 @@ const getOutput = () => {
 }
 
 module.exports = {
-    //mode: 'development',
+    mode: 'development',
     devtool:'cheap-module-eval-source-map',
-    devtool:'none',
     entry: getEntrys(),
     output: getOutput(),
     module: {
@@ -80,7 +86,7 @@ module.exports = {
                         // // 这里可以指定一个 publicPath
                         // // 默认使用 webpackOptions.output中的publicPath
                         //publicPath: config.cssCdnHost,
-                        hmr: true
+                        hmr: process.env.NODE_ENV === 'development'
                     },
                 },
                 {
@@ -88,6 +94,9 @@ module.exports = {
                 },
                 {
                     loader: "sass-loader"
+                },
+                {
+                    loader:"postcss-loader"
                 }
             ]
         }]
@@ -95,11 +104,12 @@ module.exports = {
     devServer:{
         port:8809,
         host:'localhost',
+        quiet: true,
         contentBase: resolvePath('../dist'),
         overlay:{error:true},
         publicPath: '/',
-        //open:true,
         hot:true,
+        open:true,
         compress: true,
         watchContentBase: true,
         watchOptions: {
@@ -139,5 +149,51 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new DashboardPlugin(dashboard.setData),
+        new ProgressBarPlugin({
+            format: 'build [:bar] :percent (:elapsed seconds)',
+            clear: false,
+            width: 60
+        })
     ],
+    optimization:{
+        minimizer:[
+            new UglifyJsPlugin(),
+            new OptimizeCSSAssetsPlugin()
+        ],
+        splitChunks:{
+            cacheGroups: {
+            
+                styles: {
+                    name: 'styles',
+                    test: /\.scss$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
+                // elementUI: {
+                //     name: "chunk-elementUI", // 单独将 elementUI 拆包
+                //     priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
+                //     test: /[\/]node_modules[\/]element-ui[\/]/
+                // },
+                libs: {// 抽离第三方插件
+                    test: /node_modules/,   // 指定是node_modules下的第三方包
+                    chunks: 'initial',
+                    name: 'libs',  // 打包后的文件名，任意命名    
+                    // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                    priority: -10
+                },
+                commons: { // 抽离自己写的公共代码，utils这个名字可以随意起
+                    chunks: 'async',
+                    name: 'commons',  // 任意命名
+                    minSize: 0,    // 只要超出0字节就生成一个新包
+                    minChunks:2,
+                    priority: 5,
+                    reuseExistingChunk: true
+                }
+            }
+        },
+        runtimeChunk: {
+            name: entrypoint => `manifest.${entrypoint.name}`
+        }
+    }
 }

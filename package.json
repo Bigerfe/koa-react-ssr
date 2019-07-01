@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "webpack-dev-server --mode development --config webpack/webpack.config.dev.js",
-    "prod": "webpack --config webpack/webpack.config.dev.js --mode production && node app.js",
+    "dev": "webpack-dev-server --mode development --config webpack/webpack.config.dev-wds.js",
+    "prod": "webpack --config webpack/webpack.config.dev-wds.js --mode production && node app.js",
     "babel": "babel src -d dist"
   },
   "author": "",
@@ -19,12 +19,14 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.0.0",
     "ejs": "^2.6.2",
     "glob": "^7.1.4",
     "html-webpack-plugin": "^3.2.0",
+    "i": "^0.3.6",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
@@ -32,6 +34,9 @@
     "koa2": "^2.0.0-alpha.7",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
+    "npm": "^6.9.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -39,11 +44,17 @@
     "react-router-dom": "^5.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.3",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.4"
   },
   "devDependencies": {
+    "koa-webpack": "^5.2.3",
+    "progress-bar-webpack-plugin": "^1.12.1",
     "react-hot-loader": "^4.11.1",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dashboard": "^3.0.7",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }

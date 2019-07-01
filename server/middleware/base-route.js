@@ -5,9 +5,9 @@ module.exports = async function (ctx, next) {
         query = ctx.query;
     let body = {};
 
-    const html = await ejs.renderFile('dist/index.html');
-
-    ctx.body = html;
+    //const html = await ejs.renderFile('server/temp/index.html');
+    console.log(html);
+    ctx.body = 'html';
 
     await next();
 }

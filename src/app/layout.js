@@ -6,21 +6,17 @@ export default class Layout extends React.Component{
     render(){
 
         return <div className="mainIndex">
-            <h1 className="h1">hello</h1>
             <div className="rdContent">
                 <div className="mainTop">
                     <ul>
                         <li>
-                            <Link to="/index">首页111</Link>
+                            <Link to="/index">首页1</Link>
                         </li>
                         <li>
-                            <Link to="/detail">详情ddd</Link>
+                            <Link to="/detail">详情2</Link>
                         </li>
                         <li>
-                            <Link to="/list">列表</Link>
-                        </li>
-                        <li>
-                            <Link to="/test">test</Link>
+                            <Link to="/list">列表123</Link>
                         </li>
                     </ul>
                 </div>

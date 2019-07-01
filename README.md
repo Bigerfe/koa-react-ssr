@@ -7,9 +7,18 @@
 - [x] 基于 wsd 的代码热更
 - [x] react-router4引入
 - [x] 动态路由，code split（按需加载）
+- [x] 
 - [] 路由按需加载可控
-- [] css根据路由按需加载可控
+- [x] css根据路由按需加载可控,css可打包到一个文件，不做按需加载 
 - [] 路由抽象配置供用户设置，无需关注底层处理代码
 - [] 公共代码提取
 - [] tree shaking
 - [] 同构开发
+
+
+
+## 资料
+```
+https://www.cnblogs.com/ysk123/p/9990082.html css压缩和提取到一个文件
+https://www.jianshu.com/p/46bdacb4c7fd?utm_source=oschina-app 直观显示webpack构建日志
+```

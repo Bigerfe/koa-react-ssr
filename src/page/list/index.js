@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-
+import utils from '../../common/module/utils';
 export default class Index extends React.Component {
     constructor(props){
         super(props);
@@ -11,26 +11,25 @@ export default class Index extends React.Component {
 
     componentDidMount(){
 
-        function getComponent() {
-            return import(/* webpackChunkName: "form" */ './components/form').then(mod => {
-                console.log(mod);
-                return mod.default;
-            }).catch(error => 'An error occurred while loading the component');
-        }
+        // function getComponent() {
+        //     return import(/* webpackChunkName: "form" */ './components/form').then(mod => {
+        //         console.log(mod);
+        //         return mod.default;
+        //     }).catch(error => 'An error occurred while loading the component');
+        // }
 
 
-        getComponent().then(md => {
-            console.log('组件加载完成');
-            console.log(md);
-        })
+        // getComponent().then(md => {
+        //     console.log('组件加载完成');
+        // })
 
 
-        require.ensure([], require => {
-           const Search =  require('./components/search').default;
-           this.setState({
-               searchComp:Search
-           })
-        }, 'search')
+        // require.ensure([], require => {
+        //    const Search =  require('./components/search').default;
+        //    this.setState({
+        //        searchComp:Search
+        //    })
+        // }, 'search')
     }
 
     render() {
@@ -45,5 +44,4 @@ export default class Index extends React.Component {
             <li>4</li>
         </div>
     }
-
 }

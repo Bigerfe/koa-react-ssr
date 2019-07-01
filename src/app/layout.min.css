@@ -1,1 +1,1 @@
-.mainTop ul{display:flex;flex-direction:row}.mainTop ul li{width:120px}.mainTop a{color:blue;text-decoration:none}
+body{font-size:12px;margin:0;padding:0}html,div,ul,li,img,form,a{margin:0;padding:0;list-style:none}.mainTop ul{display:flex;flex-direction:row}.mainTop ul li{width:120px}.mainTop a{color:blue;text-decoration:none;border-radius:10px}@keyframes animation{}
