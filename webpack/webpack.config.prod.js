@@ -39,8 +39,8 @@ wpConfig.module.rules.push({
 
 const plugins = [
     new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash:8].css',
-        chunkFilename: 'css/[name].[contenthash:8].css',
+        filename: 'client/css/[name].[contenthash:8].css',
+        chunkFilename: 'client/css/[name].[contenthash:8].css',
     }),
     new HtmlWebPackPlugin({
         title: 'this is the title',
@@ -53,7 +53,10 @@ const plugins = [
         },
     }),
     // 删除文件 保留新文件
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+        "__DEV__":"1"
+    })
 ];
 
 wpConfig.plugins = wpConfig.plugins.concat(plugins);
@@ -108,13 +111,13 @@ const comipler = webpack(wpConfig);
 comipler.run((error,stats)=>{
     var res = formatMessages(stats.toJson({}, true));
     if (res.errors.length) {
-        console.log(chalk.red('Failed to compile.\n'));
+        console.log('Failed to compile.\n');
         //比如parse失败 通常会返回两个同样的错误 一个parse fail一个module build
         //fail 但是内容是一样的；我们只取第一个即可;
         res.errors.length = 1;
         console.log(res.errors.join('\n\n'));
     } else if (res.warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
+        console.log('Compiled with warnings.\n');
         console.log(res.warnings.join('\n\n'));
     }
 });

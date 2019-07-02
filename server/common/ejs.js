@@ -1,6 +1,4 @@
-const ejs =require('ejs');
-
-
+import  ejs from 'ejs';
 
 module.exports  = {
     renderFile:async (file)=>{

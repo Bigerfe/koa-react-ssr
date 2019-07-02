@@ -43,8 +43,8 @@ const getOutput = () => {
     if (isONEntry) {
         return {
             //filename: '[name].[hash:8].js',
-            filename: 'js/[name].js',
-            chunkFilename: 'js/[name].js',
+            filename: 'client/js/[name].js',
+            chunkFilename: 'client/js/[name].js',
             path: resolvePath('../dist'),
             publicPath: config.jsCdnHost
         }

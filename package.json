@@ -8,7 +8,7 @@
     "start": "node app.js",
     "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
     "build": "node webpack/webpack.config.prod.js && node app.js",
-    "babel": "babel src -d dist"
+    "babel": "babel server -d dist/server"
   },
   "author": "",
   "license": "ISC",

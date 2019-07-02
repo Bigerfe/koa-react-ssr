@@ -1,6 +1,6 @@
-const ejs = require('../common/ejs');
+import  ejs from '../common/ejs';
 
-module.exports = async function (ctx, next) {
+export default async function (ctx, next) {
     let path = ctx.path,
         query = ctx.query;
     let body = {};

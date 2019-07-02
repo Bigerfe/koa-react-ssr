@@ -5,28 +5,16 @@
  */
 
 
-const convert = require('koa-convert');
-const json = require('koa-json');
-const BodyParser = require('koa-bodyparser');
-const koaStatic = require('koa-static');
-const path = require('path');
-const setCookie = require('../middleware/set-cookie');
-const baseRoute = require('../middleware/base-route');
+import convert  from 'koa-convert';
+import json from 'koa-json';
+import BodyParser from 'koa-bodyparser';
+import koaStatic  from 'koa-static';
+import path from 'path';
+import setCookie from '../middleware/set-cookie';
+import  baseRoute from '../middleware/base-route';
 
 const Koa = require('koa2');
 const app = new Koa();
-
-// const webpackConfig = require('../../webpack/webpack.config.dev-mid');//webpack 配置
-// const webpack = require("webpack");
-// const compiler = webpack(webpackConfig);
-
-
-
-
-// complier.hooks('done',status=>{
-//   console.log('webpack ok');
-// });
-
 
 
 app.use(async (ctx, next) => {
@@ -42,21 +30,8 @@ app.use(convert(json()));
 
 
 app.use(koaStatic(
-  path.join(__dirname, '../../dist')
+  path.join(__dirname, '../../client')
 ));
-
-
-
-
-// const myDev = koaWebpackDevMiddleware(complier,{
-//   headers: { "X-Custom-Header": "yes" },
-//   publicPath: webpackConfig.output.publicPath,
-//   quiet: true,//项控制台打印所有内容
-//   contentBase: path.resolve(__dirname,'../../dist'),
-//   serverSideRender: true
-// });
-
-// app.use(myDev);
 
 app.use(setCookie);
 
