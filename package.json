@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "webpack-dev-server --mode development --config webpack/webpack.config.dev-wds.js",
-    "prod": "webpack --config webpack/webpack.config.dev-wds.js --mode production && node app.js",
+    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
+    "build": "node webpack/webpack.config.prod.js && node app.js",
     "babel": "babel src -d dist"
   },
   "author": "",
