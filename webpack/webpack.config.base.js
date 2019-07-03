@@ -45,13 +45,13 @@ const getOutput = () => {
             //filename: '[name].[hash:8].js',
             filename: 'client/js/[name].js',
             chunkFilename: 'client/js/[name].js',
-            path: resolvePath('../dist'),
+            path: resolvePath('../dist/static'),
             publicPath: config.jsCdnHost
         }
     }
     return {
         filename: 'js/[name].[chunkhash:8].js',
-        path: resolvePath('../dist'),
+        path: resolvePath('../dist/static'),
         publicPath: config.jsCdnHost
     }
 }

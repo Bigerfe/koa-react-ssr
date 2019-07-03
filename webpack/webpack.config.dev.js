@@ -46,7 +46,7 @@ wpConfig.devServer = {
     port: 8809,
     host: 'localhost',
     quiet: true,
-    contentBase: path.resolve(__dirname,'../dist'),
+    contentBase: path.resolve(__dirname,'../dist/static'),
     overlay: {
         error: true
     },
@@ -73,8 +73,8 @@ const plugins = [
     new MiniCssExtractPlugin({
         // 类似 webpackOptions.output里面的配置 可以忽略
         //filename: '[name].[contenthash:8].css',
-        filename: '[name].css',
-        chunkFilename: '[name].css',
+        filename: 'client/[name].css',
+        chunkFilename: 'client/[name].css',
     }),
     new HtmlWebPackPlugin({
         title: 'this is the title',

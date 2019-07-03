@@ -30,7 +30,7 @@ app.use(convert(json()));
 
 
 app.use(koaStatic(
-  path.join(__dirname, '../../client')
+  path.join(__dirname, '../../static')
 ));
 
 app.use(setCookie);

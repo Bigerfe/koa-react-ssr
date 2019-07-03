@@ -5,8 +5,8 @@ export default async function (ctx, next) {
         query = ctx.query;
     let body = {};
 
-    const html = await ejs.renderFile('dist/index.html');
+    const html = await ejs.renderFile('dist/static/index.html');
     ctx.body = html;
-
+    console.log(process.env.NODE_ENV);
     await next();
 }

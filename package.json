@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "nodemon --watch dist/server -e html,vue,js app.js",
     "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
-    "build": "node webpack/webpack.config.prod.js && node app.js",
-    "babel": "babel server -d dist/server"
+    "check": "webpack-dev-server --config webpack/webpack.config.dev.js",
+    "babel": "babel --no-babelrc server -d dist/server --plugins=@babel/plugin-transform-modules-commonjs",
+    "build": "node webpack/webpack.config.prod.js && npm run babel && node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "antd": "^3.20.0",
@@ -52,6 +54,7 @@
   },
   "devDependencies": {
     "koa-webpack": "^5.2.3",
+    "nodemon": "^1.19.1",
     "progress-bar-webpack-plugin": "^1.12.1",
     "react-hot-loader": "^4.11.1",
     "webpack-dashboard": "^3.0.7",

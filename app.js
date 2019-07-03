@@ -2,13 +2,6 @@
  * koa 服务启动文件
  */
 
-/**
-* Module dependencies.
-*/
-
-//动态控制服务启动关闭
-global.runFlag=true;
-
 var app = require('./dist/server/app/server.js');
 var http = require('http');
 var config = require('./config');
