@@ -10,7 +10,7 @@ import './css/index.scss';
 export default class Index extends Component {
 
     componentDidMount(){
-        console.log('__DEV__', __DEV__);
+        //console.log('__DEV__', __DEV__);
     }
 
     render() {
