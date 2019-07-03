@@ -1,0 +1,23 @@
+.mainmenu-layout {
+    .top{
+        height: 50px;background: #000; line-height: 50px;
+        color: #fff;
+    }
+    .core-layout {
+        top: 50px;
+        display: block;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: absolute;
+        left:0;right:0;bottom:0;
+        overflow-y: auto;
+        .menus{
+            width: 200px;
+            border-right: solid 2px #ccc;
+        }
+        .content{
+            flex: 50%;
+        }
+    }
+}

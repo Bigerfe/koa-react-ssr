@@ -4,7 +4,6 @@ import React, {
 
 import NowTime from './components/NowTime'
 import utils from '../../common/module/utils';
-
 import './css/index.scss';
 
 export default class Index extends Component {

@@ -1,0 +1,30 @@
+.main-menu-f-item {
+  background: #fff;
+  border-bottom: solid 1px #ccc;
+}
+
+.main-menu-f-item .fitema {
+  text-align: left;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 30px;
+  border-bottom: solid 1px #efefef;
+}
+
+.main-menu-f-item .fitem-child {
+  background-color: #efefef;
+  padding: 5px 0;
+}
+
+.main-menu-f-item .fitem-child a {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  color: #666;
+  padding-left: 30px;
+}
+
+.main-menu-f-item .fitem-child a:hover {
+  color: #000;
+}

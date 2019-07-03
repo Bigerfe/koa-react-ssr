@@ -1,27 +1,18 @@
 body{
-    font-size: 12px;
+    font-size: 14px;
     margin:0;
     padding:0;
 }
-html,div,ul,li,img,form,a{
+*{
         margin:0;
         padding:0;
         list-style: none;
 }
-.mainTop{
-    ul{
-        display: flex;
-        flex-direction: row;
-        li{
-            width: 120px;
-        }
-    }
-    a{
-        color:blue;
-        text-decoration: none;
-        border-radius: 10px;
-    }
+img{
+    display: block;
 }
-@keyframes animation{
-    
+a{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
 }

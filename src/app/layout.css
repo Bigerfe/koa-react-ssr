@@ -1,28 +1,21 @@
 body {
-  font-size: 12px;
+  font-size: 14px;
   margin: 0;
   padding: 0;
 }
 
-html, div, ul, li, img, form, a {
+* {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.mainTop ul {
-  display: flex;
-  flex-direction: row;
+img {
+  display: block;
 }
 
-.mainTop ul li {
-  width: 120px;
-}
-
-.mainTop a {
-  color: blue;
+a {
   text-decoration: none;
-  border-radius: 10px;
+  color: #000;
+  cursor: pointer;
 }
-
-@keyframes animation {}

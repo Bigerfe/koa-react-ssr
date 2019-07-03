@@ -70,6 +70,12 @@ const CompList = (props) => (
     </Bundle>
 );
 
+const CompWebSizeInfo = (props) => (
+    <Bundle load={() => import(/*webpackChunkName:"chunk-websiteinfo"*/'../page/web-site-info/index')}>
+        {(CompList) => <CompList {...props} />}
+    </Bundle>
+);
+
 export default class Index extends React.Component{
     render(){
         return <BrowserRouter>
@@ -79,7 +85,8 @@ export default class Index extends React.Component{
                     <Route path="/index" exact={true} component={CompIndex}></Route>
                     <Route path="/detail" exact={true} component={CompDetail}></Route>
                     <Route path="/list" exact={true} component={CompList} ></Route>
-                    
+                    <Route path="/websiteinfo" exact={true} component={CompWebSizeInfo} ></Route>
+
                 </Switch>
                 </Layout>
             </BrowserRouter>
