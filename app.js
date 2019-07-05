@@ -4,7 +4,7 @@
 
 var app = require('./dist/server/app/server.js');
 var http = require('http');
-var config = require('./config');
+var config = require('./dist/server/config');
 /**
  * Get port from environment and store in Express.
  */
@@ -84,3 +84,22 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+
+
+/**
+ * 设置运行环境
+ */
+function setAppEnv(){
+    process.env.NODE_ENV='development';
+    process.env.IS_DEV = true;
+
+    if(process.env.isActive){
+        process.env.NODE_ENV = 'production';
+        process.env.IS_DEV = fales;
+    }
+
+    console.log('env is', process.env.NODE_ENV);
+}
+
+
+setAppEnv();

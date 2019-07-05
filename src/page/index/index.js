@@ -13,7 +13,7 @@ export default class Index extends Component {
     }
 
     render() {
-        return <div> 我是首页
+        return <div>111
         当前时间是:<NowTime></NowTime>
         </div>
     }

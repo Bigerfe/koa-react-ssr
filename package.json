@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "s": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --watch dist/server -e html,vue,js app.js",
-    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
+    "dev": " npm run babel && npm start && webpack-dev-server --config webpack/webpack.config.dev.js",
     "check": "webpack-dev-server --config webpack/webpack.config.dev.js",
     "babel": "babel --no-babelrc server -d dist/server --plugins=@babel/plugin-transform-modules-commonjs",
-    "build": "node webpack/webpack.config.prod.js && npm run babel && node app.js"
+    "build": "node webpack/webpack.config.prod.js && npm run babel && node app.js",
+    "ns-start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -37,6 +39,7 @@
     "koa-static": "^5.0.0",
     "koa2": "^2.0.0-alpha.7",
     "mini-css-extract-plugin": "^0.7.0",
+    "mysql": "^2.17.1",
     "node-sass": "^4.12.0",
     "npm": "^6.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -53,6 +56,9 @@
     "webpack-cli": "^3.3.4"
   },
   "devDependencies": {
+    "chalk": "^2.4.2",
+    "chokidar": "^3.0.1",
+    "cross-spawn": "^6.0.5",
     "koa-webpack": "^5.2.3",
     "nodemon": "^1.19.1",
     "progress-bar-webpack-plugin": "^1.12.1",

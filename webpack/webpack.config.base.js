@@ -1,6 +1,6 @@
 const path = require('path');
 const glob = require('glob');
-const config = require('../config');
+const config = require('./config');
 const webpack = require('webpack');
 const resolvePath = p => path.resolve(__dirname, p);
 

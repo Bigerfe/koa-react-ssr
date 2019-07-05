@@ -11,3 +11,5 @@ build/*
 server_compiled
 server_compiled/*
 .history/
+data
+conf
