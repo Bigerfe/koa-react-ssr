@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "s": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
+    "dev": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch dist/server -e html,vue,js app.js",
-    "dev": " npm run babel && npm start && webpack-dev-server --config webpack/webpack.config.dev.js",
+    "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
+    "test:dev": " npm run babel && npm start && webpack-dev-server --config webpack/webpack.config.dev.js",
     "check": "webpack-dev-server --config webpack/webpack.config.dev.js",
-    "babel": "babel --no-babelrc server -d dist/server --plugins=@babel/plugin-transform-modules-commonjs",
+    "babel": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs",
     "build": "node webpack/webpack.config.prod.js && npm run babel && node app.js",
-    "ns-start": "node app.js"
+    "ns-start": "node app.js",
+    "danymic-link":"node ./webpack/scripts/danymic-link.js"
   },
   "author": "",
   "license": "ISC",

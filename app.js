@@ -2,9 +2,9 @@
  * koa 服务启动文件
  */
 
-var app = require('./dist/server/app/server.js');
+var app = require('./dist/server/server/app/server.js');
 var http = require('http');
-var config = require('./dist/server/config');
+var config = require('./dist/server/server/config');
 /**
  * Get port from environment and store in Express.
  */

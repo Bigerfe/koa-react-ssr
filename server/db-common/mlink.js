@@ -5,8 +5,14 @@
 import dbConnection from './db-connection';
 
 export default {
-    getAll(){
-        const sql ='SELECT id,linkName,linkUrl,addTime from tbLink;';
-        return dbConnection.query(sql);
+    bend:{
+        getAll() {
+            const sql = 'SELECT id,linkName,linkUrl,addTime from tbLink;';
+            return dbConnection.query(sql);
+        }
+    },
+    fend:{
+
     }
+
 }

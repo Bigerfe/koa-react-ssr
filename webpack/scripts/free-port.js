@@ -3,7 +3,7 @@
 if (process.platform && process.platform !== 'win32') {
     //mac linux等
     const args = process.argv.slice(2);
-    //默认3000端口
+    //默认8808端口
     let port = '8808';
     let portArg = args && args[0];
     if (portArg && portArg.indexOf('--') > 0) {

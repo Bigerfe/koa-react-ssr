@@ -61,6 +61,7 @@ spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
 const nodeTransform = require('../common/node-transform');
 const monitor = require('../common/node-monitor');
 
+
 let nodeParams = ['app.js'];
 //本地测试预上线环境地址
 if (global.env_prod) {

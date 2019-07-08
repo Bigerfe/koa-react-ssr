@@ -1,5 +1,5 @@
 import  ejs from '../common/ejs';
-import mlink from '../db-common/mlink';
+import reqTransform from '../common/req-transform';
 
 export default async function (ctx, next) {
     let path = ctx.path,
@@ -13,7 +13,7 @@ export default async function (ctx, next) {
         const html = await ejs.renderFile('dist/static/index.html');
     }
 
-    const data = await mlink.getAll();
-    console.log(data);
+    reqTransform(ctx);
+
     await next();
 }

@@ -35,23 +35,22 @@ app.use(koaStatic(
 
 app.use(setCookie);
 
+//TODO:允许跨域 ，后面需要做安全处理
+app.use((ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', ctx.headers.origin);
+  ctx.set('Access-Control-Allow-Credentials', 'true');
+
+  ctx.set("Access-Control-Max-Age", 864000);
+  // 设置所允许的HTTP请求方法
+  ctx.set("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
+  // 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.
+  ctx.set("Access-Control-Allow-Headers", "x-requested-with, accept, origin, content-type");
+
+  return next();
+});
+
 app.use(baseRoute);
 
-// app.use((ctx, next) => {
-//   console.log('=========');
-//   console.log('======', ctx.headers.origin);
-//   ctx.set('Access-Control-Allow-Origin', ctx.headers.origin);
-//   ctx.set('Access-Control-Allow-Credentials', 'true');
-
-//   ctx.set("Access-Control-Max-Age", 864000);
-//   // 设置所允许的HTTP请求方法
-//   ctx.set("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
-//   // 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.
-//   ctx.set("Access-Control-Allow-Headers", "x-requested-with, accept, origin, content-type");
-//   //}
-
-//   return next();
-// })
 
 
 

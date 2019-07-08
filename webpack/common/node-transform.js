@@ -31,7 +31,7 @@ function compileWatcher(filepath) {
 
     if (/\.(js|jsx)$/.test(ext)) {
         //, { stdio: 'inherit' } 此处不必重复输出
-        spawnSync.sync('babel', [filepath, '--out-file', newpath]);
+        spawnSync.sync('babel', ['--no-babelrc', filepath, '--out-file', newpath,'--plugins=@babel/plugin-transform-modules-commonjs']);
         console.log(chalk.yellow('compiled ' + filepath + ' to ' + newpath));
     } else if (/\.(ejs|tpl|html)$/.test(ext)) {
         try {
