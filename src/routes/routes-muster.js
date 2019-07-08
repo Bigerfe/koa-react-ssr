@@ -1,11 +1,7 @@
-/**
- * 所有路由
- */
-
-
-import  PageIndex from '../page/index/config/route';
-
-
-export default [
-    PageIndex
+import RouteDetail from '../page/detail/config/route';
+import RouteIndex from '../page/index/config/route';
+import RouteList from '../page/list/config/route';
+import RouteWebSiteInfo from '../page/web-site-info/config/route';
+export default [ 
+ RouteDetail,RouteIndex,RouteList,RouteWebSiteInfo 
 ]

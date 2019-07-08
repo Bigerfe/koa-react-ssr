@@ -1,8 +1,11 @@
 'use strict';
+
+
 // 有错误直接抛出
 process.on('unhandledRejection', err => {
     throw err;
 });
+
 
 const IPAddress = require('../common/local-ip')();
 const config = require('../config');

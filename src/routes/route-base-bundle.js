@@ -2,7 +2,7 @@
 import React from 'react';
 
 /**
- * 动态加载组件一个包括组件
+ * 动态加载组件一个容器组件
  *
  * @class Bundle
  * @extends {Component}

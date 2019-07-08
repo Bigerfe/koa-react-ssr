@@ -12,7 +12,7 @@
     "babel": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs",
     "build": "node webpack/webpack.config.prod.js && npm run babel && node app.js",
     "ns-start": "node app.js",
-    "danymic-link":"node ./webpack/scripts/danymic-link.js"
+    "node-danymic-link":"node ./webpack/scripts/danymic-link.js"
   },
   "author": "",
   "license": "ISC",
