@@ -5,7 +5,7 @@
 import React,{Component} from 'react';
 import { Router, Route, BrowserRouter, Switch } from 'react-router-dom';
 import Layout from '../app/layout';
-
+import routesMuster from './routes-muster';
 
 class Bundle extends Component {
     constructor(props) {
@@ -58,11 +58,6 @@ const CompDetail = (props) => (
     </Bundle>
 );
 
-const CompIndex = (props) => (
-    <Bundle load={() => import(/*webpackChunkName:"chunk-index"*/'../page/index/index')}>
-        {(CompIndex) => <CompIndex {...props} />}
-    </Bundle>
-);
 
 const CompList = (props) => (
     <Bundle load={() => import(/*webpackChunkName:"chunk-list"*/'../page/list/index')}>
@@ -81,8 +76,7 @@ export default class Index extends React.Component{
         return <BrowserRouter>
             <Layout>
                 <Switch>
-                    <Route path="/" exact={true} component={CompIndex}></Route>
-                    <Route path="/index" exact={true} component={CompIndex}></Route>
+                    <Route path={routesMuster[0][0].path} exact={true} component={routesMuster[0][0].component}></Route>
                     <Route path="/detail" exact={true} component={CompDetail}></Route>
                     <Route path="/list" exact={true} component={CompList} ></Route>
                     <Route path="/websiteinfo" exact={true} component={CompWebSizeInfo} ></Route>

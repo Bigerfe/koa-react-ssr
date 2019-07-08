@@ -21,15 +21,19 @@ function createCompiler(webpack, config) {
     compiler.hooks.done.tap('ccccok', status => {
         var res = formatMessages(status.toJson({}, true));
         if (res.errors.length) {
+            console.log('webpack build result:');
             console.log(chalk.red('Failed to compile.\n'));
             //比如parse失败 通常会返回两个同样的错误 一个parse fail一个module build
             //fail 但是内容是一样的；我们只取第一个即可;
             res.errors.length = 1;
+            console.log('webpack build result:');
             console.log(res.errors.join('\n\n'));
         } else if (res.warnings.length) {
+            console.log('webpack build result:');
             console.log(chalk.yellow('Compiled with warnings.\n'));
             console.log(res.warnings.join('\n\n'));
         }else{
+            console.log('webpack build result:');
             console.log(res);
         }
 
