@@ -25,6 +25,10 @@ export default class Bundle extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        //TODO://问题在这里，导致每次都会重新渲染组件
+        console.log(nextProps.load);
+        console.log(this.props.load);
+        console.log(nextProps.load == this.props.load);
         if (nextProps.load !== this.props.load) {
             this.load(nextProps)
         }
@@ -36,6 +40,7 @@ export default class Bundle extends React.Component {
         });
         //注意这里，使用Promise对象; mod.default导出默认
         props.load().then((mod) => {
+            console.log(mod);
             this.setState({
                 mod: mod.default ? mod.default : mod
             });

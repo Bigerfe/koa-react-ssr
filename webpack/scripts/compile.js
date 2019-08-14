@@ -9,8 +9,10 @@ console.log(chalk.green('Compiling server '));
 //spawn('babel', ['server', '--out-dir', 'build/server', '--copy-files'], { stdio: 'inherit' });
 //spawn('babel', ['client', '--out-dir', 'build/server/client'], { stdio: 'inherit' });
 //使用这个方式 命令配置在了 scripts 里
+//前端路由和 node api 入口合并代码生成
 spawn('npm', ['run', 'chai-link-all'], { stdio: 'inherit' });
-
 spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
+//浏览器文件生成一份在服务端运行
+spawn('npm', ['run', 'babel-csfile'], { stdio: 'inherit' });
 
 

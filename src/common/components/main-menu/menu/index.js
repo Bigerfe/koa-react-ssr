@@ -38,7 +38,7 @@ export default class Index extends React.Component {
                             this.state.showMenuId == item.id ? <div className="fitem-child">
                                 {
                                     item.child && item.child.map((citem) => {
-                                        return <Link replace={true} key={citem.id} to={citem.link}>{citem.name}</Link>
+                                        return <Link  key={citem.id} to={citem.link}>{citem.name}</Link>
 
                                     })
                                 }

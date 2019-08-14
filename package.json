@@ -11,6 +11,7 @@
     "check": "webpack-dev-server --config webpack/webpack.config.dev.js",
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
     "babel": " BABEL_ENV=node babel server -d dist/server/server",
+    "babel-csfile": "BABEL_ENV=node babel src -d dist/server/src",
     "build": "node webpack/webpack.config.prod.js && npm run babel",
     "build:start": "node app.js env:production",
     "ns-start": "node app.js",
@@ -23,7 +24,7 @@
   "dependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.4.4",
     "@babel/plugin-transform-runtime": "^7.5.0",

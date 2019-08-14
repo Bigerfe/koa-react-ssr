@@ -29,7 +29,7 @@ const html = () => {
       <div id="rootEle">${renderToString(<Index />)}</div>
     </body>
      </html>
-     <script type="text/javascript" src="http://10.70.74.186:8809/client/js/main.js"></script></body>
+     <script type="text/javascript" src="//:8809/client/js/main.js"></script></body>
 
      `;
 }

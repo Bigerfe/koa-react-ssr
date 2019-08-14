@@ -11,6 +11,12 @@ export default class Index extends React.Component{
         console.log('init');
     }
 
+    static fetchData(){
+        return {
+            a:200
+        }
+    }
+
     componentDidMount(e){
         console.log('mount',e);
     }
