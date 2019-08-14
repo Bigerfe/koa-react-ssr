@@ -16,10 +16,7 @@ export default async function (ctx, next) {
 
         //组件查找测试
 
-        const data = await matchCompoent('/detail');
-        console.log('matchroute');
-        console.log(data);
-
+        const data = await matchCompoent('/detail/100/200');
 
         await renderReact(ctx);
     } else {

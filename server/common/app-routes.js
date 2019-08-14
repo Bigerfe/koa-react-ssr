@@ -56,9 +56,7 @@ const GrandChild = ({ someProp }) => (
 );
 
 const routes = [
-    {
-        component: Root,
-        routes: [
+  
             {
                 path: "/",
                 exact: true,
@@ -75,11 +73,14 @@ const routes = [
                 ]
             },
             {
-                path:'/detail',
-                component:Detail
+                path: '/detail', exact: true,
+                component:Detail,
+            },
+            {
+                path: '/detail/:a/:b', exact: true,
+                component: Detail
             }
-        ]
-    }
+         
 ];
 
 export default routes;

@@ -7,11 +7,12 @@ import AppRoutes from './app-routes';
 
 export default async (url)=>{
 
-   const routes =   matchRoutes(AppRoutes, url);
+   const routes =  matchRoutes(AppRoutes, url);
 
    routes.map(({route,match})=>{
-  
-    if(match.path===url){
+       console.log('route0', route);
+       console.log('match0', match);
+    if(match.url===url){
         console.log('route', route);
         console.log('match', match);
 

@@ -9,7 +9,8 @@ import routesMuster from './routes-muster';
 
 
 function AppRouter(){
-    return (<BrowserRouter>
+    return (
+          <BrowserRouter>
             <Layout>
                 <Switch>
                     {
@@ -25,4 +26,16 @@ function AppRouter(){
             </BrowserRouter>
     );
 }
+
+//这种方式显示也可以，现在不用
+// function AppRouter() {
+//     return (<BrowserRouter>
+//         <Layout>
+//             <Switch>
+//                 {renderRoutes(routes())}
+//             </Switch>
+//         </Layout>
+//     </BrowserRouter>
+//     );
+// }
 export default AppRouter;
