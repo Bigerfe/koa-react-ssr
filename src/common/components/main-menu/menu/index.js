@@ -15,11 +15,12 @@ export default class Index extends React.Component {
     }
 
     handleMenuClick(id,e){
-        console.log(id);
         this.setState({
             showMenuId:id
         });
         localStorage.setItem(MENUID,id);
+       //e.nativeEvent.preventDefault();
+        e.preventDefault();//两个方法都 ok，组织默认行为
     }
 
     componentDidMount(){
@@ -32,17 +33,17 @@ export default class Index extends React.Component {
     render(){
         return menuData.map((item)=>{
           return   <div className="main-menu-f-item" key={item.id}>
-              <a className="fitema" href="javascript:;" onClick={this.handleMenuClick.bind(this,item.id)}>{item.name}</a>
-              {
-                  this.state.showMenuId == item.id ? <div className="fitem-child">
-                      {
-                          item.child && item.child.map((citem) => {
-                              return <Link key={citem.id} to={citem.link}>{citem.name}</Link>
+                    <a className="fitema" onClick={this.handleMenuClick.bind(this,item.id)}>{item.name}</a>
+                        {
+                            this.state.showMenuId == item.id ? <div className="fitem-child">
+                                {
+                                    item.child && item.child.map((citem) => {
+                                        return <Link replace={true} key={citem.id} to={citem.link}>{citem.name}</Link>
 
-                          })
-                      }
-                  </div>:null
-              }
+                                    })
+                                }
+                            </div>:null
+                        }
             </div>
         })
     }

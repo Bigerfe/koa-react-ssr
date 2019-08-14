@@ -12,7 +12,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 //////////******** */
 
 const wpConfig = require('./webpack.config.base');
-const formatMessages = require('./common/formatMessages');
+const formatMessages = require('./common/format-messages');
 
 wpConfig.mode = 'production';
 wpConfig.devtool = 'none';
@@ -20,19 +20,32 @@ wpConfig.devtool = 'none';
 wpConfig.module.rules.push({
     test: /\.(sa|sc|c)ss$/,
     use: [{
-            loader: MiniCssExtractPlugin.loader,
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+            hmr: false
+        },
+    },
+    {
+        loader: "css-loader",
+    },
+    {
+        loader: "sass-loader"
+    },
+    {
+        loader: "postcss-loader"
+    }
+    ]
+});
+
+wpConfig.module.rules.push({
+    test: /\.(png|jpg|gif)$/,
+    use: [
+        {
+            loader: 'url-loader',
             options: {
-                hmr: false
-            },
-        },
-        {
-            loader: "css-loader",
-        },
-        {
-            loader: "sass-loader"
-        },
-        {
-            loader: "postcss-loader"
+                limit: 5000,
+                name: 'img/[name].[hash:8].[ext]'
+            }
         }
     ]
 });
@@ -55,7 +68,7 @@ const plugins = [
     // 删除文件 保留新文件
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-        "process.env.IS_DEV":false
+        "process.env.IS_DEV": false
     })
 ];
 
@@ -108,7 +121,7 @@ const comipler = webpack(wpConfig);
 
 
 
-comipler.run((error,stats)=>{
+comipler.run((error, stats) => {
     var res = formatMessages(stats.toJson({}, true));
     if (res.errors.length) {
         console.log('Failed to compile.\n');

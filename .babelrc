@@ -1,10 +1,50 @@
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
-    ],
-    "plugins": [
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-proposal-class-properties"
-    ]
+    "env": {
+        "node": {
+            "presets": [
+                "@babel/preset-react",
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "node": "current"
+                        }
+                    }
+                ]
+            ]
+        },
+        "development": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "browsers": [
+                                ">0.2%",
+                                "not dead",
+                                "not ie <= 11",
+                                "not ie <= 9",
+                                "not op_mini all"
+                            ]
+                        },
+                        "useBuiltIns": "entry",
+                        "corejs": 3,
+                        //"debug": true,
+                        "modules": false
+                    }
+                ],
+                "@babel/preset-react"
+            ],
+            "plugins": [
+                [
+                    "@babel/plugin-proposal-class-properties",
+                    {
+                        "loose": true
+                    }
+                ],
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-syntax-dynamic-import"
+            ]
+        }
+    }
 }

@@ -8,10 +8,6 @@ export default async function(ctx){
     let path =ctx.path;
     let url = ctx.url;
     const body = ctx.body;
-
-    console.log('path', path);
-    console.log('url', url);
-
     const urlMatch = path.match(/_api\/(\w+.*-\w+)+\/(\w+.*-\w+)+\/?/);//获得 controller 和 action  name
     if(!urlMatch) return null;
 

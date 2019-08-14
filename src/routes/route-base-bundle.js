@@ -15,7 +15,12 @@ export default class Bundle extends React.Component {
         };
     }
 
-    componentWillMount() {
+    //即将废弃
+    // componentWillMount() {
+      
+    // }
+
+    componentDidMount(){
         this.load(this.props)
     }
 

@@ -14,7 +14,8 @@ const CompIndex = (props) => (
 export default [
     {
         path:'/',
-        component: CompIndex
+        component: CompIndex,
+        exact:true
     },
     {
         path: '/index1',

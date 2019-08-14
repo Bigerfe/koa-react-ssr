@@ -8,15 +8,14 @@ import Layout from '../app/layout';
 import routesMuster from './routes-muster';
 
 
-export default class Index extends React.Component{
-    render(){
-        return <BrowserRouter>
+function AppRouter(){
+    return (<BrowserRouter>
             <Layout>
                 <Switch>
                     {
                         routesMuster.map(item=>{
                            return item.map(small=>{
-                               return <Route path={small.path} exact={true} component={small.component}></Route>
+                               return <Route path={small.path} exact={small.exact} component={small.component}></Route>
                            })
 
                         })
@@ -24,5 +23,6 @@ export default class Index extends React.Component{
                 </Switch>
                 </Layout>
             </BrowserRouter>
-    }
+    );
 }
+export default AppRouter;

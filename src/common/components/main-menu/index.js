@@ -12,15 +12,15 @@ export default class Index extends React.Component{
 
     render(){
         return <div className="mainmenu-layout">
-        <div className="top">后台系统</div>
-            <div className="core-layout">
-                <div className="menus">
-                      <Menu></Menu>
+                    <div className="top">the is bgm</div>
+                    <div className="core-layout">
+                        <div className="menus">
+                            <Menu></Menu>
+                        </div>
+                        <div className="content">
+                                {this.props.children}
+                        </div>
+                    </div>
                 </div>
-                <div className="content">
-                        {this.props.children}
-                </div>
-            </div>
-       </div>
     }
 }

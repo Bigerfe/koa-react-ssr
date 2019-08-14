@@ -9,7 +9,7 @@ console.log(chalk.green('Compiling server '));
 //spawn('babel', ['server', '--out-dir', 'build/server', '--copy-files'], { stdio: 'inherit' });
 //spawn('babel', ['client', '--out-dir', 'build/server/client'], { stdio: 'inherit' });
 //使用这个方式 命令配置在了 scripts 里
-spawn('npm', ['run', 'node-danymic-link'], { stdio: 'inherit' });
+spawn('npm', ['run', 'chai-link-all'], { stdio: 'inherit' });
 
 spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
 

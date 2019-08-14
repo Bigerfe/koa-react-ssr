@@ -1,18 +1,23 @@
 /**
  * node 端接口全部链接到一个入口,通过代码执行
+ * react 路由入口 全部集中到一个入口
  */
 const utils = require('../common/utils');
 const fs = require('fs');
 const path = require('path');
+const config = require('../config');
 
-
+const args = process.argv;
+const type = args[2];
 
 const getToLinkModules = (folderPath, delname, isFile) => {
+
     files = fs.readdirSync(folderPath); //读取路径
     const arr = [];
+    let firstItem = null;//导出后需要排在第一个
     files.forEach(function (file) {
 
-        console.log(file);
+        if (file.indexOf('.') === 0) return false;
 
         let stat = fs.statSync(path.join(folderPath, file));
         if (stat.isFile() && isFile) {
@@ -28,8 +33,15 @@ const getToLinkModules = (folderPath, delname, isFile) => {
         } else {
             if (!isFile) {
                 //记录目录
+                console.log(file);
                 let sname = file.match(/^(\w+.*\w+)$/)[1];
-                let formatName ='Route'+utils.nameToBigCamelFormat(sname);
+                console.log(sname);
+                let formatName = 'Route' + utils.nameToBigCamelFormat(sname);
+                //TODO:代码重复判断和执行
+                if (sname === config.routeIndexFolderName) {//第一个
+                    firstItem = formatName;
+                }
+
                 if (formatName !== delname) {
                     arr.push({
                         formatName,
@@ -40,7 +52,10 @@ const getToLinkModules = (folderPath, delname, isFile) => {
         }
     });
 
-    return arr;
+    return {
+        arr,
+        firstItem
+    };
 }
 
 /**
@@ -54,11 +69,11 @@ const modifyNodeApiIndexContent = (targetFile, modules) => {
     let jsStr = '';
     const exportArr = [];
     modules.forEach(item => {
-        jsStr += `import ${item.formatName} from './${item.sname}';\r\n`
+        jsStr += `const ${item.formatName} = require('./${item.sname}').default;\r\n`
         exportArr.push(item.formatName);
     });
 
-    jsStr += `export default { \r\n ${exportArr.join(',')} \r\n}`;
+    jsStr += `module.exports = { \r\n ${exportArr.join(',')} \r\n}`;
 
     fs.writeFileSync(targetFile, jsStr);
 
@@ -75,22 +90,29 @@ const modifyReactRouteMusterContent = (targetFile, modules) => {
 
     let jsStr = '';
     const exportArr = [];
-    modules.forEach(item => {
+
+    modules.arr.forEach(item => {
         jsStr += `import ${item.formatName} from '../page/${item.sname}/config/route';\r\n`
-        exportArr.push(item.formatName);
+
+        if (item.formatName !== modules.firstItem)
+            exportArr.push(item.formatName);
     });
 
-    jsStr += `export default [ \r\n ${exportArr.join(',')} \r\n]`;
+    jsStr += `export default [${modules.firstItem}, \r\n ${exportArr.join(',')} \r\n]`;
 
     fs.writeFileSync(targetFile, jsStr);
 
 }
 
-const taskNodeApiLink = () => {
-    const writeFile = path.resolve(__dirname, '../../server/api-common/index.js');
+const taskNodeApiLink = (isServerRun) => {
+
+    let writeFile = path.resolve(__dirname, '../../server/api-common/index.js');
+    if (isServerRun) {//如果服务已运行 ，则直接写入到 dist 目录
+        writeFile = path.resolve(__dirname, '../../dist/server/server/api-common/index.js');
+    }
     const apiFolder = path.resolve(__dirname, '../../server/api-common/');
     const modules = getToLinkModules(apiFolder, 'index', true);
-    modifyNodeApiIndexContent(writeFile, modules);
+    modifyNodeApiIndexContent(writeFile, modules.arr);
 }
 
 
@@ -105,9 +127,21 @@ const taskReactRouteLink = () => {
     modifyReactRouteMusterContent(writeFile, modules);
 }
 
-//node api 入口链接
-taskNodeApiLink();
+console.log(args);
 
-taskReactRouteLink();
+if (type === '--api') {
+    //node api 入口链接
+    taskNodeApiLink(true);
+}
 
-//react 路由生成
+if (type === '--routes') {
+    taskReactRouteLink();
+
+    //react 路由生成
+}
+
+if (type === '--all') {//全部
+    taskNodeApiLink();
+    taskReactRouteLink();
+
+}

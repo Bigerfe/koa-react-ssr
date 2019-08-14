@@ -5,13 +5,14 @@
  */
 
 
-import convert  from 'koa-convert';
+import './svr-env';
+import convert from 'koa-convert';
 import json from 'koa-json';
-import BodyParser from 'koa-bodyparser';
-import koaStatic  from 'koa-static';
+import koaBody from 'koa-body';
+import koaStatic from 'koa-static';
 import path from 'path';
 import setCookie from '../middleware/set-cookie';
-import  baseRoute from '../middleware/base-route';
+import baseRoute from '../middleware/base-route';
 
 const Koa = require('koa2');
 const app = new Koa();
@@ -22,16 +23,34 @@ app.use(async (ctx, next) => {
   await next();
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms `);
+  console.log(ctx.request.body);
 });
 
 
-app.use(convert(BodyParser()));
+app.use(koaBody({
+  multipart: true, // 支持文件上传
+  formidable: {
+    maxFileSize: 200 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
+  }
+  // encoding:'gzip',
+  // formidable:{
+  //   uploadDir:path.join(__dirname,'public/upload/'), // 设置文件上传目录
+  //   keepExtensions: true,    // 保持文件的后缀
+  //   maxFieldsSize:2 * 1024 * 1024, // 文件上传大小
+  //   onFileBegin:(name,file) => { // 文件上传前的设置
+  //     // console.log(`name: ${name}`);
+  //     // console.log(file);
+  //   },
+  // }
+}));
+
 app.use(convert(json()));
 
 
 app.use(koaStatic(
-  path.join(__dirname, '../../static')
+  path.join(__dirname, '../../../static')
 ));
+
 
 app.use(setCookie);
 
@@ -40,7 +59,7 @@ app.use((ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', ctx.headers.origin);
   ctx.set('Access-Control-Allow-Credentials', 'true');
 
-  ctx.set("Access-Control-Max-Age", 864000);
+  //ctx.set("Access-Control-Max-Age", 864000);
   // 设置所允许的HTTP请求方法
   ctx.set("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
   // 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.
@@ -50,8 +69,6 @@ app.use((ctx, next) => {
 });
 
 app.use(baseRoute);
-
-
 
 
 module.exports = app;
