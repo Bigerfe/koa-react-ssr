@@ -20,7 +20,8 @@
                     }
                 ],
                 "@babel/plugin-transform-runtime",
-                "@babel/plugin-syntax-dynamic-import"            
+                "@babel/plugin-syntax-dynamic-import",
+                "./webpack/babel/no-require-css"          
             ]
         },
         "development": {
