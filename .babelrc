@@ -21,7 +21,7 @@
                 ],
                 "@babel/plugin-transform-runtime",
                 "@babel/plugin-syntax-dynamic-import",
-                "./webpack/babel/no-require-css"          
+                "./webpack/babel/plugin/no-require-css"          
             ]
         },
         "development": {

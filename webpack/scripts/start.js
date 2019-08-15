@@ -74,9 +74,9 @@ console.log('===============');
 console.log(nodeParams);
 monitor.nodeMonitor(nodeParams);
 console.log(chalk.cyan('node server is starting the watcher\n'));
-// Initialize watcher.
-console.log(config.appServerSrc);
-var watcher = chokidar.watch([config.appServerSrc], {
+
+// 创建监控对象
+var watcher = chokidar.watch([config.appServerSrc, config.appSrc], {
 	ignored: /(^|[\/\\])\../,
 	persistent: true
 });

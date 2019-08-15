@@ -16,8 +16,7 @@ export default [
         path:'/',
         component: CompIndex,
         exact:true
-    },
-    {
+    },{
         path: '/index1',
         component: CompIndex
     }

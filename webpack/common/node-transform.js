@@ -14,34 +14,35 @@ function throttle(filepath, callback) {
 
     compileWatcher.tId = setTimeout(function () {
         compileWatcher(filepath);
-        //TODO:这里判断的不严谨，后期修复
-        if (filepath.indexOf('/src/') === -1)//非server 代码改动不重启服务
-            callback && callback();
+        if (/\.(js|jsx)$/.test(filepath))//js文件的修改才会重启服务
+            callback && callback();//重启服务
     }, 500);
 }
 
+//开始编译文件
 function compileWatcher(filepath) {
-    //test环境下 babel用的是node环境需要区分
+    //dev环境下 babel用的是node环境需要区分
     process.env.BABEL_ENV = 'node';
     //process.env.NODE_ENV = 'test';
     console.log('file watcher', filepath);
-    if (/\/server\//.test(filepath)) {
-        var fileName = /(client|server).*/.exec(filepath)[0];
-        var ext = path.extname(fileName);
+    var fileName = /(src|server).*/.exec(filepath)[0];
+    var ext = path.extname(fileName);
 
-        console.log('-----get change file name -----', fileName);
+    console.log('-----get change file name -----', fileName);
 
-        var newpath = path.resolve('dist/server', fileName);
+    var newpath = path.resolve('dist/server', fileName);
 
-        console.log(newpath);
-    }
+    console.log(newpath);
 
-    if (/\.(js|jsx)$/.test(ext) && filepath.indexOf('/src/page') === -1) {
+
+    if (/\.(js|jsx)$/.test(ext)) {
         //监听 node server 文件
 
         if (filepath.indexOf('/api-common/') > 0 && filepath.indexOf('/api-common/index') === -1) {
             //操作的是 node 端 api 文件
-            spawnSync.sync('npm', ['run', 'chai-api'], { stdio: 'inherit' });
+            spawnSync.sync('npm', ['run', 'chai-api'], {
+                stdio: 'inherit'
+            });
         }
 
         //, { stdio: 'inherit' } 此处不必重复输出
@@ -52,7 +53,9 @@ function compileWatcher(filepath) {
     else if (/\.(js|jsx)$/.test(filepath) && filepath.indexOf('/src/page/') > 0 && filepath.indexOf('/config/route.js') > -1) {
         //监听客户端路由文件  且不是路由入口文件
         //, { stdio: 'inherit' } 此处不必重复输出
-        spawnSync.sync('npm', ['run', 'chai-routes'], { stdio: 'inherit' });
+        spawnSync.sync('npm', ['run', 'chai-routes'], {
+            stdio: 'inherit'
+        });
 
         console.log(chalk.yellow('chai-routes compiled ' + filepath));
     }
