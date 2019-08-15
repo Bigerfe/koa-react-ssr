@@ -9,6 +9,7 @@ export default class Index extends React.Component{
     constructor(props){
         super(props);
         console.log('init');
+        console.log(this.props);
     }
 
     static fetchData(){

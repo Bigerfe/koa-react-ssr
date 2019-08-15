@@ -2,7 +2,6 @@
     "env": {
         "node": {
             "presets": [
-                "@babel/preset-react",
                 [
                     "@babel/preset-env",
                     {
@@ -10,7 +9,8 @@
                             "node": "current"
                         }
                     }
-                ]
+                ],
+                "@babel/preset-react"
             ],
             "plugins": [
                 [
@@ -20,7 +20,7 @@
                     }
                 ],
                 "@babel/plugin-transform-runtime",
-                "@babel/plugin-syntax-dynamic-import"
+                "@babel/plugin-syntax-dynamic-import"            
             ]
         },
         "development": {

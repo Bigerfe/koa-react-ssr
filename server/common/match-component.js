@@ -8,26 +8,37 @@ import {
 import AppRoutes from './app-routes';
 import Routes from '../../src/routes/routes-config';
 
+/**
+ * 目前只会返回查找到的第一个组件，其他组件不会返回。
+ * return {
+ * component,match
+ *  }
+ */
 export default async (url) => {
 
     const routes = matchRoutes(Routes(), url);
+    let len =routes.length,i=0,
+    matchC={};
 
-    routes.map(({
-        route,
-        match
-    }) => {
-        console.log('route0', route);
-        console.log('match0', match);
-        if (match.url === url) {
+    for(;i<len;i++){
+        let {route,match} = routes[i];
+        if (match.url === url) {//匹配到
             console.log('route', route);
-            console.log('match', match);
+            console.log('match', match);// 这里是什么意思呢
 
             const component = route.component;
-             component(match).props.load().then((C=>{
-                 console.log(C.default.fetchData());
-             }));
+
+            matchC.component=( await component({match}).props.load()).default;
+            matchC.match=match;
+
+            break;
+            //这种写法也可以 
+            // component(match).props.load().then((C => {
+            //     console.log(C.default.fetchData());
+            // }));
         }
-    });
-    return routes;
+    }
+
+    return matchC;
 
 }
