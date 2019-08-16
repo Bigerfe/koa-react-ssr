@@ -6,7 +6,7 @@ import {
     matchRoutes
 } from 'react-router-config';
 import AppRoutes from './app-routes';
-import Routes from '../../src/routes/routes-config';
+import Routes from '../../../src/routes/routes-config';
 
 /**
  * 目前只会返回查找到的第一个组件，其他组件不会返回。

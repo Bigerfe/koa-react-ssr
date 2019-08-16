@@ -1,7 +1,6 @@
 import ejs from '../common/ejs';
 import reqTransform from '../common/req-transform';
-import renderReact from '../common/render-react';
-import matchCompoent from '../common/match-component';
+import renderReact from '../common/ssr/';
 import config from '../config';
 
 export default async function (ctx, next) {
