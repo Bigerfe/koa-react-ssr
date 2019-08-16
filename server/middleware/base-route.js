@@ -14,10 +14,6 @@ export default async function (ctx, next) {
 
     if (path === '/ssr') {
 
-        //组件查找测试
-
-        const data = await matchCompoent('/detail');
-        console.log(data.component.fetchData());
         await renderReact(ctx);
     } else {
 

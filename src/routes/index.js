@@ -4,15 +4,15 @@
 
 import React,{Component} from 'react';
 import { Router, Route, BrowserRouter, Switch } from 'react-router-dom';
-import Layout from '../app/layout';
+import Layout from '../common/components/layout/layout';
 import routesMuster from './routes-muster';
 
 
 function AppRouter(){
     return (
           <BrowserRouter>
-            <Layout>
-                <Switch>
+                <Layout>
+                 <Switch>
                     {
                         routesMuster.map(item=>{
                            return item.map(small=>{
@@ -22,7 +22,7 @@ function AppRouter(){
                         })
                     }
                 </Switch>
-                </Layout>
+            </Layout>
             </BrowserRouter>
     );
 }

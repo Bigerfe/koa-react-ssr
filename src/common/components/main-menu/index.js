@@ -12,7 +12,7 @@ export default class Index extends React.Component{
 
     render(){
         return <div className="mainmenu-layout">
-                    <div className="top">the is bgm</div>
+                    <div className="top">the is bgm 111</div>
                     <div className="core-layout">
                         <div className="menus">
                             <Menu></Menu>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MainMenu from '../common/components/main-menu';
-import Login from '../common/components/login';
+import MainMenu from  '../main-menu';
+import Login from '../login';
 import './layout.scss';
 
 export default class Layout extends React.Component{
