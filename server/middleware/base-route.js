@@ -12,7 +12,7 @@ export default async function (ctx, next) {
     console.log('path', path);
     console.log('url', url);
 
-    if (path === '/ssr') {
+    if (path === '/detail') {
 
         await renderReact(ctx);
     } else {

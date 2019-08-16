@@ -1,18 +1,24 @@
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import matchComponent from './match-component';
+import Provider from '../../src/app/provider';
 
-const html = (COM,props) => {
+const html = (html) => {
     return `<!DOCTYPE html><html><head><title>Hello HomePage</title><meta http-eauiv="content-type" content="text/html;charset=UTF-8"></head><body>
-      <div id="rootEle">${renderToString(<COM {...props}/>)}</div>
+      <div id="rootEle">${html}</div>
     </body>
      </html>
     <script type="text/javascript" src="http://10.70.74.186:8809/client/js/main.js"></script>
-
+         <script charset="utf-8" src="http://10.70.74.186:8809/client/js/vendors~chunk-detail~chunk-index~chunk-websiteinfo.js"></script>
+<script charset="utf-8" src="http://10.70.74.186:8809/client/js/chunk-detail.js"></script>
      </body>
      `;
 }
 
+
+const getComHtml = (COM)=>{
+    return renderToString(<Provider><COM/></Provider>);
+}
 
 //     <script type="text/javascript" src="http://10.70.74.186:8809/client/js/chunk-detail.js"></script>
 
@@ -23,15 +29,7 @@ export default async (ctx) => {
     let path = '/detail';
 
     const routeMatch = await matchComponent(path);
+    const htmlstr = getComHtml(routeMatch.component);
 
-    ctx.body = html(routeMatch.component,{
-        list:[{
-            id:1,
-            title:'abc'
-        },{
-            id:2,
-            title:'ccc'
-        }
-    ]
-    });
+    ctx.body = html(htmlstr);
 }
