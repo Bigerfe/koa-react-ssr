@@ -18,7 +18,7 @@ try {
     console.error('获取初始数据失败', error);
 }
 
-ReactDOM.hydrate(<Provider initalData={APP_PROPS}>
+ReactDOM.hydrate(<Provider initialData={APP_PROPS}>
     <Routes />
     </Provider>,document.getElementById('rootEle'),(e)=>{
     });

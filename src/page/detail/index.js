@@ -20,10 +20,11 @@ export default class Index extends React.Component{
     //得到 context 对象
     static contextType = RootContext;
 
-    static fetchData(){
-        return {
-            a:400
-        }
+    static getInitialProps(){
+        return [{
+            id:100,
+            name:'this is detail page'
+        }]
     }
 
     componentDidMount(){
@@ -43,7 +44,7 @@ export default class Index extends React.Component{
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
             {
-                this.context.list.map(item=>(<div key={item.id}>{item.name}</div>))
+                this.context.initialData.map(item=>(<div key={item.id}>{item.name}</div>))
             }
         </div>
     }

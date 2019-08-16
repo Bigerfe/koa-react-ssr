@@ -12,6 +12,13 @@ export default class Index extends Component {
         super(props);
     }
 
+    static getInitialProps() {
+        return [{
+            id: 100,
+            name: 'this is detail page'
+        }]
+    }
+
     componentDidMount(){
         //console.log('__DEV__', __DEV__);
     }

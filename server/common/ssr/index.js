@@ -7,23 +7,19 @@ import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter } from "react-router";
 
-const initalData={
-    list: [
-        { id: 1, name: '张三' }, { id: 2, name: '李四' }, { id: 3, name: '大刀王五你听过吗？ 那你 out 了' }
-    ]
-}
 
-const getComHtml = (COM,ctx)=>{
-    const context={
-        initalData
-    };
+const getComponentHtml = (COM,ctx,initialData)=>{
+    // const context={
+    //     initalData
+    // };
 
-    const html = renderToString(<Provider initalData={initalData}>
-        <StaticRouter context={context} location={ctx.url}>
+    // <StaticRouter context={context} location={ctx.url}>
+    const html = renderToString(<Provider initialData={{ initialData:initialData}}>
+        <StaticRouter  location={ctx.url}>
         <COM />
         </StaticRouter>
     </Provider>);
-    console.log(html);
+
     return html;
 }
 
@@ -40,10 +36,20 @@ export default async (ctx) => {
 
     const routeMatch = await matchComponent(path);
 
-    const htmlstr = getComHtml(routeMatch.component,ctx);
+    const COM = routeMatch.component;
+
+    const match = routeMatch.match;
+
+    //inital data
+
+    const initData = await COM.getInitialProps(match);
+    
+
+    //TODO:未处理路由不存在的情况
+    const htmlstr = getComponentHtml(COM,ctx,initData);
 
     await renderBody(ctx,{
         htmlContent:htmlstr,
-        propsData:JSON.stringify(initalData)
+        propsData:  JSON.stringify({initialData:initData})
     });
 }
