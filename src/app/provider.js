@@ -7,22 +7,26 @@ export default class Index extends React.Component {
     constructor(props,context) {
         super(props);
         this.state = {
-            color:'red'
+            list:props.initalData.list
         }
+    }
+
+    componentDidMount(){
+        console.log(this.props);
     }
 
     changeContext=(data)=>{
        
-        this.setState({
-            color:'blue'
-        });
+        // this.setState({
+        //    list:[{
+        //        id:100,name:
+        //    }]
+        // });
     }
-
-
 
     render() {
         //TODO:使用了 provider 可以让消费者订阅变化，从而重新渲染
-        return <RootContext.Provider value={{color:this.state.color,changeContext:this.changeContext}}>
+        return <RootContext.Provider value={this.props.initalData||{}}>
             {this.props.children}
         </RootContext.Provider>
     }

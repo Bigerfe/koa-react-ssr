@@ -1,3 +1,4 @@
+//单页开发可能会用到 这里的配置 ，最后需要做到单页开发和服务端渲染无缝切换
 const webpack = require('webpack');
 const path = require('path');
 const {
@@ -62,14 +63,15 @@ const plugins = [
         filename: 'client/[name].css',
         chunkFilename: 'client/[name].css',
     }),
-    //做服务端渲染需要删除这个配置
     new HtmlWebPackPlugin({
         title: 'this is the title',
         filename: 'index.html',
-        template: './server/temp/csr.html',
+        template: './server/temp/index.html',
         inject: 'body',
         favicon: '',
-        minify: {},
+        minify: {
+
+        },
     }),
     // 删除文件 保留新文件
     new CleanWebpackPlugin(),

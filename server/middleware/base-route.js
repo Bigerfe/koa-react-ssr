@@ -2,6 +2,7 @@ import ejs from '../common/ejs';
 import reqTransform from '../common/req-transform';
 import renderReact from '../common/render-react';
 import matchCompoent from '../common/match-component';
+import config from '../config';
 
 export default async function (ctx, next) {
     let path = ctx.path,
@@ -12,18 +13,12 @@ export default async function (ctx, next) {
     console.log('path', path);
     console.log('url', url);
 
-    if (path === '/detail') {
-
+//process.env.IS_DEV
+    if(config.isSSR && path.indexOf('.')===-1){
         await renderReact(ctx);
-    } else {
-
-        if (process.env.IS_DEV) {
-            ctx.body = 'welcome here haha....11';
-        } else {
-            const html = await ejs.renderFile('dist/static/index.html');
-        }
+    }else{
+        const html = await ejs.renderFile('dist/static/csr.html');
     }
-
 
     reqTransform(ctx);
 

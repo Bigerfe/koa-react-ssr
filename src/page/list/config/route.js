@@ -2,18 +2,19 @@
 
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
+import Index from '../index';
 
+// const CompIndex = (props) => (
+//     <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
+//         {(CompIndex) => <CompIndex {...props} />}
+//     </BaseBundle>
+// );
 
-const PageComponent = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-list"*/'../index')}>
-        {(CompIndex) => <CompIndex {...props} />}
-    </BaseBundle>
-);
 
 export default [
-    {
-        path:'/list',
-        component: PageComponent
+   {
+        path: '/list',
+        component: Index
     }
 ]
 

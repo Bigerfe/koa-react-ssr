@@ -11,5 +11,6 @@ module.exports = {
         user: 'root',
         password: '123',
         database: 'circle-parts-db'
-    }
+    },
+    isSSR:true
 }

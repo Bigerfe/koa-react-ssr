@@ -28,8 +28,14 @@ export default async (url) => {
 
             const component = route.component;
 
-            matchC.component=( await component({match}).props.load()).default;
+            //查找组件  同步组件
+            matchC.component= component;
             matchC.match=match;
+
+            //异步组件的查找
+            // console.log(component);
+            // matchC.component=( await component({match}).props.load()).default;
+            // matchC.match=match;
 
             break;
             //这种写法也可以 

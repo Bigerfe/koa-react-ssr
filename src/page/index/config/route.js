@@ -2,23 +2,23 @@
 
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
+import Index from '../index';
 
-
-const CompIndex = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
-        {(CompIndex) => <CompIndex {...props} />}
-    </BaseBundle>
-);
+// const CompIndex = (props) => (
+//     <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
+//         {(CompIndex) => <CompIndex {...props} />}
+//     </BaseBundle>
+// );
 
 
 export default [
     {
         path:'/',
-        component: CompIndex,
+        component: Index,
         exact:true
     },{
-        path: '/index1',
-        component: CompIndex
+        path: '/index',
+        component: Index
     }
 ]
 

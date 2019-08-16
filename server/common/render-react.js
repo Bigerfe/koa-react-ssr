@@ -2,34 +2,46 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import matchComponent from './match-component';
 import Provider from '../../src/app/provider';
+import ejsHtml from './ejs-html';
+import { StaticRouter } from "react-router";
 
-const html = (html) => {
-    return `<!DOCTYPE html><html><head><title>Hello HomePage</title><meta http-eauiv="content-type" content="text/html;charset=UTF-8"></head><body>
-      <div id="rootEle">${html}</div>
-    </body>
-     </html>
-    <script type="text/javascript" src="http://10.70.74.186:8809/client/js/main.js"></script>
-         <script charset="utf-8" src="http://10.70.74.186:8809/client/js/vendors~chunk-detail~chunk-index~chunk-websiteinfo.js"></script>
-<script charset="utf-8" src="http://10.70.74.186:8809/client/js/chunk-detail.js"></script>
-     </body>
-     `;
+const initalData={
+    list: [
+        { id: 1, name: '张三' }, { id: 2, name: '李四' }, { id: 3, name: '大刀王五你听过吗？ 那你 out 了' }
+    ]
+}
+
+const getComHtml = (COM,ctx)=>{
+    const context={
+        initalData
+    };
+
+    const html = renderToString(<Provider initalData={initalData}>
+        <StaticRouter context={context} location={ctx.url}>
+        <COM />
+        </StaticRouter>
+    </Provider>);
+    console.log(html);
+    return html;
 }
 
 
-const getComHtml = (COM)=>{
-    return renderToString(<Provider><COM/></Provider>);
+const renderBody =async  (ctx,data)=>{
+    ctx.body = await ejsHtml('../temp/ssr.html',data);
 }
-
-//     <script type="text/javascript" src="http://10.70.74.186:8809/client/js/chunk-detail.js"></script>
 
 export default async (ctx) => {
 
     ctx.set('Content-Type', 'text/html;charset=UTF-8');
 
-    let path = '/detail';
+    let path = ctx.path,url = ctx.url;
 
     const routeMatch = await matchComponent(path);
-    const htmlstr = getComHtml(routeMatch.component);
 
-    ctx.body = html(htmlstr);
+    const htmlstr = getComHtml(routeMatch.component,ctx);
+
+    await renderBody(ctx,{
+        htmlContent:htmlstr,
+        propsData:JSON.stringify(initalData)
+    });
 }

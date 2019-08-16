@@ -1,4 +1,5 @@
 import React,{useContext} from 'react';
+import { Link } from 'react-router-dom';
 import './css/index.scss';
 import Panel from './components/Panel';
 import utils from '../../common/module/utils';
@@ -6,13 +7,15 @@ import RootContext from '../../app/route-context';
 
 
 function Child(props) {
-    return <div style={{ backgroundColor: props.color }}>我是 child  11111</div>
+    return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
 }
 export default class Index extends React.Component{
 
-    constructor(props){
+    constructor(props,context){
         super(props);
+        console.log('constructor');
         console.log(this.props);
+        console.log(context);
     }
     //得到 context 对象
     static contextType = RootContext;
@@ -23,8 +26,9 @@ export default class Index extends React.Component{
         }
     }
 
-    componentDidMount(e){
-        console.log(this.context);
+    componentDidMount(){
+       console.log('detail com did');
+       
     }
 
     handClick=()=>{
@@ -32,18 +36,15 @@ export default class Index extends React.Component{
     }
 
     render(){
+        console.log('detail render');
         return <div>
+            <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
-            <div style={{backgroundColor:this.context.color}}>这个是 context 拿到的值</div>
-           <ul>
-           {
-               this.props.list && this.props.list.map(item=>{
-                   return <li key={item.id}>{item.title}</li>
-               })
-           }
-           </ul>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
+            {
+                this.context.list.map(item=>(<div key={item.id}>{item.name}</div>))
+            }
         </div>
     }
 }
