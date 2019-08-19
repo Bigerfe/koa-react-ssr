@@ -1,5 +1,4 @@
 //react 服务端组件渲染的入口文件
-
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import matchComponent from './match-component';
@@ -8,14 +7,10 @@ import ejsHtml from '../other/ejs-html';
 import { StaticRouter } from "react-router";
 import NoMatch from '../../../src/page/no-match';//0匹配的时候
 import config from '../../config';
+import App from '../../../src/routes/index';
 
 const getComponentHtml =async (ctx)=>{
-    //没用到这
-    // const context={
-    //     initalData
-    // };
-
-
+   
     let path = ctx.path, url = ctx.url;
 
     const routeMatch = await matchComponent(path);
@@ -36,12 +31,16 @@ const getComponentHtml =async (ctx)=>{
         match: {
             url: ctx.path
         }
-    } ;
+    };
+
+    //没用到这
+    const context = {};
+
 
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
-        <StaticRouter location={ctx.url}>
-            <COM {...props}/>
+        <StaticRouter location={ctx.path} context={context}>
+            <App/>
         </StaticRouter>
     </Provider>);
 
@@ -51,6 +50,7 @@ const getComponentHtml =async (ctx)=>{
 
 
 const renderBody =async  (ctx,data)=>{
+  
     ctx.body = await ejsHtml('../../temp/ssr.html',data);
 }
 
@@ -63,15 +63,18 @@ export default async (ctx) => {
         propsData:"{}",
         config:config.cdnHost
     };
-
+    console.log('config.isssr',config.isSSR);
     if(config.isSSR){
-        const res = getComponentHtml(ctx);
-
+        console.log('render html =======================');
+        const res = await getComponentHtml(ctx);
+        console.log('res',res);
         renderData.htmlContent = res.html;
         renderData.propsData = JSON.stringify({ initialData: res.initialData });
         renderData.config = config.cdnHost;
 
         await renderBody(ctx,renderData );
+
+    }else{
+        await renderBody(ctx,renderData);
     }
-    await renderBody(ctx,renderData);
 }

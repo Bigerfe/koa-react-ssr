@@ -1,5 +1,6 @@
 //web app 
 import ReactDOM from 'react-dom';
+import { BrowserRouter} from 'react-router-dom';
 import React from 'react';
 import Routes  from '../routes/index';
 import Provider from './provider';
@@ -17,9 +18,11 @@ try {
     console.error('获取初始数据失败', error);
 }
 
-ReactDOM.hydrate(<Provider initialData={APP_PROPS}>
-    <Routes />
-    </Provider>,document.getElementById('rootEle'),(e)=>{
+ReactDOM.hydrate(<BrowserRouter>
+    <Provider initialData={APP_PROPS}>
+        <Routes />
+    </Provider>
+</BrowserRouter>,document.getElementById('rootEle'),(e)=>{
     });
 //开发环境才会开启
 if (process.env.IS_DEV && module.hot) {

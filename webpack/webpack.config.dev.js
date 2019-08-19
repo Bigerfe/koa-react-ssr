@@ -91,5 +91,32 @@ const plugins = [
 
 
 wpConfig.plugins = wpConfig.plugins.concat(plugins);
+wpConfig.optimization = {
+    splitChunks: {
+        cacheGroups: {
+            styles: {
+                name: 'styles',
+                    test: /\.scss$/,
+                        chunks: 'all',
+                            enforce: true,
+                },
+            // libs: { // 抽离第三方插件
+            //     test: /node_modules/, // 指定是node_modules下的第三方包
+            //         chunks: 'initial',
+            //             name: 'libs', // 打包后的文件名，任意命名    
+            //                 // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+            //                 priority: -10
+            // },
+            // commons: { // 抽离自己写的公共代码，utils这个名字可以随意起
+            //     chunks: 'async',
+            //         name: 'commons', // 任意命名
+            //             minSize: 0, // 只要超出0字节就生成一个新包
+            //                 minChunks: 2,
+            //                     priority: 5,
+            //                         reuseExistingChunk: true
+            // }
+        }
+    }
+};
 
 module.exports = wpConfig;

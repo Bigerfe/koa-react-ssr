@@ -3,23 +3,19 @@
  */
 
 import React,{Component} from 'react';
-import { Router, Route, BrowserRouter, Switch,StatusRoute } from 'react-router-dom';
+import { Router, Route, Switch,StatusRoute } from 'react-router-dom';
 import getRoutes from './routes-config';
 
 function AppRouter(){
     const routes = getRoutes();
     return (
-          <BrowserRouter>
                  <Switch>
                     {
                         routes.map((item,index)=>{
                             return <Route path={item.path} key={index} exact={item.exact} component={item.component}></Route>
                         })
                     }
-              
-
                 </Switch>
-            </BrowserRouter>
     );
 }
 

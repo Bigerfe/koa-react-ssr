@@ -34,6 +34,10 @@ export default class Index extends BaseComponent{
             }, {
                 id: 300,
                 name: '合理管理精力'
+            },
+            {
+                id: 400,
+                name: '合理管理精力787878'
             }
         ]
     }

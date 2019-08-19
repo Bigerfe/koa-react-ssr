@@ -31,11 +31,11 @@ const app = new Koa();
 
 
 //####
-const webpackCompiler = webpack(webpackConfig);
+// const webpackCompiler = webpack(webpackConfig);
 
-app.use(webpackDev(webpackCompiler, devServerConfig));
+// app.use(webpackDev(webpackCompiler, devServerConfig));
 
-app.use(webpackHot(webpackCompiler));//热更新
+// app.use(webpackHot(webpackCompiler));//热更新
 
 //####
 

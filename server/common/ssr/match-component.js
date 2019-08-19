@@ -5,7 +5,6 @@
 import {
     matchRoutes
 } from 'react-router-config';
-import AppRoutes from './app-routes';
 import Routes from '../../../src/routes/routes-config';
 import config from '../../config';
 

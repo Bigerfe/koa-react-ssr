@@ -58,7 +58,7 @@ const plugins = [
     new HtmlWebPackPlugin({
         title: 'this is the title',
         filename: 'index.html',
-        template: './server/temp/index.html',
+        template: './server/temp/csr.html',
         inject: 'body',
         favicon: '',
         minify: {

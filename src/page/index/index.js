@@ -10,6 +10,8 @@ export default class Index extends Component {
 
     constructor(props,context){
         super(props);
+        console.log('index constrctor init');
+        console.log(this.props);
     }
 
     static getInitialProps() {
@@ -25,7 +27,7 @@ export default class Index extends Component {
 
     render() {
         return <div>
-        <Link to="/detail">go详情</Link>
+        <Link to="/detail">当前时首页，点击跳转到详情页面</Link>
         </div>
     }
 
