@@ -16,12 +16,16 @@ import Routes from '../../../src/routes/routes-config';
  */
 export default async (url) => {
 
+    console.log('base routes');
+    console.log(Routes());
     const routes = matchRoutes(Routes(), url);
     let len =routes.length,i=0,
     matchC={};
 
     for(;i<len;i++){
         let {route,match} = routes[i];
+        console.log('route,match');
+        console.log(route, match);
         if (match.url === url) {//匹配到
             console.log('route', route);
             console.log('match', match);// 这里是什么意思呢

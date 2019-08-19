@@ -3,7 +3,9 @@ import RootContext from '../../app/route-context';
 import {
     Link
 } from 'react-router-dom';
-export default class Index extends React.Component {
+import BaseComponent from '../../common/base/page-base-com';
+
+export default class Index extends  BaseComponent{
     constructor(props,context) {
         super(props);
     }
@@ -13,16 +15,22 @@ export default class Index extends React.Component {
     static getInitialProps() {
         return [{
             id: 200,
-            name: '哈哈我去，我终于胖了。。。。'
+            name: 'list,哈哈我去，我终于胖了。。。。'
         }]
     }
+
     render() {
+        let contextData = this.getInitialData();
+        if(!contextData){
+            console.log('cs render');
+            contextData = Index.getInitialProps();
+        }
         return <React.Fragment>
         
         <Link to="/index">返回首页</Link>
         
         {
-            this.context.initialData.map(item=>(<div key={item.id}>{item.name}</div>))
+                contextData.map(item=>(<div key={item.id}>{item.name}</div>))
         }
 
         </React.Fragment > 

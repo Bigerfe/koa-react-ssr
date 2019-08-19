@@ -76,7 +76,9 @@ const plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
-        "process.env.IS_DEV": true
+        "process.env.IS_DEV": true,
+        __SERVER__: false,
+        __CLIENT__: true
     }),
     new friendlyError()
     // new DashboardPlugin(dashboard.setData),

@@ -68,7 +68,9 @@ const plugins = [
     // 删除文件 保留新文件
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-        "process.env.IS_DEV": false
+        "process.env.IS_DEV": false,
+        __SERVER__: false,
+        __CLIENT__: true
     })
 ];
 

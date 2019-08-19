@@ -13,6 +13,11 @@ import Index from '../index';
 export default [
     {
         path:'/detail',
+        component: Index,
+        exact:true
+    },
+    {
+        path:'/detail/:id',
         component: Index
     }
 ]

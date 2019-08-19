@@ -2,6 +2,10 @@
  * koa 服务启动文件
  */
 
+//设置全局变量
+global.__SERVER__=true;//当前时服务器渲染
+global.__CLIENT__=false;
+
 var app = require('./dist/server/server/app/server.js');
 var http = require('http');
 var config = require('./dist/server/server/config');

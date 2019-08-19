@@ -20,7 +20,7 @@ export default class Index extends Component {
     }
 
     componentDidMount(){
-        //console.log('__DEV__', __DEV__);
+        console.log('process.env.IS_DEV', process.env.IS_DEV);
     }
 
     render() {

@@ -4,12 +4,12 @@ import './css/index.scss';
 import Panel from './components/Panel';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
-
+import BaseComponent from '../../common/base/page-base-com';
 
 function Child(props) {
     return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
 }
-export default class Index extends React.Component{
+export default class Index extends BaseComponent{
 
     constructor(props,context){
         super(props);
@@ -17,19 +17,25 @@ export default class Index extends React.Component{
         console.log(this.props);
         console.log(context);
     }
+
     //得到 context 对象
     static contextType = RootContext;
 
     static getInitialProps(){
+        if(__SERVER__){
+            //如果是服务端渲染的话
+        }
         return [{
             id:100,
             name:'this is detail page'
+        },{
+            id:200,
+            name:'hhaha'
         }]
     }
 
     componentDidMount(){
        console.log('detail com did');
-       
     }
 
     handClick=()=>{
@@ -38,13 +44,19 @@ export default class Index extends React.Component{
 
     render(){
         console.log('detail render');
+        let contextData =this.getInitialData();
+        console.log('contextData');
+        console.log(contextData);
+        if(!contextData){
+            contextData = Index.getInitialProps();
+        }
         return <div>
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
             {
-                this.context.initialData.map(item=>(<div key={item.id}>{item.name}</div>))
+                contextData.map(item=>(<div key={item.id}>{item.name}</div>))
             }
         </div>
     }

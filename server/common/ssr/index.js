@@ -1,4 +1,4 @@
-//react 组件渲染的入口文件
+//react 服务端组件渲染的入口文件
 
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
@@ -12,11 +12,16 @@ const getComponentHtml = (COM,ctx,initialData)=>{
     // const context={
     //     initalData
     // };
+    const props ={
+        match: {
+            url: ctx.path
+        }
+    } ;
 
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
         <StaticRouter  location={ctx.url}>
-        <COM />
+            <COM {...props}/>
         </StaticRouter>
     </Provider>);
 
@@ -42,14 +47,18 @@ export default async (ctx) => {
 
     //inital data
 
-    const initData = await COM.getInitialProps(match);
+    //TODO:不知道还有没有更好的办法
+    const initalData = {};
+    initalData[path]={};
+    initalData[path].init=true;
+    initalData[path].data = await COM.getInitialProps(match);//用于前端获取数据，区分多页面
     
 
     //TODO:未处理路由不存在的情况
-    const htmlstr = getComponentHtml(COM,ctx,initData);
-
+    const htmlstr = getComponentHtml(COM, ctx, initalData);
+   
     await renderBody(ctx,{
         htmlContent:htmlstr,
-        propsData:  JSON.stringify({initialData:initData})
+        propsData: JSON.stringify({ initialData: initalData})
     });
 }
