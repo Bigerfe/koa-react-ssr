@@ -7,6 +7,7 @@ import {
 } from 'react-router-config';
 import AppRoutes from './app-routes';
 import Routes from '../../../src/routes/routes-config';
+import config from '../../config';
 
 /**
  * 目前只会返回查找到的第一个组件，其他组件不会返回。
@@ -33,19 +34,24 @@ export default async (url) => {
             const component = route.component;
 
             //查找组件  同步组件
-            matchC.component= component;
-            matchC.match=match;
+            if(config.isComponentLazyLoad){
+                //异步组件的查找
+                console.log(component);
+                matchC.component=(await component({match}).props.load()).default;
+                matchC.match=match;
 
-            //异步组件的查找
-            // console.log(component);
-            // matchC.component=( await component({match}).props.load()).default;
-            // matchC.match=match;
+                    //这种写法也可以 
+                    // component(match).props.load().then((C => {
+                    //     console.log(C.default.fetchData());
+                    // }));
+            }else{
+                matchC.component = component;
+                matchC.match = match;
+            }
 
             break;
-            //这种写法也可以 
-            // component(match).props.load().then((C => {
-            //     console.log(C.default.fetchData());
-            // }));
+
+    
         }
     }
 

@@ -1,11 +1,8 @@
 /**
  * koa 服务启动文件
  */
-
-//设置全局变量
-global.__SERVER__=true;//当前时服务器渲染
-global.__CLIENT__=false;
-
+console.log(process.argv);
+global.__SERVER__=true;
 var app = require('./dist/server/server/app/server.js');
 var http = require('http');
 var config = require('./dist/server/server/config');
@@ -29,7 +26,7 @@ var server = http.createServer(app.callback());
 
 server.listen(port);
 server.on('error', onError);
-console.log('server start ......  http://localhost:'+config.appPort);
+console.log('server start ......  http://localhost:' + port);
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -90,20 +87,18 @@ function onListening() {
 }
 
 
-/**
- * 设置运行环境
- */
-function setAppEnv(){
-    process.env.NODE_ENV='development';
-    process.env.IS_DEV = true;
 
-    if(process.env.isActive){
-        process.env.NODE_ENV = 'production';
-        process.env.IS_DEV = fales;
-    }
 
-    console.log('env is', process.env.NODE_ENV);
+//TODO:设置内存监控入口
+if (process.env.NOE_ENV === 'development') {
+
+    //https://github.com/JerryC8080/Memeye/blob/master/README_zh.md
+    //ask http://localhost:23333 
+    // const memeye = require('memeye');
+    // memeye();
+    //无法启动服务
+
+    //开发环境设置本机 ip
+
+    require('./webpack/common/local-ip');
 }
-
-
-setAppEnv();

@@ -2,23 +2,23 @@
 
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
-import Index from '../index';
+//import Index from '../index';
 
-// const PageComponent = (props) => (
-//     <BaseBundle load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
-//         {(CompIndex) => <CompIndex {...props} />}
-//     </BaseBundle>
-// );
+const LazyPageCom = (props) => (
+    <BaseBundle load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
+        {(CompIndex) => <CompIndex {...props} />}
+    </BaseBundle>
+);
 
 export default [
     {
         path:'/detail',
-        component: Index,
+        component: LazyPageCom,
         exact:true
     },
     {
         path:'/detail/:id',
-        component: Index
+        component: LazyPageCom
     }
 ]
 

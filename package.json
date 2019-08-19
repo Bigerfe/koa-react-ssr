@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
+        
     "dev": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
@@ -51,6 +53,8 @@
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
     "koa-static": "^5.0.0",
+    "koa-webpack-dev-middleware": "^2.0.2",
+    "koa-webpack-hot-middleware": "^1.0.3",
     "koa2": "^2.0.0-alpha.7",
     "mini-css-extract-plugin": "^0.7.0",
     "mysql": "^2.17.1",

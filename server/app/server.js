@@ -4,6 +4,12 @@
  * 18.7.16
  */
 
+//###
+import webpackDev from '../middleware/koa-webpack-dev';
+import webpackHot from '../middleware/koa-webpack-hot';
+
+//###
+
 
 import './svr-env';
 import convert from 'koa-convert';
@@ -14,8 +20,24 @@ import path from 'path';
 import setCookie from '../middleware/set-cookie';
 import baseRoute from '../middleware/base-route';
 
+//####
+import webpack from 'webpack';
+import webpackConfig from '../../../../webpack/webpack.config.dev.js';
+import devServerConfig from '../../../../webpack/common/webpack-devserver.config.js'
+//####
+
 const Koa = require('koa2');
 const app = new Koa();
+
+
+//####
+const webpackCompiler = webpack(webpackConfig);
+
+app.use(webpackDev(webpackCompiler, devServerConfig));
+
+app.use(webpackHot(webpackCompiler));//热更新
+
+//####
 
 
 app.use(async (ctx, next) => {

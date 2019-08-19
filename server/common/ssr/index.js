@@ -7,8 +7,7 @@ import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter } from "react-router";
 import NoMatch from '../../../src/page/no-match';//0匹配的时候
-import { NOMEM } from 'dns';
-
+import config from '../../config';
 
 const getComponentHtml = (COM,ctx,initialData)=>{
     //没用到这
@@ -51,16 +50,17 @@ export default async (ctx) => {
     //inital data
 
     //TODO:不知道还有没有更好的办法
-    const initalData = {};
+    const initalData = {};//用于前端获取数据，区分多页面
     initalData[path]={};
     initalData[path].init=true;
-    initalData[path].data = await (COM.getInitialProps ? COM.getInitialProps(match):null);//用于前端获取数据，区分多页面
+    initalData[path].data = await (COM.getInitialProps ? COM.getInitialProps(match):null);
     
 
     const htmlstr = getComponentHtml(COM, ctx, initalData);
    
     await renderBody(ctx,{
         htmlContent:htmlstr,
-        propsData: JSON.stringify({ initialData: initalData})
+        propsData: JSON.stringify({ initialData: initalData}),
+        config:config.cdnHost
     });
 }

@@ -26,11 +26,13 @@
 - [x] 开启服务端选然后需要基于 node 开启服务，wds 作为静态资源
 - [] 如果是非服务端渲染则开启 wds 作为服务 ，node 作为服务层和数据层
 - [x] v16 中 使用 context 传递数据,记住使用规则，目前不需要对 context 进行更新
-- [] server 和 cli 找不到路由如何处理？
+- [x] server 和 cli 找不到路由如何处理  单层路由通过最后增加 nomatch 路由
+- [] 嵌套路由如何处理 404 [https://codepen.io/pshrmn/pen/KWeVrQ](https://codepen.io/pshrmn/pen/KWeVrQ)
 - [] fetch同构
-- [] 环境判断，当前时服务端渲染还是 csr
+- [x] 环境判断，当前时服务端渲染还是 csr ( 通过路由唯一 path 处理)
 - [] 使用 stream 生成组件
-
+- [] 页面 tdk 设置 
+- [] 服务端渲染的热更新 如何设置
 
 
 ## 资料
