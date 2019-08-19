@@ -6,9 +6,12 @@ import matchComponent from './match-component';
 import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter } from "react-router";
+import NoMatch from '../../../src/page/no-match';//0匹配的时候
+import { NOMEM } from 'dns';
 
 
 const getComponentHtml = (COM,ctx,initialData)=>{
+    //没用到这
     // const context={
     //     initalData
     // };
@@ -20,7 +23,7 @@ const getComponentHtml = (COM,ctx,initialData)=>{
 
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
-        <StaticRouter  location={ctx.url}>
+        <StaticRouter location={ctx.url}>
             <COM {...props}/>
         </StaticRouter>
     </Provider>);
@@ -41,9 +44,9 @@ export default async (ctx) => {
 
     const routeMatch = await matchComponent(path);
 
-    const COM = routeMatch.component;
+    const COM = routeMatch.component||NoMatch;
 
-    const match = routeMatch.match;
+    const match = routeMatch.match || {};
 
     //inital data
 
@@ -51,10 +54,9 @@ export default async (ctx) => {
     const initalData = {};
     initalData[path]={};
     initalData[path].init=true;
-    initalData[path].data = await COM.getInitialProps(match);//用于前端获取数据，区分多页面
+    initalData[path].data = await (COM.getInitialProps ? COM.getInitialProps(match):null);//用于前端获取数据，区分多页面
     
 
-    //TODO:未处理路由不存在的情况
     const htmlstr = getComponentHtml(COM, ctx, initalData);
    
     await renderBody(ctx,{

@@ -51,7 +51,7 @@ export default class Index extends BaseComponent{
             contextData = Index.getInitialProps();
         }
         return <div>
-            <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link>
+            <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
