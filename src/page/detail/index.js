@@ -31,7 +31,11 @@ export default class Index extends BaseComponent{
         },{
             id:200,
             name:'hhaha'
-        }]
+            }, {
+                id: 300,
+                name: '合理管理精力'
+            }
+        ]
     }
 
     componentDidMount(){

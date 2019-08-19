@@ -15,8 +15,16 @@ export default class Index extends  BaseComponent{
     static getInitialProps() {
         return [{
             id: 200,
-            name: 'list,哈哈我去，我终于胖了。。。。'
-        }]
+            name: 'list最近天气不错哦'
+        },
+            {
+                id: 300,
+                name: 'list最近天气不错哦'
+            },
+            {
+                id: 400,
+                name: 'list最近天气不错哦'
+            }]
     }
 
     render() {
