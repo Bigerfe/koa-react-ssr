@@ -1,7 +1,7 @@
 /**
  * api请求约定 处理
  */
-import apis from '../api-common/index';
+import apis from '../../api-common/index';
 import utils from './utils';
 
 export default async function(ctx){

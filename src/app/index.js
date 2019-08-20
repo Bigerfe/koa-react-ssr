@@ -4,13 +4,9 @@ import { BrowserRouter} from 'react-router-dom';
 import React from 'react';
 import Routes  from '../routes/index';
 import Provider from './provider';
-import matchComponent from '../../server/common/ssr/match-component';
+import matchComponent from './match-component';
+import routesConfig from '../routes/routes-config';
 
-
-// const APP_PROPS = window.APP_PROPS || {};
-// const start = new Date();
-// const propDom = document.getElementById('propsData');
-// console.log(propDom.getAttribute('data-props'));
 let APP_PROPS = '';
 try {
     APP_PROPS = JSON.parse(window._INITAL_DATA||"{}");
@@ -19,7 +15,7 @@ try {
     console.error('获取初始数据失败', error);
 }
 
-matchComponent(document.location.pathname).then(res=>{
+matchComponent(document.location.pathname, routesConfig()).then(res=>{
     ReactDOM.hydrate(<BrowserRouter>
         <Provider initialData={APP_PROPS}>
             <Routes />

@@ -16,7 +16,7 @@ export default class Bundle extends React.Component {
     }
 
     //即将废弃
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if (!this.state.mod) {
             console.log('async did mount');
             this.load(this.props);
@@ -46,7 +46,6 @@ export default class Bundle extends React.Component {
         });
         //注意这里，使用Promise对象; mod.default导出默认
         props.load().then((mod) => {
-            console.log(mod);
             this.setState({
                 mod: mod.default ? mod.default : mod
             });

@@ -1,5 +1,5 @@
-import ejs from '../common/ejs';
-import reqTransform from '../common/req-transform';
+import ejs from 'ejs';
+import reqTransform from '../common/other/req-transform';
 import renderReact from '../common/ssr/';
 import config from '../config';
 import CacheHelper from '../common/other/cache-helper';
@@ -11,12 +11,6 @@ export default async function (ctx, next) {
 
     console.log('path', path);
     console.log('url', url);
-
-    CacheHelper.add('a',{
-        a:100,b:200
-    });
-
-
 
     if(path.indexOf('.')===-1){
         await renderReact(ctx);

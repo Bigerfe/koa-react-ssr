@@ -1,7 +1,7 @@
 //react 服务端组件渲染的入口文件
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
-import matchComponent from './match-component';
+import matchComponent from '../../../src/app/match-component';
 import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter,Switch,Route } from "react-router";
@@ -15,9 +15,11 @@ import { getCacheStaticRoutes} from '../ssr/static-routes';
 
 const getComponentHtml =async (ctx)=>{
    
+    const routes = await getCacheStaticRoutes();
+
     let path = ctx.path, url = ctx.url;
 
-    const routeMatch = await matchComponent(path);
+    const routeMatch = await matchComponent(path, routes);
 
     const COM = routeMatch.component || NoMatch;
 
@@ -40,8 +42,6 @@ const getComponentHtml =async (ctx)=>{
     //没用到这
     const context = {};
 
-    const routes = await getCacheStaticRoutes();
-
     console.log('routes');
     console.log(routes);
 
@@ -57,10 +57,7 @@ const getComponentHtml =async (ctx)=>{
 }
 
 
-const renderBody =async  (ctx,data)=>{
-
-   console.log('缓存中数据', CacheHelper.get('a'));
-  
+const renderBody =async  (ctx,data)=>{  
     ctx.body = await ejsHtml('../../temp/ssr.html',data);
 }
 
