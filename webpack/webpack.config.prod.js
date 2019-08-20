@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+
 // const Dashboard = require('webpack-dashboard');
 // const DashboardPlugin = require('webpack-dashboard/plugin');
 // const dashboard = new Dashboard();
@@ -71,6 +73,10 @@ const plugins = [
         "process.env.IS_DEV": false,
         __SERVER__: false,
         __CLIENT__: true
+    }),
+    //生成 manifest 方便定位对应的资源文件
+    new ManifestPlugin({
+        fileName: 'asset-manifest.json',
     })
 ];
 
@@ -102,7 +108,7 @@ wpConfig.optimization = {
                 // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
                 priority: -10
             },
-            commons: { // 抽离自己写的公共代码，utils这个名字可以随意起
+            commons: { // 抽离自己写的公共代码
                 chunks: 'async',
                 name: 'commons', // 任意命名
                 minSize: 0, // 只要超出0字节就生成一个新包

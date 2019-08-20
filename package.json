@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
-        
     "dev": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
@@ -74,6 +73,7 @@
     "url-loader": "^2.0.1",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.4",
+    "webpack-manifest-plugin": "^2.0.4",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
