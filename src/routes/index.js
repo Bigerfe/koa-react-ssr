@@ -3,19 +3,20 @@
  */
 
 import React,{Component} from 'react';
-import { Router, Route, Switch,StatusRoute } from 'react-router-dom';
+import {Route, Switch } from 'react-router';
 import getRoutes from './routes-config';
 
-function AppRouter(){
+function App(){
     const routes = getRoutes();
     return (
-                 <Switch>
+        <Switch>
+
                     {
                         routes.map((item,index)=>{
                             return <Route path={item.path} key={index} exact={item.exact} component={item.component}></Route>
                         })
                     }
-                </Switch>
+        </Switch>
     );
 }
 
@@ -30,4 +31,4 @@ function AppRouter(){
 //     </BrowserRouter>
 //     );
 // }
-export default AppRouter;
+export default App;

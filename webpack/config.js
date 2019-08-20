@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    jsCdnHost: 'http://192.168.0.105:8809/',
+    jsCdnHost: 'http://10.70.74.186:8809/',
     cssCdnHost: 'http://c1',
     appPort: '8809', //默认前端应用端口号
     devServerPort:'8808',//开发环境 node server 的端口

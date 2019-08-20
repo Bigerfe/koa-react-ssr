@@ -13,7 +13,7 @@ module.exports = {
         database: 'circle-parts-db'
     },
     isSSR:true,
-    isComponentLazyLoad:true,//组件是否按需加载
+    isComponentLazyLoad:false,//组件是否按需加载
     cdnHost:{
         jsCdnHost: `http://${process.env.LocalIP}:8809`,
         cssCdnHost: `http://${process.env.LocalIP}:8809`

@@ -4,10 +4,29 @@ import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-
 import matchComponent from './match-component';
 import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
-import { StaticRouter } from "react-router";
+import { StaticRouter,Switch,Route } from "react-router";
 import NoMatch from '../../../src/page/no-match';//0匹配的时候
 import config from '../../config';
 import App from '../../../src/routes/index';
+
+function Detail(){
+    return <div>detail 111</div>
+}
+
+function Index() {
+    return <div>index22111</div>
+}
+
+
+function App1() {
+    return (
+        <Switch>
+            {/* some other routes */}
+           <Route path='/detail' component={Detail}></Route>
+            <Route path='/index' component={Index}></Route>
+        </Switch>
+    );
+}
 
 const getComponentHtml =async (ctx)=>{
    
