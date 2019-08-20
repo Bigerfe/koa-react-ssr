@@ -5,28 +5,13 @@ import matchComponent from './match-component';
 import Provider from '../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter,Switch,Route } from "react-router";
+import { renderRoutes} from 'react-router-config';
 import NoMatch from '../../../src/page/no-match';//0匹配的时候
 import config from '../../config';
-import App from '../../../src/routes/index';
+import CacheHelper from '../other/cache-helper';
 
-function Detail(){
-    return <div>detail 111</div>
-}
+import { getCacheStaticRoutes} from '../ssr/static-routes';
 
-function Index() {
-    return <div>index22111</div>
-}
-
-
-function App1() {
-    return (
-        <Switch>
-            {/* some other routes */}
-           <Route path='/detail' component={Detail}></Route>
-            <Route path='/index' component={Index}></Route>
-        </Switch>
-    );
-}
 
 const getComponentHtml =async (ctx)=>{
    
@@ -55,11 +40,15 @@ const getComponentHtml =async (ctx)=>{
     //没用到这
     const context = {};
 
+    const routes = await getCacheStaticRoutes();
+
+    console.log('routes');
+    console.log(routes);
 
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
         <StaticRouter location={ctx.path} context={context}>
-            <App/>
+            {renderRoutes(routes)}
         </StaticRouter>
     </Provider>);
 
@@ -69,6 +58,8 @@ const getComponentHtml =async (ctx)=>{
 
 
 const renderBody =async  (ctx,data)=>{
+
+   console.log('缓存中数据', CacheHelper.get('a'));
   
     ctx.body = await ejsHtml('../../temp/ssr.html',data);
 }

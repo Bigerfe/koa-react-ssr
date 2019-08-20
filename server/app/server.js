@@ -19,6 +19,7 @@ import koaStatic from 'koa-static';
 import path from 'path';
 import setCookie from '../middleware/set-cookie';
 import baseRoute from '../middleware/base-route';
+import cacheStaticRoute from '../middleware/cache-staitc-routes';
 
 //####
 import webpack from 'webpack';
@@ -89,6 +90,8 @@ app.use((ctx, next) => {
 
   return next();
 });
+
+app.use(cacheStaticRoute);
 
 app.use(baseRoute);
 

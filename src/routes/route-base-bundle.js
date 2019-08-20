@@ -16,23 +16,29 @@ export default class Bundle extends React.Component {
     }
 
     //即将废弃
-    // componentWillMount() {
-      
-    // }
-
-    componentDidMount(){
-        this.load(this.props)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        //TODO://问题在这里，导致每次都会重新渲染组件
-        console.log(nextProps.load);
-        console.log(this.props.load);
-        console.log(nextProps.load == this.props.load);
-        if (nextProps.load !== this.props.load) {
-            this.load(nextProps)
+    componentWillMount() {
+        if (!this.state.mod) {
+            console.log('async did mount');
+            this.load(this.props);
         }
     }
+
+    // componentDidMount(){
+    //     if(!this.state.mod){
+    //         console.log('async did mount');
+    //         this.load(this.props);
+    //     }
+    // }
+
+    // componentWillReceiveProps(nextProps) {
+    //     //TODO://问题在这里，导致每次都会重新渲染组件
+    //     console.log(nextProps.load);
+    //     console.log(this.props.load);
+    //     console.log(nextProps.load == this.props.load);
+    //     if (nextProps.load !== this.props.load) {
+    //         this.load(nextProps)
+    //     }
+    // }
 
     load(props) {
         this.setState({
@@ -48,6 +54,6 @@ export default class Bundle extends React.Component {
     }
 
     render() {
-        return this.state.mod ? this.props.children(this.state.mod) : null;
+        return this.state.mod ? this.props.children(this.state.mod) :null;
     }
 }

@@ -32,6 +32,9 @@ export default async (url) => {
 
             const component = route.component;
 
+            console.log('componentcomponent');
+            console.log(component.toString());
+
             //查找组件  同步组件
             if(config.isComponentLazyLoad){
                 //异步组件的查找
@@ -49,7 +52,6 @@ export default async (url) => {
             }
 
             break;
-
     
         }
     }
