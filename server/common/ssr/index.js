@@ -25,8 +25,6 @@ const getComponentHtml =async (ctx)=>{
 
     const match = routeMatch.match || {};
 
-    //inital data
-
     //TODO:不知道还有没有更好的办法
     const initialData = {};//用于前端获取数据，区分多页面
     initialData[path] = {};
@@ -70,7 +68,7 @@ export default async (ctx) => {
         propsData:"{}",
         config:config.cdnHost
     };
-    console.log('config.isssr',config.isSSR);
+
     if(config.isSSR){
         console.log('render html =======================');
         const res = await getComponentHtml(ctx);
@@ -78,10 +76,8 @@ export default async (ctx) => {
         renderData.htmlContent = res.html;
         renderData.propsData = JSON.stringify({ initialData: res.initialData });
         renderData.config = config.cdnHost;
-
-        await renderBody(ctx,renderData );
-
-    }else{
-        await renderBody(ctx,renderData);
     }
+        
+    await renderBody(ctx,renderData);
+ 
 }

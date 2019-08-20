@@ -3,6 +3,8 @@
  */
 console.log(process.argv);
 global.__SERVER__=true;
+global.__CLIENT__ = false;
+
 var app = require('./dist/server/server/app/server.js');
 var http = require('http');
 var config = require('./dist/server/server/config');
