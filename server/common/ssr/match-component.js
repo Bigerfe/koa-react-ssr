@@ -14,6 +14,7 @@ import config from '../../config';
  * component,match
  *  }
  */
+
 export default async (url) => {
 
     console.log('base routes');
@@ -24,16 +25,11 @@ export default async (url) => {
 
     for(;i<len;i++){
         let {route,match} = routes[i];
-        console.log('route,match');
-        console.log(route, match);
         if (match.url === url) {//匹配到
-            console.log('route', route);
-            console.log('match', match);// 这里是什么意思呢
+            console.log('match route', route);
+            console.log('match match', match);// 这里是什么意思呢
 
             const component = route.component;
-
-            console.log('componentcomponent');
-            console.log(component.toString());
 
             //查找组件  同步组件
             if(config.isComponentLazyLoad){
@@ -52,7 +48,6 @@ export default async (url) => {
             }
 
             break;
-    
         }
     }
 

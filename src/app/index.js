@@ -19,9 +19,7 @@ try {
     console.error('获取初始数据失败', error);
 }
 
-console.log(BrowserRouter);
-
-matchComponent('/detail').then(res=>{
+matchComponent(document.location.pathname).then(res=>{
     ReactDOM.hydrate(<BrowserRouter>
         <Provider initialData={APP_PROPS}>
             <Routes />

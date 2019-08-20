@@ -8,14 +8,7 @@ import {
 } from 'react-router-config';
 import Routes from '../../../src/routes/routes-config';
 import CacheHelper from '../other/cache-helper';
-/**
- * 判断是否是按需加载的组件
- * @param {函数或组件} component 
- */
-const checkIsAsyncRoute = (component) => {
-    var str = component.toString();
-    return str.indexOf('require(') > -1 && str.indexOf('.resolve().') > -1;
-}
+import utils from '../other/utils';
 
 const staticRoutesCacheKey = 'node-server-static-routes-cache';
 
@@ -53,7 +46,7 @@ export async function getStaticRoutes() {
 
     for (; i < len; i++) {
         let item = routes[i];
-        if (checkIsAsyncRoute(item.component)) {
+        if (utils.checkIsAsyncRoute(item.component)) {
             staticRoutes.push({
                 ...item,
                 ...{
