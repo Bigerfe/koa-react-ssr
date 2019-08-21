@@ -104,7 +104,7 @@ wpConfig.optimization = {
                 priority: -10
             },
             commons: { // 抽离自己写的公共代码，utils这个名字可以随意起
-                chunks: 'async',
+                chunks: 'async',//按需加载
                     name: 'commons', // 任意命名
                         minSize: 0, // 只要超出0字节就生成一个新包
                             minChunks: 2,

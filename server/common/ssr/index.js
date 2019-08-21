@@ -28,9 +28,18 @@ const getComponentHtml =async (ctx)=>{
 
     //TODO:不知道还有没有更好的办法
     const initialData = {};//用于前端获取数据，区分多页面
-    initialData[path] = {};
-    initialData[path].init = true;
-    initialData[path].data = await(COM.getInitialProps ? COM.getInitialProps(match) : null);
+    const fallData = initialData[path] = {};
+    fallData.init = true;
+    fallData.data = await(COM.getInitialProps ? COM.getInitialProps(match) : null);
+
+    //处理页面 tdk
+    fallData.data.page||(fallData.data.page={
+        tdk:{
+            title:'默认标题',
+            keyword:'默认关键词',
+            description:'默认描述'
+        }
+    })
 
     const props ={
         match: {
@@ -54,7 +63,7 @@ const getComponentHtml =async (ctx)=>{
     </Provider>);
 
     return {
-        html, initialData};
+        html, initialData, page: fallData.data.page};
 }
 
 
@@ -69,7 +78,8 @@ export default async (ctx) => {
     renderData={
         htmlContent:htmlstr,
         propsData:"{}",
-        config:config.cdnHost
+        config:config.cdnHost,
+        page:{}
     };
 
     if(config.isSSR){
@@ -79,6 +89,7 @@ export default async (ctx) => {
         renderData.htmlContent = res.html;
         renderData.propsData = JSON.stringify({ initialData: res.initialData });
         renderData.config = config.cdnHost;
+        renderData.page =res.page;
     }
         
     await renderBody(ctx,renderData);

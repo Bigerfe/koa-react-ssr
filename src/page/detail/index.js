@@ -25,25 +25,43 @@ export default class Index extends BaseComponent{
         if(__SERVER__){
             //如果是服务端渲染的话
         }
-        return [{
-            id:100,
-            name:'this is detail page'
-        },{
-            id:200,
-            name:'hhaha'
-            }, {
-                id: 300,
-                name: '合理管理精力'
+        return {
+            page:{
+                tdk:{
+                    title:'ksr 框架',
+                    keyword:'ssr react',
+                    description:'我是描述'
+                }
             },
-            {
-                id: 400,
-                name: '合理管理精力787878'
-            }
-        ]
+            list: [{
+                    id: 100,
+                    name: '做一件事之前'
+                }, {
+                    id: 200,
+                    name: 'hhaha'
+                }, {
+                    id: 300,
+                    name: '考虑好做什么'
+                },
+                {
+                    id: 400,
+                    name: '脑子里想一个步骤'
+                },
+                {
+                    id: 500,
+                    name: '然后想好每天做那一步，然后想清楚，'
+                },
+                {
+                    id: 600,
+                    name: '好了，你以你已经成功一伴儿了'
+                }
+            ]
+        } 
     }
 
     componentDidMount(){
        console.log('detail com did');
+       
     }
 
     handClick=()=>{
@@ -53,18 +71,19 @@ export default class Index extends BaseComponent{
     render(){
         console.log('detail render');
         let contextData =this.getInitialData();
-        console.log('contextData');
-        console.log(contextData);
         if(!contextData){
             contextData = Index.getInitialProps();
         }
+        const { page, list } = contextData;
+
+
         return <div>
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
             {
-                contextData.map(item=>(<div key={item.id}>{item.name}</div>))
+                list.map(item=>(<div key={item.id}>{item.name}</div>))
             }
         </div>
     }
