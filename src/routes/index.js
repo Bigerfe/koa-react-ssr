@@ -5,18 +5,21 @@
 import React,{Component} from 'react';
 import {Route, Switch } from 'react-router';
 import getRoutes from './routes-config';
+import Layout from '../app/layout';
 
 function App(){
     const routes = getRoutes();
     return (
-        <Switch>
+        <Layout>
+            <Switch>
 
-                    {
-                        routes.map((item,index)=>{
-                            return <Route path={item.path} key={index} exact={item.exact} component={item.component}></Route>
-                        })
-                    }
-        </Switch>
+                        {
+                            routes.map((item,index)=>{
+                                return <Route path={item.path} key={index} exact={item.exact} component={item.component}></Route>
+                            })
+                        }
+            </Switch>
+        </Layout>
     );
 }
 

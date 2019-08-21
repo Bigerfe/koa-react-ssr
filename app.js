@@ -92,7 +92,7 @@ function onListening() {
 
 
 //TODO:设置内存监控入口
-if (process.env.NOE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
 
     //https://github.com/JerryC8080/Memeye/blob/master/README_zh.md
     //ask http://localhost:23333 

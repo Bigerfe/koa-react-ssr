@@ -9,6 +9,7 @@ import { renderRoutes} from 'react-router-config';
 import NoMatch from '../../../src/page/no-match';//0匹配的时候
 import config from '../../config';
 import CacheHelper from '../other/cache-helper';
+import Layout from '../../../src/app/layout';
 
 import { getCacheStaticRoutes} from '../ssr/static-routes';
 
@@ -46,7 +47,9 @@ const getComponentHtml =async (ctx)=>{
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
         <StaticRouter location={ctx.path} context={context}>
+            <Layout>
             {renderRoutes(routes)}
+            </Layout>
         </StaticRouter>
     </Provider>);
 

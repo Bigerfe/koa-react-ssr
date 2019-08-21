@@ -24,6 +24,11 @@ const getMoreEntrys = () => {
 
 
 const getOneEntrys = () => {
+    //const files = glob.sync(resolvePath('/src/page/*/*.js'));
+    // return {
+    //     main: ['react-hot-loader/patch', 'webpack-dev-server/client?http://localhost:8809',
+    //         'webpack/hot/only-dev-server', resolvePath('../src/app/index.js')]
+    // };
     return {
         main: ['react-hot-loader/patch', resolvePath('../src/app/index.js')] //使用 wds
        // main: ['webpack-hot-middleware/client', resolvePath('../src/app/index.js')]
