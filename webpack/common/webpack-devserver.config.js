@@ -3,10 +3,11 @@
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || 'localhost';
 const path = require('path');
+const config = require('../config');
 
 module.exports = function (port, publicPath) {
   return  {
-    port: 8809,
+    port: config.devWdsPort,
     host: process.env.LocalIP||'localhost',
     quiet: true,
     contentBase: path.resolve(__dirname, '../dist/static'),

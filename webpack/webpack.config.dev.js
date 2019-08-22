@@ -16,13 +16,20 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const friendlyError = require('friendly-errors-webpack-plugin');
 //////********/
 
+const OutPutPath = resolvePath('../dist');
+const JsFileName = 'krs-static/js/[name].js';
+const JsChunkFileName ='krs-static/js/[name].js';
+const CssFileName ='krs-static/css/[name].css';
+const CssChunkFileName = 'krs-static/css/[name].css';
+const ImgFileName = 'krs-static/img/[name].css';
+
 const wpConfig ={
     entry: { entry: ['react-hot-loader/patch', resolvePath('../src/app/index.js')]},
     output: {
-        path: resolvePath('../dist/static'),
-        publicPath: config.jsCdnHost,
-        filename: 'client/js/[name].js',
-        chunkFilename: 'client/js/[name].js',
+        path: OutPutPath,
+        publicPath: config.devStaticResourceHost,
+        filename: JsFileName,
+        chunkFilename: JsChunkFileName
     },
     module: {
         rules: [{
@@ -71,7 +78,7 @@ wpConfig.module.rules.push({
         loader: 'url-loader',
         options: {
             limit: 5000,
-            name: 'img/[name].[hash:8].[ext]'
+            name: ImgFileName
         }
     }]
 });
@@ -80,8 +87,8 @@ const plugins = [
     new MiniCssExtractPlugin({
         // 类似 webpackOptions.output里面的配置 可以忽略
         //filename: '[name].[contenthash:8].css',
-        filename: 'client/[name].css',
-        chunkFilename: 'client/[name].css',
+        filename:CssFileName,
+        chunkFilename:CssChunkFileName
     }),
     //做服务端渲染需要删除这个配置
     new HtmlWebPackPlugin({

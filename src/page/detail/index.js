@@ -77,7 +77,7 @@ export default class Index extends BaseComponent{
         const { page, list } = contextData;
 
 
-        return <div>
+        return <div className="detailBox">
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
@@ -85,6 +85,8 @@ export default class Index extends BaseComponent{
             {
                 list.map(item=>(<div key={item.id}>{item.name}</div>))
             }
+            <img src='./img/logo.png'/>
+            <div className="bg"></div>
         </div>
     }
 }

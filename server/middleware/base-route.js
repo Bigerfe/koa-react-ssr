@@ -15,7 +15,7 @@ export default async function (ctx, next) {
     if(path.indexOf('.')===-1){
         await renderReact(ctx);
     }else{
-        const html = await ejs.renderFile('dist/static/csr.html');
+        const html ='';
     }
 
     reqTransform(ctx);

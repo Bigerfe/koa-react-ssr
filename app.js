@@ -12,7 +12,7 @@ var config = require('./dist/server/server/config');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || config.appPort);
+var port = normalizePort(process.env.PORT || config.nodeServerPort);
 console.log(port);
 // app.set('port', port);
 
@@ -102,5 +102,5 @@ if (process.env.NODE_ENV === 'development') {
 
     //开发环境设置本机 ip
 
-    require('./webpack/common/local-ip');
+    require('./server/common/other/local-ip');
 }

@@ -91,7 +91,10 @@ export default async (ctx) => {
         renderData.config = config.cdnHost;
         renderData.page =res.page;
     }
-        
+    
+    //是不是服务端的渲染静态资源都要输出
+    renderData.page.staticSource=config.staticSource;
+
     await renderBody(ctx,renderData);
  
 }

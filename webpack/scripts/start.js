@@ -10,7 +10,7 @@ process.on('unhandledRejection', err => {
 });
 
 
-const IPAddress = require('../common/local-ip')();
+const IPAddress = require('../../server/common/other/local-ip')();
 const config = require('../config');
 console.log(`本机Ip为:${IPAddress}`);
 
@@ -79,7 +79,7 @@ monitor.nodeMonitor(nodeParams);
 console.log(chalk.cyan('node server is starting the watcher\n'));
 
 // 创建监控对象
-var watcher = chokidar.watch([config.appServerSrc, config.appSrc], {
+var watcher = chokidar.watch([config.appServerSrc, config.appClientSrc], {
 	ignored: /(^|[\/\\])\../,
 	persistent: true
 });

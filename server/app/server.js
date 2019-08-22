@@ -20,6 +20,7 @@ import path from 'path';
 import setCookie from '../middleware/set-cookie';
 import baseRoute from '../middleware/base-route';
 import cacheStaticRoute from '../middleware/cache-staitc-routes';
+import config  from '../config';
 
 //####
 import webpack from 'webpack';
@@ -69,10 +70,17 @@ app.use(koaBody({
 
 app.use(convert(json()));
 
-
-app.use(koaStatic(
-  path.join(__dirname, '../../../static')
-));
+//TODO: 线上环境不应该开启这个静态资源访问
+if(process.env.IS_DEV){
+  app.use(koaStatic(
+      path.join(__dirname, '../../../krs-static')
+  ));
+}
+if(config.isOpenLocalLikeProduction){
+  app.use(koaStatic(
+    path.join(__dirname, '../../../../dist')
+  ));
+}
 
 
 app.use(setCookie);

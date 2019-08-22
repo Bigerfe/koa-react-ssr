@@ -17,13 +17,20 @@ const resolvePath = p => path.resolve(__dirname, p);
 // const dashboard = new Dashboard();
 //////////******** */
 
+const OutPutPath = resolvePath('../dist');
+const JsFileName = 'krs-static/js/[name].[chunkhash:8].js';
+const JsChunkFileName = 'krs-static/js/[name].[chunkhash:8].js';
+const CssFileName = 'krs-static/css/[name].[contenthash:8].css';
+const CssChunkFileName = 'krs-static/css/[name].[contenthash:8].css';
+const ImgFileName = 'krs-static/img/[name].[hash:8].[ext]';
+
 const wpConfig = {
     entry: { entry: [resolvePath('../src/app/index.js')] },
     output: {
-        path: resolvePath('../dist/static'),
-        publicPath: config.jsCdnHost,
-        filename: 'client/js/[name].[chunkhash:8].js',
-        chunkFilename: 'client/js/[name].[chunkhash:8].js',
+        path: OutPutPath,
+        publicPath: '',//生产 环境不设置路径
+        filename:JsFileName,
+        chunkFilename:JsChunkFileName
     },
     module: {
         rules: [{
@@ -68,7 +75,7 @@ wpConfig.module.rules.push({
             loader: 'url-loader',
             options: {
                 limit: 5000,
-                name: 'img/[name].[hash:8].[ext]'
+                name: ImgFileName
             }
         }
     ]
@@ -76,8 +83,8 @@ wpConfig.module.rules.push({
 
 const plugins = [
     new MiniCssExtractPlugin({
-        filename: 'client/css/[name].[contenthash:8].css',
-        chunkFilename: 'client/css/[name].[contenthash:8].css',
+        filename:CssFileName,
+        chunkFilename:CssChunkFileName
     }),
     //生产换就不需要了
     // new HtmlWebPackPlugin({
@@ -99,7 +106,7 @@ const plugins = [
     }),
     //生成 manifest 方便定位对应的资源文件
     new ManifestPlugin({
-        fileName: 'asset-manifest.json',
+        fileName: 'server/server/asset-manifest.json',
     })
 ];
 

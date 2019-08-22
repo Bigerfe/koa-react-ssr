@@ -8,7 +8,10 @@
     <meta name="keywords" content="<%=page.tdk.keyword%>" />
     <meta name="description" content="content="<%=page.tdk.description%>" />
     <link rel="shortcut icon" href="https://www.xin.com/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="<%=config.jsCdnHost%>/client/styles.css">
+    <%page.staticSource.css.forEach(function(item){%>
+        <link rel="stylesheet" type="text/css" href="<%=item%>">
+    <%})%>
+   
     <title><%=page.tdk.title%></title>
 </head>
 <body>
@@ -24,7 +27,6 @@
 <script>
     window._INITAL_DATA='<%- propsData %>';
 </script>
-<script type="text/javascript" src="<%=config.jsCdnHost%>/client/js/styles.js"></script>
-<script type="text/javascript" src="<%=config.jsCdnHost%>/client/js/libs.js"></script>
-<script type="text/javascript" src="<%=config.jsCdnHost%>/client/js/entry.js"></script>
-
+<%page.staticSource.js.forEach(function(item){%>
+    <script type="text/javascript" src="<%=item%>"></script>
+<%})%>

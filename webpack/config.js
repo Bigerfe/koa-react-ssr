@@ -1,14 +1,14 @@
 const path = require('path');
 
+//开发环境中
+const devClientAppPort=8809;
+
 module.exports = {
-    jsCdnHost: 'http://10.70.74.186:8809/',
-    cssCdnHost: 'http://c1',
-    appPort: '8809', //默认前端应用端口号
-    devServerPort:'8808',//开发环境 node server 的端口
-    isDev: process.env.NODE_ENV !== 'production',
-    appSrc: path.resolve(__dirname, '../src'),
-    appServerSrc: path.resolve(__dirname, '../server'),
+    devStaticResourceHost: process.env.LocalIP ? `http://${process.env.LocalIP}:${devClientAppPort}/` :`http://localhost:${devClientAppPort}/`,
+    devWdsPort: devClientAppPort, //单页应用访问入口 端口 
+    appClientSrc: path.resolve(__dirname, '../src'),//fe code
+    appServerSrc: path.resolve(__dirname, '../server'),//node server code
     appClientRouter: path.resolve(__dirname, '../src/routes'),
     appClientPages: path.resolve(__dirname, '../src/page'),
-    routeIndexFolderName: 'index' //路由首页的文件夹声明 /page/index 
+    routeIndexFolderName: 'index' //路由首页的文件夹声明 /page/index 首页路由会排在入口 list 的第一个位置
 }
