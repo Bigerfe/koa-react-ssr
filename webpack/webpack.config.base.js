@@ -1,3 +1,12 @@
+/********
+ * 
+ * author:zjp  bigerfe
+ * 此文件暂未使用
+ * 本模块是想把公共的配置提取，但是发现还是需要进行env判断，两个配置文件还是分开维护把
+ * TODO:后期优化
+ */
+
+
 const path = require('path');
 const glob = require('glob');
 const config = require('./config');
