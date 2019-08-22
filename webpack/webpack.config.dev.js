@@ -1,5 +1,9 @@
+const envUtils = require('./scripts/env-utils');
 const webpack = require('webpack');
 const path = require('path');
+const config = require('./config');
+const resolvePath = p => path.resolve(__dirname, p);
+
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
@@ -11,12 +15,33 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const friendlyError = require('friendly-errors-webpack-plugin');
 //////********/
-const wpConfig = require('./webpack.config.base');
+
+const wpConfig ={
+    entry: { entry: ['react-hot-loader/patch', resolvePath('../src/app/index.js')]},
+    output: {
+        path: resolvePath('../dist/static'),
+        publicPath: config.jsCdnHost,
+        filename: 'client/js/[name].js',
+        chunkFilename: 'client/js/[name].js',
+    },
+    module: {
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: [{
+                loader: "babel-loader"
+            }]
+        }]
+    },
+    plugins: []
+}
+
 
 
 wpConfig.mode = 'development';
 
 wpConfig.devtool = 'cheap-module-eval-source-map';
+
 
 wpConfig.module.rules.push({
     test: /\.(sa|sc|c)ss$/,

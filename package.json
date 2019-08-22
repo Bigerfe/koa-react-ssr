@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
-    "dev": "NODE_ENV=dev node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
+    "dev": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./webpack/scripts/start.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
     "test:dev": " npm run babel && npm start && webpack-dev-server --config webpack/webpack.config.dev.js",
@@ -13,7 +13,7 @@
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
     "babel": " BABEL_ENV=node babel server -d dist/server/server",
     "babel-csfile": "BABEL_ENV=node babel src -d dist/server/src",
-    "build": "NODE_ENV=production node webpack/webpack.config.prod.js && npm run babel",
+    "build": "webpack --config webpack/webpack.config.prod.js && npm run babel",
     "build:start": "node app.js env:production",
     "ns-start": "node app.js",
     "chai-link-all": "node ./webpack/scripts/danymic-link.js --all",

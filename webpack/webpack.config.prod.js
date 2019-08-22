@@ -2,19 +2,41 @@ const webpack = require('webpack');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const formatMessages = require('./common/format-messages');
+const config = require('./config');
+const resolvePath = p => path.resolve(__dirname, p);
 
 // const Dashboard = require('webpack-dashboard');
 // const DashboardPlugin = require('webpack-dashboard/plugin');
 // const dashboard = new Dashboard();
 //////////******** */
 
-const wpConfig = require('./webpack.config.base');
-const formatMessages = require('./common/format-messages');
+const wpConfig = {
+    entry: { entry: [resolvePath('../src/app/index.js')] },
+    output: {
+        path: resolvePath('../dist/static'),
+        publicPath: config.jsCdnHost,
+        filename: 'client/js/[name].[chunkhash:8].js',
+        chunkFilename: 'client/js/[name].[chunkhash:8].js',
+    },
+    module: {
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: [{
+                loader: "babel-loader"
+            }]
+        }]
+    },
+    plugins: []
+}
+
 
 wpConfig.mode = 'production';
 wpConfig.devtool = 'none';
@@ -57,16 +79,17 @@ const plugins = [
         filename: 'client/css/[name].[contenthash:8].css',
         chunkFilename: 'client/css/[name].[contenthash:8].css',
     }),
-    new HtmlWebPackPlugin({
-        title: 'this is the title',
-        filename: 'index.html',
-        template: './server/temp/csr.html',
-        inject: 'body',
-        favicon: '',
-        minify: {
+    //生产换就不需要了
+    // new HtmlWebPackPlugin({
+    //     title: 'this is the title',
+    //     filename: 'index.html',
+    //     template: './server/temp/csr.html',
+    //     inject: 'body',
+    //     favicon: '',
+    //     minify: {
 
-        },
-    }),
+    //     },
+    // }),
     // 删除文件 保留新文件
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
@@ -91,7 +114,7 @@ wpConfig.optimization = {
     minimizer: [
         new UglifyJsPlugin(),
         new OptimizeCSSAssetsPlugin(),
-        new webpack.ProgressPlugin(handler)
+        //new webpack.ProgressPlugin(handler) 显示的很多信息其实没什么用
     ],
     splitChunks: {
         cacheGroups: {
@@ -123,26 +146,22 @@ wpConfig.optimization = {
     // }
 }
 
+//###下面代码隐藏打包的信息，还是应该看到比较好,可以知道每个包的大小
+// const comipler = webpack(wpConfig);
+// comipler.run((error, stats) => {
+//     var res = formatMessages(stats.toJson({}, true));
+//     if (res.errors.length) {
+//         console.log('Failed to compile.\n');
+//         //比如parse失败 通常会返回两个同样的错误 一个parse fail一个module build
+//         //fail 但是内容是一样的；我们只取第一个即可;
+//         res.errors.length = 1;
+//         console.log(res.errors.join('\n\n'));
+//     } else if (res.warnings.length) {
+//         console.log('Compiled with warnings.\n');
+//         console.log(res.warnings.join('\n\n'));
+//     }
+// });
+////###END
 
 
-const comipler = webpack(wpConfig);
-
-
-
-comipler.run((error, stats) => {
-    var res = formatMessages(stats.toJson({}, true));
-    if (res.errors.length) {
-        console.log('Failed to compile.\n');
-        //比如parse失败 通常会返回两个同样的错误 一个parse fail一个module build
-        //fail 但是内容是一样的；我们只取第一个即可;
-        res.errors.length = 1;
-        console.log(res.errors.join('\n\n'));
-    } else if (res.warnings.length) {
-        console.log('Compiled with warnings.\n');
-        console.log(res.warnings.join('\n\n'));
-    }
-});
-
-
-
-//module.exports = wpConfig;
+module.exports = wpConfig;

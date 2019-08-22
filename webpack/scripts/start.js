@@ -1,5 +1,8 @@
 'use strict';
 
+const envUtils =require('./env-utils');
+
+envUtils.setDev();
 
 // 有错误直接抛出
 process.on('unhandledRejection', err => {

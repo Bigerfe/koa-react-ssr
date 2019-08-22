@@ -12,8 +12,7 @@ function renderUI(state,initialData) {
     let render = ReactDOM.hydrate;
     if(!state)render=ReactDOM.render;
 
-    render(<BrowserRouter>
-        <Provider initialData={initialData}>
+    render(<BrowserRouter><Provider initialData={initialData}>
             <Routes />
         </Provider>
     </BrowserRouter>, document.getElementById('rootEle'), (e) => {
