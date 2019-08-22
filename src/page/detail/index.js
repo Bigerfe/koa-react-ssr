@@ -59,9 +59,9 @@ export default class Index extends BaseComponent{
         } 
     }
 
-    componentDidMount(){
+    componentDidMount(){    
        console.log('detail com did');
-        console.log(util.say());
+    console.log(utils.say());
     }
 
     handClick=()=>{
