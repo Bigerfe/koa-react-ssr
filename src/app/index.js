@@ -25,11 +25,10 @@ function filterJSONStr(str) {
 
 function entryIndex() {
     let APP_PROPS = '';
-    let STATE_KEY = '_INITAL_DATA';
     let state = true;
 
     let stateText = document.getElementById('krs-server-render-data-BOX');
-    console.log(stateText.value );
+ 
     if (!stateText) {
         state = false;
     } else {
