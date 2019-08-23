@@ -17,7 +17,7 @@ const resolvePath = p => path.resolve(__dirname, p);
 // const dashboard = new Dashboard();
 //////////******** */
 
-const OutPutPath = resolvePath('../dist');
+const OutPutPath = resolvePath('../dist/static');
 const JsFileName = 'krs-static/js/[name].[chunkhash:8].js';
 const JsChunkFileName = 'krs-static/js/[name].[chunkhash:8].js';
 const CssFileName = 'krs-static/css/[name].[contenthash:8].css';
@@ -25,12 +25,14 @@ const CssChunkFileName = 'krs-static/css/[name].[contenthash:8].css';
 const ImgFileName = 'krs-static/img/[name].[hash:8].[ext]';
 
 const wpConfig = {
-    entry: { entry: [resolvePath('../src/app/index.js')] },
+    entry: {
+        entry: [resolvePath('../src/app/index.js')]
+    },
     output: {
         path: OutPutPath,
-        publicPath: '',//生产 环境不设置路径
-        filename:JsFileName,
-        chunkFilename:JsChunkFileName
+        publicPath: '', //生产 环境不设置路径
+        filename: JsFileName,
+        chunkFilename: JsChunkFileName
     },
     module: {
         rules: [{
@@ -51,40 +53,78 @@ wpConfig.devtool = 'none';
 wpConfig.module.rules.push({
     test: /\.(sa|sc|c)ss$/,
     use: [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-            hmr: false
-        },
-    },
-    {
-        loader: "css-loader",
-    },
-    {
-        loader: "sass-loader"
-    },
-    {
-        loader: "postcss-loader"
-    }
-    ]
-});
-
-wpConfig.module.rules.push({
-    test: /\.(png|jpg|gif)$/,
-    use: [
-        {
-            loader: 'url-loader',
+            loader: MiniCssExtractPlugin.loader,
             options: {
-                limit: 5000,
-                name: ImgFileName
-            }
+                hmr: false
+            },
+        },
+        {
+            loader: "css-loader",
+        },
+        {
+            loader: "sass-loader"
+        },
+        {
+            loader: "postcss-loader"
         }
     ]
 });
+//暂不开启,使用下面的基础 loader
+// wpConfig.module.rules.push({
+//     test: /\.(png|jpg|gif)$/,
+//     use: [{
+//         loader: 'url-loader',
+//         options: {
+//             limit: 8192,
+//             name: ImgFileName
+//         }
+//     }]
+// });
+
+//使用这个来把图片的地址和 cdn 地址进行绑定
+//获得随机cdn 地址
+
+function getAssetsCdnHost() {
+
+    let i=0;
+    let len = config.staticAssetsCdnHost.length || 0;
+    
+    return function(url){
+        if (!len) {
+            return url;
+        }
+        if(i>=len){
+            i=0;
+        }
+        const r = config.staticAssetsCdnHost[i] + url; 
+
+        i++;
+
+        return r;
+    }
+  
+}
+
+const getAssetsCdnHost1=getAssetsCdnHost();
+
+wpConfig.module.rules.push({
+    // "file" loader 可以把 js 和 css 中导入图片的语句替换成正确的地址，并同时把文件输出到对//应的位置。
+    test: /\.(png|jpg|gif|jpeg|webp)$/,
+    use: [{
+        loader: 'file-loader',
+        options: {
+            name: ImgFileName,
+            publicPath: getAssetsCdnHost1
+        }
+    }]
+});
+
+
 
 const plugins = [
     new MiniCssExtractPlugin({
-        filename:CssFileName,
-        chunkFilename:CssChunkFileName
+        filename: CssFileName,
+        chunkFilename: CssChunkFileName
     }),
     //生产换就不需要了
     // new HtmlWebPackPlugin({
@@ -106,7 +146,7 @@ const plugins = [
     }),
     //生成 manifest 方便定位对应的资源文件
     new ManifestPlugin({
-        fileName: 'server/server/asset-manifest.json',
+        fileName: '../server/server/asset-manifest.json',
     })
 ];
 

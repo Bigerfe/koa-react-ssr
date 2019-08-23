@@ -7,3 +7,21 @@
   height: 100px;
   width: 100px;
 }
+
+.detailBox .ab {
+  background: url("../img/b.png") left center no-repeat;
+  height: 100px;
+  width: 100px;
+}
+
+.detailBox .cb {
+  background: url("../img/a.jpg") left center no-repeat;
+  height: 100px;
+  width: 100px;
+}
+
+.detailBox .bd {
+  background: url("../img/c.jpg") left center no-repeat;
+  height: 100px;
+  width: 100px;
+}

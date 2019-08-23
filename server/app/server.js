@@ -70,17 +70,13 @@ app.use(koaBody({
 
 app.use(convert(json()));
 
-//TODO: 线上环境不应该开启这个静态资源访问
-if(process.env.IS_DEV){
+//TODO: 线上环境不应该开启这个静态资源访问  
+if (process.env.IS_DEV || config.isOpenLocalLikeProduction){
   app.use(koaStatic(
-      path.join(__dirname, '../../../krs-static')
+      path.join(__dirname, '../../../static')
   ));
 }
-if(config.isOpenLocalLikeProduction){
-  app.use(koaStatic(
-    path.join(__dirname, '../../../../dist')
-  ));
-}
+
 
 
 app.use(setCookie);

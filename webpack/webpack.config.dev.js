@@ -16,12 +16,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const friendlyError = require('friendly-errors-webpack-plugin');
 //////********/
 
-const OutPutPath = resolvePath('../dist');
+const OutPutPath = resolvePath('../dist/static');
 const JsFileName = 'krs-static/js/[name].js';
 const JsChunkFileName ='krs-static/js/[name].js';
 const CssFileName ='krs-static/css/[name].css';
 const CssChunkFileName = 'krs-static/css/[name].css';
-const ImgFileName = 'krs-static/img/[name].css';
+const ImgFileName = 'krs-static/img/[name].[ext]';
 
 const wpConfig ={
     entry: { entry: ['react-hot-loader/patch', resolvePath('../src/app/index.js')]},

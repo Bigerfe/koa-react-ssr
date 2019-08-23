@@ -4,23 +4,38 @@
  * 系统配置
  */
 
-const assetsJson = require('./asset-manifest.json'); //TODO:这里要在发布到生产环境时，改成 false
 
-//本地模拟生成环境运行,上线时候请关闭-false
-const LocalLikeProduction = true;
+//本地模拟生产环境
+const ISimulateProduction = process.env.SimulateProduction; 
 const LocalNodeServerPort = 8808;
+const DevClientServerPort = 8809;
+
+const StaticFolderName='krs-static';
+
+// TODO:// 配置需要进行提取 生产环境的js 资源和 css 资源的 host  ，这个可以进行配置
 let Production_JS_Host = '//c1.static.xin.com';
 let Production_CSS_Host = '//x2.static.xin.com';
 
-if (LocalLikeProduction) {
-    require('./common/other/local-ip')();
+let assetsJson={};
 
-    Production_JS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
-    Production_CSS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
+console.log('ISimulateProduction', process.env.SimulateProduction);
+
+if (!process.env.IS_DEV || ISimulateProduction){
+    assetsJson = require('./asset-manifest.json');
 }
 
-module.exports = {
-    isOpenLocalLikeProduction: LocalLikeProduction,//本地模拟生成环境运行
+if (process.env.IS_DEV) {
+    require('./common/other/local-ip')();
+    Production_JS_Host = `//${process.env.LocalIP}:${DevClientServerPort}`;
+    Production_CSS_Host = `//${process.env.LocalIP}:${DevClientServerPort}`;
+    if(ISimulateProduction){
+        Production_JS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
+        Production_CSS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
+    }
+}
+
+const config = {
+    isimulateProduction: ISimulateProduction,//本地模拟生成环境运行
     nodeServerPort: LocalNodeServerPort,
     //默认node 服务端口号,生产环境可以反向代理这个端口
     isDev: process.env.NODE_ENV !== 'production',
@@ -36,7 +51,16 @@ module.exports = {
     isComponentLazyLoad: true,
     //组件是否按需加载 //次数行暂时没有用到 ，内部对组件已经做了判断
     staticSource: {
+        js: [`${Production_JS_Host}/${StaticFolderName}/js/styles.js`, `${Production_JS_Host}/${StaticFolderName}/js/libs.js`, `${Production_JS_Host}/${StaticFolderName}/js/entry.js`],
+        css: [`${Production_CSS_Host}/${StaticFolderName}/css/styles.css`]
+    }
+};
+
+if (process.env.IS_DEV && ISimulateProduction) {
+    config.staticSource = {
         js: [`${Production_JS_Host}/${assetsJson['styles.js']}`, `${Production_JS_Host}/${assetsJson['libs.js']}`, `${Production_JS_Host}/${assetsJson['entry.js']}`],
         css: [`${Production_CSS_Host}/${assetsJson['styles.css']}`]
     }
-};
+}
+
+module.exports =config;

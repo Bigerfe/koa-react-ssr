@@ -6,6 +6,8 @@ import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
 import BaseComponent from '../../common/base/page-base-com';
 
+var logo = require('./img/a.jpg'); 
+
 function Child(props) {
     return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
 }
@@ -85,8 +87,10 @@ export default class Index extends BaseComponent{
             {
                 list.map(item=>(<div key={item.id}>{item.name}</div>))
             }
-            <img src='./img/logo.png'/>
+            <img src={logo}/>
             <div className="bg"></div>
+            <div className="ab"></div>
+            <div className="cb"></div>
         </div>
     }
 }
