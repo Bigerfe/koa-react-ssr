@@ -6,7 +6,7 @@
 import {
     matchRoutes
 } from 'react-router-config';
-import Routes from '../../../src/routes/routes-config';
+import Routes from '../../../../src/routes/routes-config';
 import CacheHelper from '../other/cache-helper';
 import utils from '../other/utils';
 

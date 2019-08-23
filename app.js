@@ -5,7 +5,7 @@ console.log(process.argv);
 global.__SERVER__=true;
 global.__CLIENT__ = false;
 
-var app = require('./dist/server/server/app/server.js');
+var app = require('./dist/server/server/krs-base/app/server.js');
 var http = require('http');
 var config = require('./dist/server/server/config');
 /**
@@ -102,5 +102,5 @@ if (process.env.NODE_ENV === 'development') {
 
     //开发环境设置本机 ip
 
-    require('./server/common/other/local-ip');
+    require('./server/krs-base/common/other/local-ip');
 }

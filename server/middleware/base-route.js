@@ -1,8 +1,7 @@
 import ejs from 'ejs';
-import reqTransform from '../common/other/req-transform';
-import renderReact from '../common/ssr/';
+import reqTransform from '../common/req-transform';
+import renderReact from '../krs-base/common/ssr/';
 import config from '../config';
-import CacheHelper from '../common/other/cache-helper';
 export default async function (ctx, next) {
     let path = ctx.path,
         query = ctx.query,

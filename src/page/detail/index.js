@@ -94,6 +94,8 @@ export default class Index extends BaseComponent{
             Index.getInitialProps().then(data=>{
                 this.setState({
                     ...data
+                },()=>{
+                    document.title=this.state.page.tdk.title;
                 });
             });
         }

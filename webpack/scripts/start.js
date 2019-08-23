@@ -10,7 +10,7 @@ process.on('unhandledRejection', err => {
 });
 
 
-const IPAddress = require('../../server/common/other/local-ip')();
+const IPAddress = require('../../server/krs-base/common/other/local-ip')();
 const config = require('../config');
 console.log(`本机Ip为:${IPAddress}`);
 

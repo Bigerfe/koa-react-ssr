@@ -4,9 +4,9 @@
  * 18.7.16
  */
 
-//###
-import webpackDev from '../middleware/koa-webpack-dev';
-import webpackHot from '../middleware/koa-webpack-hot';
+//###暂时没有用到
+// import webpackDev from '../middleware/koa-webpack-dev';
+// import webpackHot from '../middleware/koa-webpack-hot';
 
 //###
 
@@ -17,15 +17,15 @@ import json from 'koa-json';
 import koaBody from 'koa-body';
 import koaStatic from 'koa-static';
 import path from 'path';
-import setCookie from '../middleware/set-cookie';
-import baseRoute from '../middleware/base-route';
-import cacheStaticRoute from '../middleware/cache-staitc-routes';
-import config  from '../config';
+import setCookie from '../../middleware/set-cookie';
+import baseRoute from '../../middleware/base-route';
+import cacheStaticRoute from '../../middleware/cache-staitc-routes';
+import config  from '../../config';
 
-//####
-import webpack from 'webpack';
-import webpackConfig from '../../../../webpack/webpack.config.dev.js';
-import devServerConfig from '../../../../webpack/common/webpack-devserver.config.js'
+//#### 暂时没有用到
+// import webpack from 'webpack';
+// import webpackConfig from '../../../../webpack/webpack.config.dev.js';
+// import devServerConfig from '../../../../webpack/common/webpack-devserver.config.js'
 //####
 
 const Koa = require('koa2');

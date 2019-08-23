@@ -1,15 +1,15 @@
 //react 服务端组件渲染的入口文件
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
-import matchComponent from '../../../src/app/match-component';
-import Provider from '../../../src/app/provider';
+import matchComponent from '../../../../src/app/match-component';
+import Provider from '../../../../src/app/provider';
 import ejsHtml from '../other/ejs-html';
 import { StaticRouter,Switch,Route } from "react-router";
 import { renderRoutes} from 'react-router-config';
-import NoMatch from '../../../src/page/no-match';//0匹配的时候
-import config from '../../config';
+import NoMatch from '../../../../src/page/no-match';//0匹配的时候
+import config from '../../../config';
 import CacheHelper from '../other/cache-helper';
-import Layout from '../../../src/app/layout';
+import Layout from '../../../../src/app/layout';
 
 import { getCacheStaticRoutes} from '../ssr/static-routes';
 
