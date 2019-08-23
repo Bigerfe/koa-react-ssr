@@ -21,12 +21,10 @@
         <noscript>
             You need to enable JavaScript to run this app.
         </noscript>
+    <%- propsData %>
 </body>
 </html>
 </body>
-<script>
-    window._INITAL_DATA='<%- propsData %>';
-</script>
 <%page.staticSource.js.forEach(function(item){%>
     <script type="text/javascript" src="<%=item%>"></script>
 <%})%>

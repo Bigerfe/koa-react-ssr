@@ -87,7 +87,7 @@ export default async (ctx) => {
         const res = await getComponentHtml(ctx);
         console.log('res',res);
         renderData.htmlContent = res.html;
-        renderData.propsData = JSON.stringify({ initialData: res.initialData });
+        renderData.propsData = `<textarea style="display:none" id="krs-server-render-data-BOX">${JSON.stringify({ initialData: res.initialData })}</textarea>` ;
         renderData.config = config.cdnHost;
         renderData.page =res.page;
     }

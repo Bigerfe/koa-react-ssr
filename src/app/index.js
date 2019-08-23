@@ -19,17 +19,21 @@ function renderUI(state,initialData) {
     });
 }
 
+function filterJSONStr(str) {
+    return str.replace(/\n/g,'<br/>');
+}
+
 function entryIndex() {
     let APP_PROPS = '';
     let STATE_KEY = '_INITAL_DATA';
     let state = true;
 
-    console.log(window[STATE_KEY]);
-    
-    if (!window.hasOwnProperty(STATE_KEY)) {
+    let stateText = document.getElementById('krs-server-render-data-BOX');
+    console.log(stateText.value );
+    if (!stateText) {
         state = false;
     } else {
-        APP_PROPS = JSON.parse(window[STATE_KEY] || "{}");
+        APP_PROPS = JSON.parse(filterJSONStr(stateText.value ) || "{}");
     }
 
     console.log('state', state);
