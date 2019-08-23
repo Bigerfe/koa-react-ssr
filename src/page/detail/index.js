@@ -17,7 +17,15 @@ export default class Index extends BaseComponent{
         super(props);
         console.log('constructor');
         console.log(this.props);
-        console.log(context);
+        console.log('context',context);
+        this.state = {
+            ... this.getInitialData(context)
+        }
+
+        console.log('this init state',this.state);
+       
+        console.log('this.isssr', this.isSSR);
+
     }
 
     //得到 context 对象
@@ -80,11 +88,15 @@ export default class Index extends BaseComponent{
     }
 
     componentDidMount(){
-       console.log('detail com did');
+        console.log('detail com did');
        
-        Index.getInitialProps().then(data=>{
-            console.log(data);
-        });
+        if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据
+            Index.getInitialProps().then(data=>{
+                this.setState({
+                    ...data
+                });
+            });
+        }
     }
 
     handClick=()=>{
@@ -92,22 +104,27 @@ export default class Index extends BaseComponent{
     }
 
     render(){
-        console.log('detail render');
-        let contextData =this.getInitialData();
-        // if(!contextData){
-        //     contextData = Index.getInitialProps();
-        // }
-        //const { page, list } = contextData;
-
+     
+        const {page,fetchData}=this.state;
+        const [res] = fetchData||[];
 
         return <div className="detailBox">
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
-            <div className="bg"></div>
-            <div className="ab"></div>
-            <div className="cb"></div>
+           <div>
+           {
+                    page && <div><span>title:{page.tdk.title}</span>
+                    <span>ky:{page.tdk.keyword}</span>
+                    </div> 
+           }
+           </div>
+           {
+              res && res.data.map(item=>{
+                   return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+               })
+           }
         </div>
     }
 }

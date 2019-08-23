@@ -77,8 +77,6 @@ const doRequest = (url, opt) => {
             config.body = opt.data;
         }
     }
-
-    console.log(url,'fetch 执行了');
   
     let promise = fetch(url,config).then(checkStatus)
     .then(parseJSON).then(res=>{

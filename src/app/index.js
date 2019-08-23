@@ -24,7 +24,7 @@ function filterJSONStr(str) {
 }
 
 function entryIndex() {
-    let APP_PROPS = '';
+    let APP_INIT_DATA = {};
     let state = true;
 
     let stateText = document.getElementById('krs-server-render-data-BOX');
@@ -32,7 +32,7 @@ function entryIndex() {
     if (!stateText) {
         state = false;
     } else {
-        APP_PROPS = JSON.parse(filterJSONStr(stateText.value ) || "{}");
+        APP_INIT_DATA = JSON.parse(filterJSONStr(stateText.value ) || "{}");
     }
 
     console.log('state', state);
@@ -41,7 +41,7 @@ function entryIndex() {
         renderUI(state);
     } else {
         matchComponent(document.location.pathname, routesConfig()).then(res => {
-            renderUI(true);
+            renderUI(true, APP_INIT_DATA);
         });
     }
 }

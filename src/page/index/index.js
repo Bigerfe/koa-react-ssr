@@ -5,20 +5,24 @@ import React, {
 import {Link} from 'react-router-dom';
 import utils from '../../common/module/utils';
 import './css/index.scss';
+import BaseComponent from '../../common/base/page-base-com';
 
-export default class Index extends Component {
+export default class Index extends BaseComponent {
 
     constructor(props,context){
         super(props);
-        console.log('index constrctor init');
-        console.log(this.props);
     }
 
-    static getInitialProps() {
-        return [{
-            id: 100,
-            name: 'this is detail page'
-        }]
+    static async  getInitialProps() {
+        return {
+            page:{
+                tdk:{
+                    title:1,
+                    keyword:2,
+                    description:3
+                }
+            }
+        }
     }
 
     componentDidMount(){
