@@ -5,8 +5,8 @@ import Panel from './components/Panel';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
 import BaseComponent from '../../common/base/page-base-com';
+import fetch from '../../common/fetch';
 
-var logo = require('./img/a.jpg'); 
 
 function Child(props) {
     return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
@@ -23,47 +23,68 @@ export default class Index extends BaseComponent{
     //得到 context 对象
     static contextType = RootContext;
 
-    static getInitialProps(){
+    static async getInitialProps(){
         if(__SERVER__){
-            //如果是服务端渲染的话
+            //如果是服务端渲染的话  可以做的处理
         }
+
+       const fetch1= fetch.postForm('/fe_api/filed-manager/get-detail-of-type', {
+            data: { ofTypeId: 4000 }
+        });
+
+       const fecth2= fetch.postForm('/fe_api/filed-manager/get-detail-of-type', {
+            data: { ofTypeId: 2000 }
+        });
+
+        const resArr =await fetch.multipleFetch(fetch1, fecth2);
+        //返回所有数据
         return {
             page:{
-                tdk:{
-                    title:'ksr 框架',
-                    keyword:'ssr react',
-                    description:'我是描述'
+                tdk: {
+                    title: 'ksr 框架',
+                    keyword: 'ssr react',
+                    description: '我是描述'
                 }
             },
-            list: [{
-                    id: 100,
-                    name: '做一件事之前'
-                }, {
-                    id: 200,
-                    name: 'hhaha'
-                }, {
-                    id: 300,
-                    name: '考虑好做什么'
-                },
-                {
-                    id: 400,
-                    name: '脑子里想一个步骤'
-                },
-                {
-                    id: 500,
-                    name: '然后想好每天做那一步，然后想清楚，'
-                },
-                {
-                    id: 600,
-                    name: '好了，你以你已经成功一伴儿了'
-                }
-            ]
+            fetchData: resArr
         } 
+
+        // return {
+        //     page:{
+     
+        //     },
+        //     list: [{
+        //             id: 100,
+        //             name: '做一件事之前'
+        //         }, {
+        //             id: 200,
+        //             name: 'hhaha'
+        //         }, {
+        //             id: 300,
+        //             name: '考虑好做什么'
+        //         },
+        //         {
+        //             id: 400,
+        //             name: '脑子里想一个步骤'
+        //         },
+        //         {
+        //             id: 500,
+        //             name: '然后想好每天做那一步，然后想清楚，'
+        //         },
+        //         {
+        //             id: 600,
+        //             name: '好了，你以你已经成功一伴儿了'
+        //         }
+        //     ]
+        // } 
     }
 
-    componentDidMount(){    
+    componentDidMount(){
        console.log('detail com did');
-    console.log(utils.say());
+       
+        Index.getInitialProps().then(data=>{
+            console.log(data);
+        });
     }
 
     handClick=()=>{
@@ -73,10 +94,10 @@ export default class Index extends BaseComponent{
     render(){
         console.log('detail render');
         let contextData =this.getInitialData();
-        if(!contextData){
-            contextData = Index.getInitialProps();
-        }
-        const { page, list } = contextData;
+        // if(!contextData){
+        //     contextData = Index.getInitialProps();
+        // }
+        //const { page, list } = contextData;
 
 
         return <div className="detailBox">
@@ -84,10 +105,6 @@ export default class Index extends BaseComponent{
             <Panel title="详情页面 数据统计模块1123"></Panel>
            <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
-            {
-                list.map(item=>(<div key={item.id}>{item.name}</div>))
-            }
-            <img src={logo}/>
             <div className="bg"></div>
             <div className="ab"></div>
             <div className="cb"></div>

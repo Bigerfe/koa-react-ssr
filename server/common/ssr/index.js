@@ -30,10 +30,10 @@ const getComponentHtml =async (ctx)=>{
     const initialData = {};//用于前端获取数据，区分多页面
     const fallData = initialData[path] = {};
     fallData.init = true;
-    fallData.data = await(COM.getInitialProps ? COM.getInitialProps(match) : null);
+    fallData.res = await(COM.getInitialProps ? COM.getInitialProps(match) : null);
 
     //处理页面 tdk
-    fallData.data.page||(fallData.data.page={
+    fallData.res.page || (fallData.res.page={
         tdk:{
             title:'默认标题',
             keyword:'默认关键词',
@@ -63,7 +63,7 @@ const getComponentHtml =async (ctx)=>{
     </Provider>);
 
     return {
-        html, initialData, page: fallData.data.page};
+        html, initialData, page: fallData.res.page};
 }
 
 

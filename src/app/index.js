@@ -24,6 +24,8 @@ function entryIndex() {
     let STATE_KEY = '_INITAL_DATA';
     let state = true;
 
+    console.log(window[STATE_KEY]);
+    
     if (!window.hasOwnProperty(STATE_KEY)) {
         state = false;
     } else {
