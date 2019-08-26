@@ -159,7 +159,8 @@ const handler = (percentage, message, ...args) => {
 
 wpConfig.optimization = {
     minimizer: [
-        new UglifyJsPlugin(),
+        new UglifyJsPlugin({
+        }),
         new OptimizeCSSAssetsPlugin(),
         //new webpack.ProgressPlugin(handler) 显示的很多信息其实没什么用
     ],

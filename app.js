@@ -13,8 +13,6 @@ var config = require('./dist/server/src/config/project-config').default;
  */
 
 var port = normalizePort(process.env.PORT || config.nodeServerPort);
-console.log(port);
-// app.set('port', port);
 
 /**
  * Create HTTP server.
@@ -28,7 +26,7 @@ var server = http.createServer(app.callback());
 
 server.listen(port);
 server.on('error', onError);
-console.log('server start ......  http://localhost:' + port);
+console.log('node server will start ......  http://localhost:' + port);
 /**
  * Normalize a port into a number, string, or false.
  */

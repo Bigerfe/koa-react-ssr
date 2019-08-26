@@ -5,7 +5,9 @@
 
 //fetch 接口 开发环境和生产环境
 const DevApiHost ='http://admin.pynsk.com';
-const ProductionApiHost='http://localhost';
+const ProductionApiHost ='http://admin.pynsk.com';
+
+console.log('process.env.IS_DEV', process.env.IS_DEV);
 
 export default {
     isSSR: true,//是否开启 ssr 
