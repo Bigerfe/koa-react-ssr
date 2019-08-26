@@ -7,7 +7,7 @@ import ejsHtml from '../other/ejs-html';
 import { StaticRouter,Switch,Route } from "react-router";
 import { renderRoutes} from 'react-router-config';
 import NoMatch from '../../../../src/page/no-match';//0匹配的时候
-import config from '../../../config';
+import config from '../../config';
 import CacheHelper from '../other/cache-helper';
 import Layout from '../../../../src/app/layout';
 

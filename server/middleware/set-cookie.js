@@ -1,16 +1,14 @@
 /**
- * 设置浏览器cookie
+ * 设置浏览器cookie 无引用
  * @param {[type]} req [description]
  * @param {[type]} res [description]
  */
 export default (ctx, next) => {
     var cookie = ctx.cookies.get('clientid');
-    //console.log('cookie',cookie);
     if (!cookie) { //写cid	
-        ctx.cookies.set('clientid', '1212121212121212', {
+        ctx.cookies.set('clientid', 'krs-id', {
             maxAge: 31536000000
         });
     }
-    //console.log(ctx.request.header);
     return next();
 }

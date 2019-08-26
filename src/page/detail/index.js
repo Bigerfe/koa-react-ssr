@@ -57,35 +57,6 @@ export default class Index extends BaseComponent{
             },
             fetchData: resArr
         } 
-
-        // return {
-        //     page:{
-     
-        //     },
-        //     list: [{
-        //             id: 100,
-        //             name: '做一件事之前'
-        //         }, {
-        //             id: 200,
-        //             name: 'hhaha'
-        //         }, {
-        //             id: 300,
-        //             name: '考虑好做什么'
-        //         },
-        //         {
-        //             id: 400,
-        //             name: '脑子里想一个步骤'
-        //         },
-        //         {
-        //             id: 500,
-        //             name: '然后想好每天做那一步，然后想清楚，'
-        //         },
-        //         {
-        //             id: 600,
-        //             name: '好了，你以你已经成功一伴儿了'
-        //         }
-        //     ]
-        // } 
     }
 
     componentDidMount(){

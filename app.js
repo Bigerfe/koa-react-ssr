@@ -7,7 +7,7 @@ global.__CLIENT__ = false;
 
 var app = require('./dist/server/server/krs-base/app/server.js');
 var http = require('http');
-var config = require('./dist/server/server/config');
+var config = require('./dist/server/src/config/project-config').default;
 /**
  * Get port from environment and store in Express.
  */

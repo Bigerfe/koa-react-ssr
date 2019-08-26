@@ -4,17 +4,18 @@
  * 系统配置
  */
 
+const projectConfig = require('../../src/config/project-config').default;
 
 //本地模拟生产环境
 const ISimulateProduction = process.env.SimulateProduction; 
-const LocalNodeServerPort = 8808;
-const DevClientServerPort = 8809;
+const LocalNodeServerPort = projectConfig.nodeServerPort;
+const DevClientServerPort = projectConfig.devWdsPort;
 
 const StaticFolderName='krs-static';
 
 // TODO:// 配置需要进行提取 生产环境的js 资源和 css 资源的 host  ，这个可以进行配置
-let Production_JS_Host = '//c1.static.xin.com';
-let Production_CSS_Host = '//x2.static.xin.com';
+let Production_JS_Host = projectConfig.Production_JS_Host;
+let Production_CSS_Host = projectConfig.Production_CSS_Host;
 
 let assetsJson={};
 
@@ -46,9 +47,9 @@ const config = {
         password: '123',
         database: 'circle-parts-db'
     },
-    isSSR: true,
+    isSSR: projectConfig.isSSR,
     //是否使用 ssr 模式
-    isComponentLazyLoad: true,
+    isComponentLazyLoad: projectConfig.isComponentLazyLoad,
     //组件是否按需加载 //次数行暂时没有用到 ，内部对组件已经做了判断
     staticSource: {
         js: [`${Production_JS_Host}/${StaticFolderName}/js/styles.js`, `${Production_JS_Host}/${StaticFolderName}/js/libs.js`, `${Production_JS_Host}/${StaticFolderName}/js/entry.js`],

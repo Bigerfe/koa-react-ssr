@@ -147,4 +147,11 @@ wpConfig.optimization = {
     }
 };
 
+wpConfig.resolve={
+        extensions: ['.js', '.jsx','.json'],
+        alias: {
+            '@project-config': './dist/server/src/config/project-config.js'
+        }
+}
+
 module.exports = wpConfig;

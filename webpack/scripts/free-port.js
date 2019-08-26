@@ -4,7 +4,13 @@ if (process.platform && process.platform !== 'win32') {
     //mac linux等
     const args = process.argv.slice(2);
     //默认8808端口
-    let port = '8808';
+    let port =0000;
+    try {
+        port = require('../../dist/server/src/config/project-config').default.nodeServerPort;
+
+    } catch (error) {
+        port=8808;
+    }
     let portArg = args && args[0];
     if (portArg && portArg.indexOf('--') > 0) {
         port = portArg.split('--')[1];

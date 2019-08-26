@@ -1,7 +1,7 @@
 /**
  * 数据库连接基础库
  */
-import config from '../config';
+import config from '../krs-base/config';
 
 export default {
     getConn(){

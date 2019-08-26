@@ -1,17 +1,14 @@
 /**
- * 需要封装一个请求模块
+ * 需要封装一个请求模块, 返回 promise
  * 可支持 post - form|json
  * 支持 get 的请求
  *
  * 可以根据 process.env.IS_DEV 判断是否是线上环境
- * 
- * 接口api 路径规则
- * 
- * _api/article-info/get-detail-content : _api(固定前缀)/controller name/action name  路径不允许出现大写
+ *  * 
  * 
  */
 import utils from '../module/utils';
-import hostConfig from '../../config/host-config'
+import hostConfig from '../../config/project-config';
 import fetch from 'node-fetch';
 
 const requestHost = hostConfig.reqApiUrlHost;

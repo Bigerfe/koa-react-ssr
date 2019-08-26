@@ -19,8 +19,8 @@ import koaStatic from 'koa-static';
 import path from 'path';
 import setCookie from '../../middleware/set-cookie';
 import baseRoute from '../../middleware/base-route';
-import cacheStaticRoute from '../../middleware/cache-staitc-routes';
-import config  from '../../config';
+import cacheStaticRoute from '../middleware/cache-staitc-routes';
+import config  from '../config';
 
 //#### 暂时没有用到
 // import webpack from 'webpack';
