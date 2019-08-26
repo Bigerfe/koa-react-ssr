@@ -32,7 +32,12 @@ export default class Index extends BaseComponent{
     //得到 context 对象
     static contextType = RootContext;
 
-    static async getInitialProps(){
+    //基础参数的带入
+    //opt={query:{},params:{}}
+    static async getInitialProps(krsOpt){
+        
+        console.log('=====opt', krsOpt);
+
         if(__SERVER__){
             //如果是服务端渲染的话  可以做的处理
         }
@@ -63,7 +68,7 @@ export default class Index extends BaseComponent{
         console.log('detail com did');
        
         if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据
-            Index.getInitialProps().then(data=>{
+            Index.getInitialProps(this.props.krsOpt).then(data=>{
                 this.setState({
                     ...data
                 },()=>{

@@ -26,11 +26,17 @@ const getComponentHtml =async (ctx)=>{
 
     const match = routeMatch.match || {};
 
+    //参数带入
+    const krsOpt = {
+        query:ctx.query,
+        params:match.params
+    }
+
     //TODO:不知道还有没有更好的办法
     const initialData = {};//用于前端获取数据，区分多页面
     const fallData = initialData[path] = {};
     fallData.init = true;
-    fallData.res = await(COM.getInitialProps ? COM.getInitialProps(match) : null);
+    fallData.res = await (COM.getInitialProps ? COM.getInitialProps(krsOpt) : null);
 
     //处理页面 tdk
     fallData.res.page || (fallData.res.page={
