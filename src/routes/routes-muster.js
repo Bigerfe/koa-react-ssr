@@ -4,5 +4,5 @@ import RouteNoMatch from '../page/no-match/config/route';
 import RouteProducts from '../page/products/config/route';
 import RouteProductsDetail from '../page/products-detail/config/route';
 export default [RouteIndex, 
-    RouteDetail, RouteProducts, RouteProductsDetail, RouteNoMatch
+ RouteDetail,RouteNoMatch,RouteProducts,RouteProductsDetail 
 ]
