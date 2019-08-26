@@ -18,7 +18,7 @@ function createCompiler(webpack, config) {
         process.exit(1);
     }
     //webpack编译完成后会触发done事件,我们在此获取编译过程中的warning或error并输出
-    compiler.hooks.done.tap('ccccok', status => {
+    compiler.hooks.done.tap('ok', status => {
         var res = formatMessages(status.toJson({}, true));
         if (res.errors.length) {
             console.log('webpack build result:');

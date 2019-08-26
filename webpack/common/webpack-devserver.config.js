@@ -16,7 +16,7 @@ module.exports = function (port, publicPath) {
     },
     publicPath: '/',
     hot: true,
-    open: true,
+    open: false,
     compress: true,
     watchContentBase: true,
     watchOptions: {

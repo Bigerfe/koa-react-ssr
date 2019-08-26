@@ -19,11 +19,16 @@ if (!IPAddress) {
 }
 
 const fs = require('fs');
+const openBrowser = require('../common/open-browser');
 const path = require('path');
 const chalk = require('chalk');
+const spawn = require('cross-spawn');
+const projectConfig = require('../../dist/server/src/config/project-config').default;
 //监听client server文件 change时用babel编译该文件
 const chokidar = require('chokidar');
 const webpack = require('webpack');
+const nodeTransform = require('../common/node-transform');
+const monitor = require('../common/node-monitor');
 const WebpackDevServer = require('webpack-dev-server');
 const { createCompiler } = require('../common/dev-server-utils');
 
@@ -39,7 +44,7 @@ const compiler = createCompiler(webpack, clientConfig);
 // 获取WebpackDevServer配置
 //WebpackDevServer是client端port为3001
 const devServerConfig = createDevServerConfig(
-    8009,
+	projectConfig.devWdsPort,
     clientConfig.output.publicPath
 );
 const devServer = new WebpackDevServer(compiler, devServerConfig);
@@ -49,51 +54,49 @@ devServer.listen(devServerConfig.port, devServerConfig.host, err => {
     if (err) {
         return console.log(err);
     }
-    console.log(chalk.cyan('Starting the development server...\n'));
-    //已内置不，不需要手动启动了
-    //const openBrowser = require('../common/open-browser');
-    //openBrowser(`http://${devServerConfig.host}:${devServerConfig.port}`);
+	console.log(chalk.cyan('Starting the development node server...\n'));
+	//TODO:这里先打开了浏览器，但是服务还没有起来,浏览器打开后需要等一下 会自动刷新
+	openBrowser(`http://${devServerConfig.host}:${projectConfig.nodeServerPort}`);
     console.log('🚀 started');
 });
 
 console.log('===============');
 
-const spawn = require('cross-spawn');
-//启动 node 服务
-spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
-
-
-
-const nodeTransform = require('../common/node-transform');
-const monitor = require('../common/node-monitor');
-
-
-let nodeParams = ['app.js'];
-//本地测试预上线环境地址
-if (global.env_prod) {
-	nodeParams = nodeParams.concat(['--env', 'prodTest']);
-}
+//文件改变后，需要重新启动的服务入口
+monitor.nodeMonitor(['app.js']);
 console.log('===============');
-console.log(nodeParams);
-monitor.nodeMonitor(nodeParams);
 console.log(chalk.cyan('node server is starting the watcher\n'));
+//end
 
 // 创建监控对象
 var watcher = chokidar.watch([config.appServerSrc, config.appClientSrc], {
 	ignored: /(^|[\/\\])\../,
 	persistent: true
 });
+//文件内容发生改变，确切说的是 保存触发.就会重启 node 服务.但不会重启webpack 构建
 watcher.on('change', path => {
 	nodeTransform(path,monitor.restart);
 	console.log('event change');
 	console.log(path);
 });
-
-// watcher.on('add', path => {
-// 	console.log('event add');
-// 	console.log('add '+path);
-//     //let ext = nodePath.extname(path);
-// });
+//新建文件
+watcher.on('add', fpath => {
+	if (/\.(ejs|tpl|html)$/.test(fpath)) {
+		console.log('event add:html file add');
+		console.log('add ' + fpath);
+		var fileName = /(src|server).*/.exec(fpath)[0];
+		var newpath = path.resolve('dist/server', fileName);
+		try {
+			//非js文件如template文件只负责到指定文件夹即可
+			fs.copyFileSync(fpath, newpath);
+			console.log(chalk.yellow('copyed ' + fpath + ' to ' + newpath));
+		} catch (error) {
+			console.log(chalk.yellow('copye ' + fpath + ' error! fs.copyFileSync需要8.5+ 请查看Node版本是否正确;'));
+			console.log(error);
+			process.exit(1);
+		}
+	}
+});
 
 //监听到添加文件夹 在build/server对应目录添加文件夹
 watcher.on('addDir', path => {

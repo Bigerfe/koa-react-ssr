@@ -5,7 +5,8 @@
 const utils = require('../common/utils');
 const fs = require('fs');
 const path = require('path');
-const config = require('../config');
+//TODO:此文件引入后保错，可能是babel 没有完成，暂时写死
+//const config =  require('../../dist/server/src/config/project-config').default;
 
 const args = process.argv;
 const type = args[2];
@@ -38,7 +39,7 @@ const getToLinkModules = (folderPath, delname, isFile) => {
                 console.log(sname);
                 let formatName = 'Route' + utils.nameToBigCamelFormat(sname);
                 //TODO:代码重复判断和执行
-                if (sname === config.routeIndexFolderName) {//第一个
+                if (sname === 'index') {//第一个
                     firstItem = formatName;
                 }
 
