@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import utils from '../../common/module/utils';
 import './css/index.scss';
 import BaseComponent from '../../common/base/page-base-com';
+import fetch from '../../common/fetch';
 
 export default class Index extends BaseComponent {
 
