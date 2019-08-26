@@ -11,6 +11,7 @@ export default class Index extends React.Component {
     }
     render() {
         return <div className="layout-box">
+            <h1>krs 框架-demo</h1>
             <nav>
             <ul><li> <Link to="/">首页</Link></li>
                     <li> <Link to="/products">产品列表</Link></li>

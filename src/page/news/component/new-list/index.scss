@@ -1,0 +1,30 @@
+.com-news-list {
+    h1 {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            min-width: 300px;
+            margin-bottom: 20px;
+
+          p{
+              display: flex;
+              flex-direction: row;
+
+              span {
+                  display: block;
+                  margin-right: 20px;
+              }
+          }
+
+        }
+    }
+}

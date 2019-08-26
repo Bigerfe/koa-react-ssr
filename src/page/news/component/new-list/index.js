@@ -10,8 +10,8 @@ export default class Index extends React.Component {
     }
     render() {
         const {newsList=[]} = this.props;
-        return <div className="com-news-index-list">
-            <h1>热点新闻</h1>
+        return <div className="com-news-list">
+            <h1>新闻中心</h1>
            <ul>
             {
                     newsList.map(item=>{

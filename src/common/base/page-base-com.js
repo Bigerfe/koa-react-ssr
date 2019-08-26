@@ -15,12 +15,15 @@ export default class Index extends React.Component {
             this.isSSR = true;//表示服务端渲染的首屏
             return  contextData.res;
         }else{
-            let wData = window[WindowsInitDataKey] ? window[WindowsInitDataKey][this.props.match.url]:null;
-            console.log('wdata',wData);
-            if (!wData)
-                return {};
-            this.hasSpaCacheData=true;
-            return wData;
+            if(__CLIENT__){
+                let wData = window[WindowsInitDataKey] ? window[WindowsInitDataKey][this.props.match.url]:null;
+                console.log('wdata',wData);
+                if (!wData || !wData.fetchData)
+                    return {};
+                this.hasSpaCacheData=true;
+                return wData;
+            }
+            return null;
         }
     }
 
