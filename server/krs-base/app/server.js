@@ -71,9 +71,9 @@ app.use(koaBody({
 app.use(convert(json()));
 
 //TODO: 线上环境不应该开启这个静态资源访问  
-if (process.env.IS_DEV || config.isOpenLocalLikeProduction){
+if (process.env.IS_DEV || config.isimulateProduction){
   app.use(koaStatic(
-      path.join(__dirname, '../../../static')
+      path.join(__dirname, '../../../../static')
   ));
 }
 

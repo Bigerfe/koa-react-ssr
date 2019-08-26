@@ -22,7 +22,7 @@ let assetsJson={};
 console.log('ISimulateProduction', process.env.SimulateProduction);
 
 if (!process.env.IS_DEV || ISimulateProduction){
-    assetsJson = require('./asset-manifest.json');
+    assetsJson = require('../asset-manifest.json');
 }
 
 if (process.env.IS_DEV) {
