@@ -31,7 +31,7 @@ export default class Index extends React.Component {
 
         console.log(this.state);
         console.log(this.isSSR);
-        if(!this.isSSR){
+        if (!this.isSSR && this.enableSpaDataCache){
             let url =this.props.match.url;
 
             if (!window[WindowsInitDataKey]) window[WindowsInitDataKey]={};

@@ -25,8 +25,9 @@ export default class Index extends BaseComponent{
         console.log('this init state',this.state);
        
         console.log('this.isssr', this.isSSR);
-
     }
+
+    enableSpaDataCache=true;//开启 spa 数据缓存，刷新页面数据重新请求  
 
     //得到 context 对象
     static contextType = RootContext;
