@@ -99,31 +99,30 @@ watcher.on('add', fpath => {
 });
 
 //监听到添加文件夹 在build/server对应目录添加文件夹
-watcher.on('addDir', path => {
-	// console.log('event addDir');
-	// var fileName = /(client|server).*/.exec(path)[0];
-	// var newpath = path.resolve('dist/server', fileName);
-	// console.log(fileName);
-	// var baseName = nodePath.basename(path);
-	// let newFile;
-	// try {
-	// 	if (!fs.existsSync(newpath)) {
-	// 		fs.mkdirSync(newpath);
-	// 		console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
-	// 		//如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
-	// 		if (fileName && fileName.indexOf('pages') > 0) {
-	// 			newFile = nodePath.join(path, 'index.js')
-	// 		} else if (fileName && fileName.indexOf('components_common') > 0) {
-	// 			newFile = nodePath.join(path, `${baseName}.js`)
-	// 		}
-	// 		if (fs.existsSync(newFile)) {
-	// 			monitor.compileWatcher(newFile);
-	// 		}
-	// 	}
-	// } catch (error) {
-	// 	console.log(error);
-	// 	process.exit(1);
-	// }
+watcher.on('addDir', fpath => {
+	console.log('event addDir');
+	var fileName = /(src|server).*/.exec(fpath)[0];
+	var newpath = path.resolve('dist/server', fileName);
+	console.log(fileName);
+	let newFile;
+	try {
+		if (!fs.existsSync(newpath)) {
+			fs.mkdirSync(newpath);
+			console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
+			// //如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
+			// if (fileName && fileName.indexOf('pages') > 0) {
+			// 	newFile = nodePath.join(path, 'index.js')
+			// } else if (fileName && fileName.indexOf('components_common') > 0) {
+			// 	newFile = nodePath.join(path, `${baseName}.js`)
+			// }
+			// if (fs.existsSync(newFile)) {
+			// 	monitor.compileWatcher(newFile);
+			// }
+		}
+	} catch (error) {
+		console.log(error);
+		process.exit(1);
+	}
 });
 
 

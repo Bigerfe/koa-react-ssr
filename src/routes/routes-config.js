@@ -4,7 +4,6 @@
  */
 
 import routeList from './routes-muster';
-import NoMatch from '../page/no-match';
 
 export default ()=>{
     const routes=[];
