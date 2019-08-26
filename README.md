@@ -49,6 +49,7 @@ bigerfe , 张大胖 , 公众号 ： 前端张大胖
 - [x] 数据处理方法内带入 params 和 search 数据
 - [] 单页测试 e2e测试
 - [] npm build:Start 导致 node 是dev，client 是 pro 环境
+- [] redux
 ## 资料
 ```
 https://www.cnblogs.com/ysk123/p/9990082.html css压缩和提取到一个文件
