@@ -26,6 +26,8 @@ const getComponentHtml =async (ctx)=>{
 
     const match = routeMatch.match || {};
 
+    console.log('routeMatch',routeMatch);
+
     //参数带入
     const krsOpt = {
         query:ctx.query,
@@ -55,9 +57,6 @@ const getComponentHtml =async (ctx)=>{
 
     //没用到这
     const context = {};
-
-    console.log('routes');
-    console.log(routes);
 
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>

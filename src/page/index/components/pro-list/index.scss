@@ -1,0 +1,29 @@
+.com-products-index-list {
+    h1 {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            min-width: 300px;
+            margin-bottom: 20px;
+
+            img {
+                width: 80px;
+                height: 80px;
+                margin-right: 10px;
+            }
+
+            span {
+                display: block;
+            }
+        }
+    }
+}

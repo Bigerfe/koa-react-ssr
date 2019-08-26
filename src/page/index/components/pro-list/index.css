@@ -1,0 +1,27 @@
+.com-products-index-list h1 {
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.com-products-index-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.com-products-index-list ul li {
+  display: flex;
+  flex-direction: row;
+  min-width: 300px;
+  margin-bottom: 20px;
+}
+
+.com-products-index-list ul li img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.com-products-index-list ul li span {
+  display: block;
+}

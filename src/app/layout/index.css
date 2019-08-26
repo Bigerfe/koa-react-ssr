@@ -1,0 +1,34 @@
+body {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  color: #666;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.layout-box {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.layout-box nav {
+  border-bottom: solid 1px #ccc;
+}
+
+.layout-box nav ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.layout-box nav ul li {
+  margin-left: 20px;
+  margin-right: 20px;
+}

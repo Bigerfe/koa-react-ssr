@@ -1,0 +1,27 @@
+.com-news-index-list h1 {
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.com-news-index-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.com-news-index-list ul li {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  margin-bottom: 20px;
+}
+
+.com-news-index-list ul li p {
+  display: flex;
+  flex-direction: row;
+}
+
+.com-news-index-list ul li p span {
+  display: block;
+  margin-right: 20px;
+}

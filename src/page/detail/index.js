@@ -49,6 +49,8 @@ export default class Index extends BaseComponent{
        const fecth2= fetch.postForm('/fe_api/filed-manager/get-detail-of-type', {
             data: { ofTypeId: 2000 }
         });
+    
+    
 
         const resArr =await fetch.multipleFetch(fetch1, fecth2);
         //返回所有数据
