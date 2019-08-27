@@ -11,7 +11,7 @@ export default class Index extends React.Component {
     }
     render() {
         return <div className="layout-box">
-            <h1>krs 框架-demo</h1>
+            <h1>krs(koa-react-ssr) 服务端渲染框架-demo <a href="https://github.com/Bigerfe/koa-react-ssr/tree/v1" target="_blank">github地址</a> </h1>
             <nav>
             <ul><li> <Link to="/">首页</Link></li>
                     <li> <Link to="/products">产品列表</Link></li>
