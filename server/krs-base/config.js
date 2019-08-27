@@ -1,42 +1,44 @@
 "use strict";
-
 /**
  * 系统配置
  */
 
-const projectConfig = require('../../src/config/project-config').default;
-
-//本地模拟生产环境
-const ISimulateProduction = process.env.SimulateProduction; 
+const projectConfig = require('../../src/config/project-config').default; //本地模拟生产环境
+const ISimulateProduction = process.env.SimulateProduction;
 const LocalNodeServerPort = projectConfig.nodeServerPort;
 const DevClientServerPort = projectConfig.devWdsPort;
+const StaticFolderName = 'krs-static'; // TODO:// 配置需要进行提取 生产环境的js 资源和 css 资源的 host  ，这个可以进行配置
 
-const StaticFolderName='krs-static';
-
-// TODO:// 配置需要进行提取 生产环境的js 资源和 css 资源的 host  ，这个可以进行配置
 let Production_JS_Host = projectConfig.Production_JS_Host;
 let Production_CSS_Host = projectConfig.Production_CSS_Host;
+let assetsJson = {};
 
-let assetsJson={};
-
-console.log('ISimulateProduction', process.env.SimulateProduction);
-
-if (!process.env.IS_DEV || ISimulateProduction){
+if (!isDev() || ISimulateProduction) {
     assetsJson = require('../asset-manifest.json');
 }
 
-if (process.env.IS_DEV) {
+if (isDev()) {
     require('./common/other/local-ip')();
+
     Production_JS_Host = `//${process.env.LocalIP}:${DevClientServerPort}`;
     Production_CSS_Host = `//${process.env.LocalIP}:${DevClientServerPort}`;
-    if(ISimulateProduction){
+
+    if (ISimulateProduction) {
         Production_JS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
         Production_CSS_Host = `//${process.env.LocalIP}:${LocalNodeServerPort}`;
     }
 }
 
+
+function isDev() {
+    return process.env.NODE_ENV !== 'production';
+}
+
 const config = {
-    isimulateProduction: ISimulateProduction,//本地模拟生成环境运行
+    openProductionStaticFolder: projectConfig.openProductionStaticFolder,
+    //线上环境是否开启静态目录访问能力
+    isimulateProduction: ISimulateProduction,
+    //本地模拟生成环境运行
     nodeServerPort: LocalNodeServerPort,
     //默认node 服务端口号,生产环境可以反向代理这个端口
     isDev: process.env.NODE_ENV !== 'production',
@@ -57,11 +59,12 @@ const config = {
     }
 };
 
-if (process.env.IS_DEV && ISimulateProduction) {
+
+if ((isDev() && ISimulateProduction) || !isDev()) {
     config.staticSource = {
         js: [`${Production_JS_Host}${assetsJson['styles.js']}`, `${Production_JS_Host}${assetsJson['libs.js']}`, `${Production_JS_Host}${assetsJson['entry.js']}`],
         css: [`${Production_CSS_Host}${assetsJson['styles.css']}`]
-    }
+    };
 }
 
-module.exports =config;
+module.exports = config;
