@@ -13,12 +13,13 @@
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
     "babel": " BABEL_ENV=node babel server -d dist/server/server",
     "babel-csfile": "BABEL_ENV=node babel src -d dist/server/src",
-    "build": "npm run babel && npm run babel-csfile && webpack --config webpack/webpack.config.prod.js",
+    "build": "npm run babel && npm run babel-csfile && npm run copy-no-js &&  webpack --config webpack/webpack.config.prod.js",
     "build:start": "SimulateProduction=1 node app.js env:development",
     "ns-start": "node app.js",
     "chai-link-all": "node ./webpack/scripts/danymic-link.js --all",
     "chai-api": "node ./webpack/scripts/danymic-link.js --api",
-    "chai-routes": "node ./webpack/scripts/danymic-link.js --routes"
+    "chai-routes": "node ./webpack/scripts/danymic-link.js --routes",
+    "copy-no-js":"node ./webpack/scripts/copy-not-js.js"
   },
   "author": "",
   "license": "ISC",
