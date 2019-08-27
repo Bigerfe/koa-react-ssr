@@ -17,7 +17,7 @@ const resolvePath = p => path.resolve(__dirname, p);
 // const dashboard = new Dashboard();
 //////////******** */
 
-const OutPutPath = resolvePath('../dist/static');
+const OutPutPath = resolvePath('../dist/static/');
 const JsFileName = 'krs-static/js/[name].[chunkhash:8].js';
 const JsChunkFileName = 'krs-static/js/[name].[chunkhash:8].js';
 const CssFileName = 'krs-static/css/[name].[contenthash:8].css';
@@ -30,7 +30,7 @@ const wpConfig = {
     },
     output: {
         path: OutPutPath,
-        publicPath: '', //生产 环境不设置路径
+        publicPath: '/', //生产 环境不设置路径
         filename: JsFileName,
         chunkFilename: JsChunkFileName
     },

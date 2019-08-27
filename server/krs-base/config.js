@@ -59,8 +59,8 @@ const config = {
 
 if (process.env.IS_DEV && ISimulateProduction) {
     config.staticSource = {
-        js: [`${Production_JS_Host}/${assetsJson['styles.js']}`, `${Production_JS_Host}/${assetsJson['libs.js']}`, `${Production_JS_Host}/${assetsJson['entry.js']}`],
-        css: [`${Production_CSS_Host}/${assetsJson['styles.css']}`]
+        js: [`${Production_JS_Host}${assetsJson['styles.js']}`, `${Production_JS_Host}${assetsJson['libs.js']}`, `${Production_JS_Host}${assetsJson['entry.js']}`],
+        css: [`${Production_CSS_Host}${assetsJson['styles.css']}`]
     }
 }
 
