@@ -35,7 +35,7 @@ bigerfe , 张大胖 , 公众号 ： 前端张大胖
 - [] 嵌套路由如何处理 404 [https://codepen.io/pshrmn/pen/KWeVrQ](https://codepen.io/pshrmn/pen/KWeVrQ)
 - [] fetch同构
 - [x] 环境判断，当前时服务端渲染还是 csr ( 通过路由唯一 path 处理)
-- [] 使用 stream 生成组件
+- [] 使用 stream 渲染
 - [x] 页面 tdk 设置 
 - [] 服务端渲染的热更新 如何设置，目前如果是 ssr 的页面，热更新无效
 - [x] 路由按需后，服务端和客户端渲染标记对比失败(需要将动态路由转换成为静态路由即可)
