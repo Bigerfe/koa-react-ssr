@@ -20,6 +20,11 @@ export default class Index extends BaseComponent {
         }
     }
 
+    enableSpaDataCache = false;//开启 spa 数据缓存，刷新页面数据重新请求  
+
+    //得到 context 对象
+    static contextType = RootContext;//如果不需要 ssr，则删除此字段
+
     static async  getInitialProps(krsOpt) {
         let {params} = krsOpt;
         const newsDetailInfo = await fetch.postForm('/fe_api/news-manager/get-news-detail', {
