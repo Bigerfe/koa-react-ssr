@@ -45,9 +45,9 @@ export default class Index extends BaseComponent {
         return {
             page:{
                 tdk:{
-                    title: baseInfo.siteTitle,
-                    keyword: baseInfo.siteKeyword,
-                    description: baseInfo.siteDes,
+                    title: 'krs ssr 服务端渲染框架-demo 参考',
+                    keyword: 'krs ssr react 服务端渲染',
+                    description:'最轻量级，最易用的 ssr react 服务端渲染框架',
                 }
             },
             fetchData:[websiteBaseInfo,productsList,listInfo]
