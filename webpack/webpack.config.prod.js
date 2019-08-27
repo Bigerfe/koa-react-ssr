@@ -30,7 +30,7 @@ const wpConfig = {
     },
     output: {
         path: OutPutPath,
-        publicPath: '', //生产 环境不设置路径
+        publicPath: '/', //生产环境设置成根即可
         filename: JsFileName,
         chunkFilename: JsChunkFileName
     },
