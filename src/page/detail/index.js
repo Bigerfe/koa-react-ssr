@@ -55,7 +55,7 @@ export default class Index extends KrsPageBase{
     }
 
     componentDidMount(){
-        
+        //下面代码可以放入父组件内的声明周期，或者定义成为父组件的成员方法。但是真正的业务场景可能比较复杂，所以这里我提了出来
         console.log('detail com did');
        
         if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据

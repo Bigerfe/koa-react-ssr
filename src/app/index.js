@@ -7,6 +7,7 @@ import Routes  from '../routes/index';
 import Provider from './provider';
 import matchComponent from './match-component';
 import routesConfig from '../routes/routes-config';
+import base64 from '../common/module/base64';
 
 function renderUI(state,initialData) {
     let render = ReactDOM.hydrate;
@@ -32,7 +33,7 @@ function entryIndex() {
     if (!stateText) {
         state = false;
     } else {
-        APP_INIT_DATA = JSON.parse(filterJSONStr(stateText.value ) || "{}");
+        APP_INIT_DATA = JSON.parse(filterJSONStr(base64.decode(stateText.value||'')) || "{}");
     }
 
     console.log('state', state);

@@ -93,7 +93,11 @@ export default async (ctx) => {
         const res = await getComponentHtml(ctx);
         console.log('res',res);
         renderData.htmlContent = res.html;
-        renderData.propsData = `<textarea style="display:none" id="krs-server-render-data-BOX">${JSON.stringify({ initialData: res.initialData||null })}</textarea>` ;
+
+        //数据转成 base64 客户端再进行转换
+        const base64Str = Buffer.from(JSON.stringify({ initialData: res.initialData || {} })).toString('base64');
+
+        renderData.propsData = `<textarea style="display:none" id="krs-server-render-data-BOX">${base64Str}</textarea>` ;
         renderData.config = config.cdnHost;
         renderData.page =res.page;
     }
