@@ -109,6 +109,7 @@ watcher.on('addDir', fpath => {
 		if (!fs.existsSync(newpath)) {
 			fs.mkdirSync(newpath);
 			console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
+			//TODO:命令行创建页面和组件功能 ，后续再添加
 			// //如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
 			// if (fileName && fileName.indexOf('pages') > 0) {
 			// 	newFile = nodePath.join(path, 'index.js')

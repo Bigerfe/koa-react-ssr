@@ -14,7 +14,7 @@ import NewsList from './components/new-list';
 export default class Index extends BaseComponent {
 
     constructor(props,context){
-        super(props);
+        super(props,context);
         this.state = {
             ... this.getInitialData(context)
         }
