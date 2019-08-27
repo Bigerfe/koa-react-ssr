@@ -1,12 +1,12 @@
 'use strict';
 
-const envUtils =require('./env-utils');
+const envUtils = require('./env-utils');
 
 envUtils.setDev();
 
 // 有错误直接抛出
 process.on('unhandledRejection', err => {
-    throw err;
+	throw err;
 });
 
 
@@ -15,7 +15,7 @@ const config = require('../config');
 console.log(`本机Ip为:${IPAddress}`);
 
 if (!IPAddress) {
-    throw Error('未获取到本机ip 无法启动');
+	throw Error('未获取到本机ip 无法启动');
 }
 
 const fs = require('fs');
@@ -45,19 +45,19 @@ const compiler = createCompiler(webpack, clientConfig);
 //WebpackDevServer是client端port为3001
 const devServerConfig = createDevServerConfig(
 	projectConfig.devWdsPort,
-    clientConfig.output.publicPath
+	clientConfig.output.publicPath
 );
 const devServer = new WebpackDevServer(compiler, devServerConfig);
 // 启动 WebpackDevServer.
 
 devServer.listen(devServerConfig.port, devServerConfig.host, err => {
-    if (err) {
-        return console.log(err);
-    }
+	if (err) {
+		return console.log(err);
+	}
 	console.log(chalk.cyan('Starting the development node server...\n'));
 	//TODO:这里先打开了浏览器，但是服务还没有起来,浏览器打开后需要等一下 会自动刷新
 	openBrowser(`http://${devServerConfig.host}:${projectConfig.nodeServerPort}`);
-    console.log('🚀 started');
+	console.log('🚀 started');
 });
 
 console.log('===============');
@@ -75,7 +75,7 @@ var watcher = chokidar.watch([config.appServerSrc, config.appClientSrc], {
 });
 //文件内容发生改变，确切说的是 保存触发.就会重启 node 服务.但不会重启webpack 构建
 watcher.on('change', path => {
-	nodeTransform(path,monitor.restart);
+	nodeTransform(path, monitor.restart);
 	console.log('event change');
 	console.log(path);
 });
@@ -99,31 +99,31 @@ watcher.on('add', fpath => {
 });
 
 //监听到添加文件夹 在build/server对应目录添加文件夹
-watcher.on('addDir', path => {
-	// console.log('event addDir');
-	// var fileName = /(client|server).*/.exec(path)[0];
-	// var newpath = path.resolve('dist/server', fileName);
-	// console.log(fileName);
-	// var baseName = nodePath.basename(path);
-	// let newFile;
-	// try {
-	// 	if (!fs.existsSync(newpath)) {
-	// 		fs.mkdirSync(newpath);
-	// 		console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
-	// 		//如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
-	// 		if (fileName && fileName.indexOf('pages') > 0) {
-	// 			newFile = nodePath.join(path, 'index.js')
-	// 		} else if (fileName && fileName.indexOf('components_common') > 0) {
-	// 			newFile = nodePath.join(path, `${baseName}.js`)
-	// 		}
-	// 		if (fs.existsSync(newFile)) {
-	// 			monitor.compileWatcher(newFile);
-	// 		}
-	// 	}
-	// } catch (error) {
-	// 	console.log(error);
-	// 	process.exit(1);
-	// }
+watcher.on('addDir', fpath => {
+	console.log('event addDir');
+	var fileName = /(src|server).*/.exec(fpath)[0];
+	var newpath = path.resolve('dist/server', fileName);
+	console.log(fileName);
+	let newFile;
+	try {
+		if (!fs.existsSync(newpath)) {
+			fs.mkdirSync(newpath);
+			console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
+			//TODO:命令行创建页面和组件功能 ，后续再添加
+			// //如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
+			// if (fileName && fileName.indexOf('pages') > 0) {
+			// 	newFile = nodePath.join(path, 'index.js')
+			// } else if (fileName && fileName.indexOf('components_common') > 0) {
+			// 	newFile = nodePath.join(path, `${baseName}.js`)
+			// }
+			// if (fs.existsSync(newFile)) {
+			// 	monitor.compileWatcher(newFile);
+			// }
+		}
+	} catch (error) {
+		console.log(error);
+		process.exit(1);
+	}
 });
 
 
@@ -131,9 +131,9 @@ watcher.on('addDir', path => {
 
 
 ['SIGINT', 'SIGTERM'].forEach(function (sig) {
-    process.on(sig, function () {
-        devServer.close();
-        process.exit();
-    });
+	process.on(sig, function () {
+		devServer.close();
+		process.exit();
+	});
 });
 
