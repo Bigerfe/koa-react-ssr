@@ -55,6 +55,7 @@ bigerfe , 张大胖 , 公众号 ： 前端张大胖
 - [] nomatch route 应该在入口最后
 - [] conext 可传递到父组件
 - [] didmount 代码可在父组件声明
+- [] 增加 html 文件的构建同步
 
 ## 资料
 ```

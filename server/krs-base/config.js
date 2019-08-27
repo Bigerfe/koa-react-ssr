@@ -36,6 +36,7 @@ if (process.env.IS_DEV) {
 }
 
 const config = {
+    openProductionStaticFolder: projectConfig.openProductionStaticFolder,//线上环境是否开启静态目录访问能力
     isimulateProduction: ISimulateProduction,//本地模拟生成环境运行
     nodeServerPort: LocalNodeServerPort,
     //默认node 服务端口号,生产环境可以反向代理这个端口
