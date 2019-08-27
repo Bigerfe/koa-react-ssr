@@ -13,7 +13,7 @@
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
     "babel": " BABEL_ENV=node babel server -d dist/server/server",
     "babel-csfile": "BABEL_ENV=node babel src -d dist/server/src",
-    "build": "webpack --config webpack/webpack.config.prod.js && npm run babel && npm run babel-csfile",
+    "build": "npm run babel && npm run babel-csfile && webpack --config webpack/webpack.config.prod.js",
     "build:start": "SimulateProduction=1 node app.js env:development",
     "ns-start": "node app.js",
     "chai-link-all": "node ./webpack/scripts/danymic-link.js --all",
