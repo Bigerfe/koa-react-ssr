@@ -4,27 +4,17 @@ import './css/index.scss';
 import Panel from './components/Panel';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
-import BaseComponent from '../../common/base/page-base-com';
+import KrsPageBase from '../../krs-base/common/components/krs-page-base';
 import fetch from '../../common/fetch';
 
 
 function Child(props) {
     return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
 }
-export default class Index extends BaseComponent{
+export default class Index extends KrsPageBase{
 
     constructor(props,context){
-        super(props);
-        console.log('constructor');
-        console.log(this.props);
-        console.log('context',context);
-        this.state = {
-            ... this.getInitialData(context)
-        }
-
-        console.log('this init state',this.state);
-       
-        console.log('this.isssr', this.isSSR);
+        super(props,context);
     }
 
     enableSpaDataCache=true;//开启 spa 数据缓存，刷新页面数据重新请求  
@@ -65,6 +55,7 @@ export default class Index extends BaseComponent{
     }
 
     componentDidMount(){
+        
         console.log('detail com did');
        
         if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据
@@ -78,10 +69,6 @@ export default class Index extends BaseComponent{
         }
     }
 
-    handClick=()=>{
-        this.context.changeContext();
-    }
-
     render(){
      
         const {page,fetchData}=this.state;
@@ -90,7 +77,6 @@ export default class Index extends BaseComponent{
         return <div className="detailBox">
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
             <Panel title="详情页面 数据统计模块1123"></Panel>
-           <button type="button" onClick={this.handClick}>更新</button>
            <Child color={this.context.color}></Child>
            <div>
            {
