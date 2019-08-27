@@ -8,6 +8,10 @@ const DevApiHost ='http://admin.pynsk.com';
 const ProductionApiHost ='http://admin.pynsk.com';
 
 export default {
+    //判断是否是开发环境，否则可以理解为生产环境    ，最好统一使用此方法。保证正确
+    getIsDev(){
+        return process.env.NODE_ENV ==='production'
+    },
     openProductionStaticFolder: true,//线上环境是否开启静态目录访问能力
     isSSR: true,//是否开启 ssr 
     isComponentLazyLoad:true,//组件是否按需加载（现在没有用到，内部已经后处理）
