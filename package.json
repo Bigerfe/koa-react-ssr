@@ -1,5 +1,5 @@
 {
-  "name": "mmssr",
+  "name": "krs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,7 +20,7 @@
     "chai-api": "node ./webpack/scripts/danymic-link.js --api",
     "chai-routes": "node ./webpack/scripts/danymic-link.js --routes"
   },
-  "author": "",
+  "author": "bigerfe.com zjp",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.4.4",
@@ -78,9 +78,11 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "chalk": "^2.4.2",
     "chokidar": "^3.0.1",
     "cross-spawn": "^6.0.5",
+    "eslint": "^6.2.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "koa-webpack": "^5.2.3",
     "memeye": "^1.0.3",

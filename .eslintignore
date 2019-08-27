@@ -1,0 +1,7 @@
+**/node_modules/**
+build/*
+dist/*
+.vs/*
+doc/*
+test/*
+.hooks/*

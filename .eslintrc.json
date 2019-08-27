@@ -1,0 +1,196 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es6": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended"
+	],
+	"globals": {
+		"$": true,
+		"process": false,
+		"__SERVER__": false,
+		"__CLIENT__": false,
+		"__dirname": false,
+		"document": false,
+		"navigator": false,
+		"window": false,
+		"node": false,
+		"server": false,
+		"require": true,
+		"import": false,
+		"this": true
+	},
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"sourceType": "module",
+		"ecmaVersion": 6
+	},
+	"plugins": [
+		"react"
+	],
+	"rules": {
+		"for-direction": 2,
+		"getter-return": 2,
+		"no-await-in-loop": 2,
+		"no-compare-neg-zero": 2,
+		"no-cond-assign": 2,
+		"no-console": 1,
+		"no-constant-condition": 2,
+		"no-debugger": 2,
+		"no-dupe-args": 2,
+		"no-dupe-keys": 2,
+		"no-duplicate-case": 2,
+		"no-empty": 2,
+		"no-empty-character-class": 2,
+		"no-ex-assign": 2,
+		"no-extra-boolean-cast": 2,
+		"no-extra-parens": 2,
+		"no-extra-semi": 2,
+		"no-func-assign": 2,
+		"no-inner-declarations": 2,
+		"no-invalid-regexp": 2,
+		"no-irregular-whitespace": 2,
+		"no-obj-calls": 2,
+		"no-prototype-builtins": 0,
+		"no-regex-spaces": 2,
+		"no-sparse-arrays": 1,
+		"no-template-curly-in-string": 2,
+		"no-unexpected-multiline": 2,
+		"no-unreachable": 2,
+		"no-unsafe-finally": 2,
+		"no-unsafe-negation": 2,
+		"use-isnan": 2,
+		"valid-jsdoc": 1,
+		"valid-typeof": 2,
+		"comma-dangle": [
+			2,
+			"never"
+		],
+		"indent": [
+			2,
+			4
+		],
+		"linebreak-style": [
+			2,
+			"unix"
+		],
+		"quotes": [
+			2,
+			"single"
+		],
+		"no-var": 1,
+		"semi": 2,
+		"no-trailing-spaces": 2,
+		"eol-last": 0,
+		"no-unused-vars": [
+			2,
+			{
+				"vars": "all",
+				"args": "all"
+			}
+		],
+		"no-underscore-dangle": 2,
+		"no-alert": 2,
+		"no-lone-blocks": 2,
+		"no-class-assign": 2,
+		"no-const-assign": 2,
+		"no-delete-var": 2,
+		"no-invalid-this": 1,
+		"no-redeclare": 2,
+		"no-spaced-func": 2,
+		"no-this-before-super": 2,
+		"no-undef": 2,
+		"no-use-before-define": 2,
+		"camelcase": 2,
+		"eqeqeq": 2,
+		"no-mixed-spaces-and-tabs": 2,
+		"prefer-arrow-callback": 0,
+		"arrow-parens": 0,
+		"arrow-spacing": 2,
+		"no-shadow-restricted-names": 2,
+		"no-sequences": 2,
+		"no-self-compare": 2,
+		"no-proto": 2,
+		"no-new-wrappers": 2,
+		"no-new-require": 2,
+		"no-new-object": 2,
+		"new-parens": 2,
+		"new-cap": [
+			2,
+			{
+				"newIsCap": true,
+				"capIsNew": false
+			}
+		],
+		"no-eval": 2,
+		"react/boolean-prop-naming": 2,
+		"react/button-has-type": 1,
+		"react/destructuring-assignment": 1,
+		"react/forbid-component-props": 0,
+		"react/forbid-dom-props": [
+			0,
+			{
+				"forbid": [
+					"id"
+				]
+			}
+		],
+		"react/forbid-elements": [
+			1,
+			{
+				"forbid": [
+					"button"
+				]
+			}
+		],
+		"react/no-access-state-in-setstate": 2,
+		"react/no-array-index-key": 0,
+		"react/no-children-prop": 2,
+		"react/no-danger": 1,
+		"react/no-danger-with-children": 2,
+		"react/no-deprecated": 1,
+		"react/no-did-mount-set-state": 0,
+		"react/no-did-update-set-state": 2,
+		"react/no-direct-mutation-state": 2,
+		"react/no-find-dom-node": 0,
+		"react/no-multi-comp": 1,
+		"react/no-redundant-should-component-update": 2,
+		"react/no-render-return-value": 2,
+		"react/no-typos": 2,
+		"react/no-string-refs": 0,
+		"react/no-unknown-property": 2,
+		"react/no-unused-state": 2,
+		"react/no-will-update-set-state": 2,
+		"react/prefer-es6-class": 2,
+		"react/prop-types": 1,
+		"react/react-in-jsx-scope": 2,
+		"react/require-optimization": 0,
+		"react/require-render-return": 2,
+		"react/self-closing-comp": 0,
+		"react/sort-comp": 0,
+		"react/sort-prop-types": 0,
+		"react/style-prop-object": 1,
+		"react/void-dom-elements-no-children": 2,
+		"react/jsx-closing-tag-location": 2,
+		"react/jsx-no-comment-textnodes": 2,
+		"react/jsx-no-duplicate-props": 2,
+		"react/jsx-no-target-blank": 1,
+		"react/jsx-no-undef": 2,
+		"react/jsx-pascal-case": 2
+	},
+	"settings": {
+		"react": {
+			"createClass": "createReactClass",
+			"pragma": "React",
+			"version": "16.0",
+			"flowVersion": "0.53"
+		}
+	}
+}
