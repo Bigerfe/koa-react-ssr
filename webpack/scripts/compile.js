@@ -13,10 +13,10 @@ console.log(chalk.green('Compiling server '));
 //浏览器的文件生成一份在服务端运行
 spawn('npm', ['run', 'babel-csfile'], { stdio: 'inherit' });
 
-// //前端路由和 node api 入口合并代码生成
+// //前端路由和 node api 入口合并代码生成 
 spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
 
-spawn('npm', ['run', 'chai-link-all'], { stdio: 'inherit' });
+spawn('npm', ['run', 'chai-routes'], { stdio: 'inherit' });
 
 
 
