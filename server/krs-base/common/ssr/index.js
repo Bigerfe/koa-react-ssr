@@ -86,7 +86,6 @@ export default async (ctx) => {
     };
 
     if(config.isSSR){
-      
         const res = await getComponentHtml(ctx);
         if(config.isDev){
             console.log('render html =======================');
