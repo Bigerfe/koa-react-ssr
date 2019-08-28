@@ -36,7 +36,7 @@ const getComponentHtml =async (ctx)=>{
     const initialData = {};//用于前端获取数据，区分多页面
     const fallData = initialData[path] = {};
     fallData.init = true;
-    fallData.res = await (COM.getInitialProps ? COM.getInitialProps(krsOpt) : null);
+    fallData.res = await (COM.getInitialProps ? COM.getInitialProps(krsOpt) : {});
 
     //处理页面 tdk
     fallData.res.page || (fallData.res.page={
