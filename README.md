@@ -13,7 +13,7 @@
 
 ## 快速上手
 
-如何快速的让krs 骨架在你的机器跑起来.
+如何快速的让 `krs` 骨架在你的机器跑起来.
 
 这里我们提供了一个脚手架，方便你创建快速项目。
 
@@ -24,13 +24,13 @@ $ npm install mmkrs-cli -g
 $ mmkrs -i ---> select project ---> <Your Project Name>
 $ cd <Your Project Name>
 $ npm i
-$ npm start
-$ open http://localhost:8808
+$ npm run dev
+$ open http://<Your local ip>:8808
 
 //快速创建页面
 $ cd <Your Project Name>
 $ mmkrs -i -----> select page ----> <Your  pageName>
-$ open http://localhost:8808/<Your  pageName>
+$ open http://<Your local ip>:8808/<Your  pageName>
 
 //结束
 ```
