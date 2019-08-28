@@ -113,8 +113,9 @@ watcher.on('addDir', fpath => {
 		if (!fs.existsSync(newpath)) {
 			fs.mkdirSync(newpath);
 			if (fpath.indexOf('empty-folder-create-by-krscli') > -1 && fpath.indexOf('/src/pages/')>-1){
-				var sourcePageFolder = path.resolve(fileName.match(/(src\/pages\/\w+\/)/)[1]);
-				var destPageFolder = path.resolve('dist/server', fileName.match(/(src\/pages\/\w+\/)/)[1]);
+				var folder = fileName.match(/(src\/pages\/[\w-_]+\/)/)[1];
+				var sourcePageFolder = path.resolve(folder);
+				var destPageFolder = path.resolve('dist/server', folder);
 
 				//创建后需要做一些操作
 				console.log('sourcePageFolder');

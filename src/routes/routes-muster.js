@@ -1,7 +1,10 @@
 import RouteDetail from '../pages/detail/config/route';
 import RouteIndex from '../pages/index/config/route';
 import RouteNews from '../pages/news/config/route';
+import RouteNewsDet from '../pages/news-det/config/route';
+import RouteProDet from '../pages/pro-det/config/route';
+import RouteProList from '../pages/pro-list/config/route';
 import RouteZNoMatch from '../pages/z-no-match/config/route';
 export default [RouteIndex, 
- RouteDetail,RouteNews,RouteZNoMatch 
+ RouteDetail,RouteNews,RouteNewsDet,RouteProDet,RouteProList,RouteZNoMatch 
 ]
