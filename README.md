@@ -35,12 +35,15 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 //结束
 ```
 
+### Demo 演示（有点丑别介意）
+
+[http://demo.krs.bigerfe.com](http://demo.krs.bigerfe.com)
 
 ### 社区交流
 
 ### 作者
 
-[http://bigerfe.com](http://bigerfe.com)
+[建设中... http://bigerfe.com](http://bigerfe.com)
 
 笔  名: 张大胖 
 
