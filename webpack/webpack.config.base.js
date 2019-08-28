@@ -23,7 +23,7 @@ const getEntryName = (path) => {
 
 //获得目录的所有入口 目前未使用
 const getAllEntrys = () => {
-    const files = glob.sync(resolvePath('../src/page/*/*.js'));
+    const files = glob.sync(resolvePath('../src/pages/*/*.js'));
     const map = {};
     files.forEach((item) => {
         map[getEntryName(item)] = item;

@@ -10,7 +10,7 @@ module.exports = {
     appClientSrc: path.resolve(__dirname, '../src'),//fe code
     appServerSrc: path.resolve(__dirname, '../server'),//node server code
     appClientRouter: path.resolve(__dirname, '../src/routes'),
-    appClientPages: path.resolve(__dirname, '../src/page'),
-    routeIndexFolderName:projectConfig.routeIndexFolderName, //路由首页的文件夹声明 /page/index 首页路由会排在入口 list 的第一个位置
+    appClientPages: path.resolve(__dirname, '../src/pages'),
+    routeIndexFolderName:projectConfig.routeIndexFolderName, //路由首页的文件夹声明 /pages/index 首页路由会排在入口 list 的第一个位置
     staticAssetsCdnHost: projectConfig.staticAssetsCdnHost
 }

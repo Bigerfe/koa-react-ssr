@@ -44,7 +44,7 @@ function compileWatcher(filepath) {
         console.log(chalk.yellow('compiled0 ' + filepath + ' to ' + newpath));
 
     } //TODO:这里代码有点混乱，后期改进  合并 react 路由入口
-    if (/\.(js|jsx)$/.test(filepath) && filepath.indexOf('/src/page/') > 0 && filepath.indexOf('/config/route.js') > -1) {
+    if (/\.(js|jsx)$/.test(filepath) && filepath.indexOf('/src/pages/') > 0 && filepath.indexOf('/config/route.js') > -1) {
         //监听客户端路由文件  且不是路由入口文件
         //, { stdio: 'inherit' } 此处不必重复输出
         spawnSync.sync('npm', ['run', 'chai-routes'], {

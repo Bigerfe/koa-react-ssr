@@ -93,7 +93,7 @@ const modifyReactRouteMusterContent = (targetFile, modules) => {
     const exportArr = [];
 
     modules.arr.forEach(item => {
-        jsStr += `import ${item.formatName} from '../page/${item.sname}/config/route';\r\n`
+        jsStr += `import ${item.formatName} from '../pages/${item.sname}/config/route';\r\n`
 
         if (item.formatName !== modules.firstItem)
             exportArr.push(item.formatName);
@@ -120,7 +120,7 @@ const taskNodeApiLink = (isServerRun) => {
 
 const taskReactRouteLink = () => {
     const writeFile = path.resolve(__dirname, '../../src/routes/routes-muster.js');
-    const targetFolder = path.resolve(__dirname, '../../src/page/');
+    const targetFolder = path.resolve(__dirname, '../../src/pages/');
     const modules = getToLinkModules(targetFolder, '', false);
 
     console.log('taskNodeApiLinkmodule', modules);
