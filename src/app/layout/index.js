@@ -8,7 +8,7 @@ export default class Index extends React.Component {
     }
     render() {
         return <div className="layout-box">
-            我是 layout，你们显示我就会显示。
+            我是 layout，我永远都会被你看到。
             {this.props.children || null}
         </div>
     }

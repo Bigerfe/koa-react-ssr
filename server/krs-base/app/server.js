@@ -47,7 +47,6 @@ app.use(async (ctx, next) => {
   await next();
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms `);
-  console.log(ctx.request.body);
 });
 
 
@@ -77,8 +76,6 @@ if (process.env.IS_DEV || config.isimulateProduction || cnofig.openProductionSta
     path.join(__dirname, '../../../../static')
   ));
 }
-
-
 
 app.use(setCookie);
 

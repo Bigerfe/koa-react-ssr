@@ -15,7 +15,6 @@
     "babel-csfile": "BABEL_ENV=node babel src -d dist/server/src",
     "build": "npm run babel && npm run babel-csfile && npm run copy-no-js &&  webpack --config webpack/webpack.config.prod.js",
     "build:start": "SimulateProduction=1 node app.js env:development",
-    "ns-start": "node app.js",
     "chai-link-all": "node ./webpack/scripts/danymic-link.js --all",
     "chai-api": "node ./webpack/scripts/danymic-link.js --api",
     "chai-routes": "node ./webpack/scripts/danymic-link.js --routes",
