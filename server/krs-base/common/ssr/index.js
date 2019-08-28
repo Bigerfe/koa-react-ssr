@@ -56,9 +56,6 @@ const getComponentHtml =async (ctx)=>{
     //没用到这
     const context = {};
 
-    console.log('routes');
-    console.log(routes);
-
     // <StaticRouter context={context} location={ctx.url}>
     const html = renderToString(<Provider initialData={{ initialData:initialData}}>
         <StaticRouter location={ctx.path} context={context}>
@@ -89,9 +86,12 @@ export default async (ctx) => {
     };
 
     if(config.isSSR){
-        console.log('render html =======================');
+      
         const res = await getComponentHtml(ctx);
-        console.log('res',res);
+        if(config.isDev){
+            console.log('render html =======================');
+            console.log('res',res);
+        }
         renderData.htmlContent = res.html;
 
         //数据转成 base64 客户端再进行转换

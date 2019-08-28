@@ -1,6 +1,9 @@
 'use strict';
 
+const processArgvs= process.argv;
+const RunSource ='--scripts';
 const envUtils = require('./env-utils');
+
 
 envUtils.setDev();
 
@@ -17,7 +20,7 @@ console.log(`本机Ip为:${IPAddress}`);
 if (!IPAddress) {
 	throw Error('未获取到本机ip 无法启动');
 }
-
+const spawnSync = require('cross-spawn');
 const fs = require('fs');
 const openBrowser = require('../common/open-browser');
 const path = require('path');
@@ -27,7 +30,7 @@ const projectConfig = require('../../dist/server/src/config/project-config').def
 //监听client server文件 change时用babel编译该文件
 const chokidar = require('chokidar');
 const webpack = require('webpack');
-const nodeTransform = require('../common/node-transform');
+const fileWatchCompiler = require('../common/node-transform');
 const monitor = require('../common/node-monitor');
 const WebpackDevServer = require('webpack-dev-server');
 const { createCompiler } = require('../common/dev-server-utils');
@@ -75,23 +78,25 @@ var watcher = chokidar.watch([config.appServerSrc, config.appClientSrc], {
 });
 //文件内容发生改变，确切说的是 保存触发.就会重启 node 服务.但不会重启webpack 构建
 watcher.on('change', path => {
-	nodeTransform(path, monitor.restart);
 	console.log('event change');
+	fileWatchCompiler.lazyCompileWatcher(path, monitor.restart);
 	console.log(path);
 });
 //新建文件
-watcher.on('add', fpath => {
-	if (/\.(ejs|tpl|html)$/.test(fpath)) {
-		console.log('event add:html file add');
-		console.log('add ' + fpath);
-		var fileName = /(src|server).*/.exec(fpath)[0];
-		var newpath = path.resolve('dist/server', fileName);
+watcher.on('add', filepath => {
+	console.log('file wacher : add');
+
+	var fileName = /(src|server).*/.exec(filepath)[0];
+	var ext = path.extname(fileName);
+
+	var newpath = path.resolve('dist/server', fileName);
+	if (/\.(ejs|tpl|html)$/.test(ext)) {
 		try {
 			//非js文件如template文件只负责到指定文件夹即可
-			fs.copyFileSync(fpath, newpath);
-			console.log(chalk.yellow('copyed ' + fpath + ' to ' + newpath));
+			fs.copyFileSync(filepath, newpath);
+			console.log(chalk.yellow('copyed ' + filepath + ' to ' + newpath));
 		} catch (error) {
-			console.log(chalk.yellow('copye ' + fpath + ' error! fs.copyFileSync需要8.5+ 请查看Node版本是否正确;'));
+			console.log(chalk.yellow('copye ' + filepath + ' error! fs.copyFileSync需要8.5+ 请查看Node版本是否正确;'));
 			console.log(error);
 			process.exit(1);
 		}
@@ -103,22 +108,29 @@ watcher.on('addDir', fpath => {
 	console.log('event addDir');
 	var fileName = /(src|server).*/.exec(fpath)[0];
 	var newpath = path.resolve('dist/server', fileName);
-	console.log(fileName);
-	let newFile;
+	console.log('newpath',newpath);
 	try {
 		if (!fs.existsSync(newpath)) {
 			fs.mkdirSync(newpath);
+			if (fpath.indexOf('empty-folder-create-by-krscli') > -1 && fpath.indexOf('/src/pages/')>-1){
+				var sourcePageFolder = path.resolve(fileName.match(/(src\/pages\/\w+\/)/)[1]);
+				var destPageFolder = path.resolve('dist/server', fileName.match(/(src\/pages\/\w+\/)/)[1]);
+
+				//创建后需要做一些操作
+				console.log('sourcePageFolder');
+				console.log(sourcePageFolder);
+				console.log(destPageFolder);
+				fileWatchCompiler.lazyCompileWatcher('none.js',function () {
+					process.env.BABEL_ENV='node';
+					spawnSync.sync('babel', [sourcePageFolder, '-d', destPageFolder]);
+					process.env.BABEL_ENV = 'development';
+					//src 路由入口写入 后会自动重启
+					spawnSync.sync('npm', ['run','chai-routes']);
+
+				});
+			}
 			console.log(chalk.yellow('mkdir ' + newpath + ' succeed'));
-			//TODO:命令行创建页面和组件功能 ，后续再添加
-			// //如果是npm run add 添加的会添加对应的js文件,调用babel把对应文件编译到build/server目录 
-			// if (fileName && fileName.indexOf('pages') > 0) {
-			// 	newFile = nodePath.join(path, 'index.js')
-			// } else if (fileName && fileName.indexOf('components_common') > 0) {
-			// 	newFile = nodePath.join(path, `${baseName}.js`)
-			// }
-			// if (fs.existsSync(newFile)) {
-			// 	monitor.compileWatcher(newFile);
-			// }
+
 		}
 	} catch (error) {
 		console.log(error);

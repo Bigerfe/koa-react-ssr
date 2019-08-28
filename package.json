@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
-    "dev": "node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js && node ./webpack/scripts/start.js",
+    "dev": "node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js && node ./webpack/scripts/start.js --scripts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
     "test:dev": " npm run babel && npm start && webpack-dev-server --config webpack/webpack.config.dev.js",

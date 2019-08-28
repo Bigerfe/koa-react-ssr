@@ -9,13 +9,14 @@ const fs = require('fs');
 
 //节流一下 防止重编译太频繁
 function throttle(filepath, callback) {
-    //TODO:此处增加了节流，多次修改一个文件没问题。但是如果是2个文件修改的时间非常接近那么第一个修改的文件会被忽略掉，只有第二个才会生效
+    //TODO:此处增加了节流，多次修改一个文件没问题 
     clearTimeout(compileWatcher.tId);
-
     compileWatcher.tId = setTimeout(function () {
-        compileWatcher(filepath);
-        if (/\.(js|jsx)$/.test(filepath))//js文件的修改才会重启服务
+        filepath!=='none.js' && compileWatcher(filepath);
+        if (/\.(js|jsx)$/.test(filepath)){//js文件的修改才会重启服务
+            console.log('callback runner');
             callback && callback();//重启服务
+        }
     }, 500);
 }
 
@@ -30,20 +31,10 @@ function compileWatcher(filepath) {
     var newpath = path.resolve('dist/server', fileName);
 
     if (/\.(js|jsx)$/.test(ext)) {
-        //监听 node server 文件
-
-        if (filepath.indexOf('/api-common/') > 0 && filepath.indexOf('/api-common/index') === -1) {
-            //操作的是 node 端 api 文件
-            spawnSync.sync('npm', ['run', 'chai-api'], {
-                stdio: 'inherit'
-            });
-        }
-
-        //, { stdio: 'inherit' } 此处不必重复输出
         spawnSync.sync('babel', [filepath, '--out-file', newpath]);
-        console.log(chalk.yellow('compiled0 ' + filepath + ' to ' + newpath));
-
-    } //TODO:这里代码有点混乱，后期改进  合并 react 路由入口
+        console.log(chalk.yellow('compiled-js ' + filepath + ' to ' + newpath));
+    }
+     //TODO:这里代码有点混乱，后期改进  合并 react 路由入口
     if (/\.(js|jsx)$/.test(filepath) && filepath.indexOf('/src/pages/') > 0 && filepath.indexOf('/config/route.js') > -1) {
         //监听客户端路由文件  且不是路由入口文件
         //, { stdio: 'inherit' } 此处不必重复输出
@@ -53,7 +44,7 @@ function compileWatcher(filepath) {
 
         console.log(chalk.yellow('chai-routes compiled ' + filepath));
     }
-    //
+    
     if (/\.(ejs|tpl|html)$/.test(ext)) {
         try {
             //非js文件如template文件只负责到指定文件夹即可
@@ -72,4 +63,7 @@ function compileWatcher(filepath) {
     process.env.BABEL_ENV = 'development';
 }
 
-module.exports = throttle;
+module.exports ={
+    timeCompileWatcher:compileWatcher,
+    lazyCompileWatcher:throttle
+}

@@ -34,9 +34,7 @@ const getToLinkModules = (folderPath, delname, isFile) => {
         } else {
             if (!isFile) {
                 //记录目录
-                console.log(file);
                 let sname = file.match(/^(\w+.*\w+)$/)[1];
-                console.log(sname);
                 let formatName = 'Route' + utils.nameToBigCamelFormat(sname);
                 //TODO:代码重复判断和执行
                 if (sname === 'index') {//第一个
@@ -128,7 +126,6 @@ const taskReactRouteLink = () => {
     modifyReactRouteMusterContent(writeFile, modules);
 }
 
-console.log(args);
 
 if (type === '--api') {
     //node api 入口链接

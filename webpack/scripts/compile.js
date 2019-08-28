@@ -15,6 +15,7 @@ spawn('npm', ['run', 'babel-csfile'], { stdio: 'inherit' });
 
 // //前端路由和 node api 入口合并代码生成
 spawn('npm', ['run', 'babel'], { stdio: 'inherit' });
+
 spawn('npm', ['run', 'chai-link-all'], { stdio: 'inherit' });
 
 
