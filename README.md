@@ -80,7 +80,7 @@ export default [
 
 ### 数据预取
 
-上一步已经创建了一个页面的入口组件和路由的配置，那页面入口组件也没什么奇怪的，都是平时创建组件的方式。
+上一步已经创建了一个页面的入口组件和路由的配置，那页面入口组件也没什么奇怪的，和平时创建组件一样。
 
 只是增加了一内容。
 
@@ -203,13 +203,34 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 
 ![图片](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/krs-page-show.jpg?raw=true)
 
+
+### 生产环境构建
+
+`npm run build`
+
+然后可以本地模拟查看：`npm run build:start`
+
+### 生产环境部署
+
+这个很简单，只需要运行 根目录的 `app.js` 即可
+
+`pm2 start app.js`
+
+### 更多自定义配置
+
+更多的配置，比如静态资源的 cdn 路径配置，开发端口的配置，是否开启 ssr 等
+
+都可以在 `/src/config/project-config.js`内进行配置
+
+### 更多....
+
 ### Demo 演示（有点丑,别介意）
 
 [http://demo.krs.bigerfe.com](http://demo.krs.bigerfe.com)
 
 ### 社区交流
 
-
+![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxq.jpeg?raw=true)
 
 ### 作者
 
@@ -217,5 +238,6 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 
 笔  名: 张大胖 
 
-公众号: 前端张大胖
+公众号: 前端张大胖 
 
+![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxgzh.jpg?raw=true)
