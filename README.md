@@ -13,11 +13,11 @@
 
 ## 快速开始
 
-### 快速的再本地跑起来
+### 快速的在本地跑起来
 
 如何快速的让 `krs` 骨架在你的机器跑起来.
 
-这里我们提供了一个脚手架，方便你创建快速项目。
+这里我们提供了一个脚手架，方便你快速创建项目,并进入开发。
 
 ```javascript
 
@@ -47,11 +47,9 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 * 在 `detail/`内创建入口组件
 * 在 `detail/config`内创建 `route.js` 这就是当前页面的路由配置文件
 
-看图
 
-![图片](../../img/ab.png)
+![图片](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/krs-router-c.png?raw=true)
 
-看下代码
 
 ```javascript
 
@@ -203,7 +201,7 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 ```
 操作完后就可以看到你配置的页面路由已生效。
 
-
+![图片](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/krs-page-show.jpg?raw=true)
 
 ### Demo 演示（有点丑,别介意）
 
