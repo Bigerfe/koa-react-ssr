@@ -222,7 +222,7 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 
 都可以在 `/src/config/project-config.js`内进行配置
 
-### 更多....
+### 更多 待续....
 
 ### Demo 演示（有点丑,别介意）
 
@@ -230,7 +230,7 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 
 ### 社区交流
 
-![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxq.jpeg?raw=true)
+![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxq.png?raw=true)
 
 ### 作者
 
