@@ -90,6 +90,103 @@ export default class Index extends KrsPageBase{
                    return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
                })
            }
+           <p>---=-=-=-=-=-</p>
+           <div>
+              {
+              res && res.data.map(item=>{
+                   return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+               })
+           }
+            </div>   <Link to="/index">首 页</Link>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>   <Link to="/index">首 页</Link>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>   <Link to="/index">首 页</Link>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>   <Link to="/index">首 页</Link>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>   <Link to="/index">首 页</Link>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <p>---=-=-=-=-=-</p>
+            <div>
+                {
+                    res && res.data.map(item => {
+                        return <div key={item.id}>{item.keyId}:{item.keyName}---{item.setContent}</div>
+                    })
+                }
+            </div>
+            <Link to="/index">首 页</Link>
         </div>
     }
 }

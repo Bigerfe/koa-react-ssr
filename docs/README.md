@@ -5,9 +5,9 @@ sidebar: auto
 actionText: 快速上手 →
 actionLink: /zh/guide/fast
 features:
-- title: 简洁至上
+- title: 极速开发
   details: 这些都是你用的最多的的技术，以 koa2,react16,route5,babel7,webpack4搭建而成，上手容易，可快速进入开发
-- title: 双模式
+- title: 双模式支持
   details: 支持HMR，同时支持本地开发以及生产环境CSR/SSR两种渲染模式无缝切换，支持定制特定组件的渲染模式
 - title: 工程化集成
   details: 内部已完成基于 webpakc 的工程化基础，可以直接用来进行线上环境构建和部署
