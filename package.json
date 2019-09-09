@@ -16,7 +16,9 @@
     "chai-link-all": "node ./webpack/scripts/danymic-link.js --all",
     "chai-api": "node ./webpack/scripts/danymic-link.js --api",
     "chai-routes": "node ./webpack/scripts/danymic-link.js --routes",
-    "copy-no-js": "node ./webpack/scripts/copy-not-js.js"
+    "copy-no-js": "node ./webpack/scripts/copy-not-js.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "author": "bigerfe.com zjp",
   "license": "ISC",
@@ -87,6 +89,7 @@
     "nodemon": "^1.19.1",
     "progress-bar-webpack-plugin": "^1.12.1",
     "react-hot-loader": "^4.11.1",
+    "vuepress": "^1.0.4",
     "webpack-dashboard": "^3.0.7",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.7.2",
