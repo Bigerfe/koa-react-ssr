@@ -6,13 +6,7 @@ module.exports = {
             { text: '首页', link: '/' },
             { text: '指南', link: '/zh/guide/' },
             { text: '关于', link: '/about/' },
-            { text: 'GitHub', link: 'https://github.com/Bigerfe/koa-react-ssr' },
-            { text: '语言', items:[
-                {text:'中文',link:'/a/b'},
-                {text:'英语',items:[
-                    {text:'cc',link:'abc'}
-                ]}
-            ]}
+            { text: 'GitHub', link: 'https://github.com/Bigerfe/koa-react-ssr' }
         ],
         sidebar: {
             '/about/': [{
