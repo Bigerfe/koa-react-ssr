@@ -234,8 +234,6 @@ mmkrs-cli -i --->select page ---> 输入 pagename
 
 ### 作者
 
-[建设中... http://bigerfe.com](http://bigerfe.com)
-
 笔  名: 张大胖 
 
 公众号: 前端张大胖 
