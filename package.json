@@ -6,6 +6,7 @@
   "scripts": {
     "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
     "dev": "node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js && node ./webpack/scripts/start.js --scripts",
+    "dev:csr":"node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js &&  EnvDevByWds=1  node ./webpack/scripts/start.js --scripts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:start": "nodemon --watch dist/server -e html,vue,js app.js",
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
