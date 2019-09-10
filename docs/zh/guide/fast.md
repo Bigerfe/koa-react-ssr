@@ -38,8 +38,11 @@ $ open http://<Your local ip>:8808
 
 可通过不同的命令开启不同的渲染模式。
 
-待完善...
-
+```javascript
+$ npm run dev //开启本地开发 可修改配置内的属性 isSSR ，支持两种渲染模式
+$ npm run dev:csr //开启本地开发 并已 wds 为服务启动 - csr 模式
+$ //更多.....
+```
 
 ## 目录结构
 

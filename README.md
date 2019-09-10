@@ -11,86 +11,219 @@
 * 伪 pwa 支持: 访问过的路由中的 state 可按需设置本地缓存,页面二次访问可无接口请求
 * 开放: 代码完全开放，纯白盒，完全可以作为个人的 `ssr` 学习参考资源
 
-## 快速开始
+# 快速上手
 
-### 快速的在本地跑起来
+ 从这里开始你将了解到怎样让 `krs`  在本地快速的跑起来，然后进行实际项目开发。
 
-如何快速的让 `krs` 骨架在你的机器跑起来.
+## 环境准备
 
-这里我们提供了一个脚手架，方便你快速创建项目,并进入开发。
+首先你需要安装 [node](https://nodejs.org/en/) ,并且确保 node 版本是8.10或以上。mac 下推荐使用 [nvm](https://github.com/creationix/nvm) 来管理 node 版本）
 
 ```javascript
-
-//创建项目
-$ npm install mmkrs-cli -g
-$ mmkrs -i ---> select project ---> <Your Project Name>
-$ cd <Your Project Name>
-$ npm i
-$ npm run dev //本地开发监听模式
-$ open http://<Your local ip>:8808
-
-//快速创建页面
-$ cd <Your Project Name>
-$ mmkrs -i -----> select page ----> <Your  pageName>
-$ open http://<Your local ip>:8808/<Your  pageName>
-
-//结束
+$ node -v
+8.1x
 ```
 
-### 路由配置
+## 脚手架安装
 
-如果你想配置一个页面的路由地址，那该如何配置呢？
+为了方便我们创建应用和页面，这里提供了一个配套的 `mmkrs-cli` 脚手架。
 
-为了方便维护和扩展，krs 把路由进行了分治管理，每个页面的路由都是独立的，只需要单独的配置即可。
-
-* 在`src/pages` 目录下创建一个页面目录 如:detail
-* 在 `detail/`内创建入口组件
-* 在 `detail/config`内创建 `route.js` 这就是当前页面的路由配置文件
-
-
-![图片](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/krs-router-c.png?raw=true)
-
+先全局安装脚手架。
 
 ```javascript
+
+$ npm i mmkrs-cli -g
+
+```
+
+## 创建应用
+
+```
+$ mmkrs -i ---> select project
+$ <Your Project Name>
+$ cd <Your Project Name>
+$ npm i
+$ npm run dev //本地开发的watch 模式
+$ open http://<Your local ip>:8808
+```
+
+## 启动脚本
+
+可通过不同的命令开启不同的渲染模式。
+
+```javascript
+$ npm run dev //开启本地开发 可修改配置内的属性 isSSR ，支持两种渲染模式
+$ npm run dev:csr //开启本地开发 并已 wds 为服务启动 - csr 模式
+$ //更多.....
+```
+
+## 目录结构
+
+```
+├── dist // 生产环境打包后的资源目录
+│ ├── static //打包的静态资源文件
+│ ├── server //用于同构的运行于 node 端的文件
+├── docs //  帮助文档
+├── server // 开发时 node 端代码
+├── src // 开发时 react 组件相关代码
+│ ├── app //应用入口
+│ │ ├── layout //layout 组件
+│ │ ├── index.js //webpack entry 打包入口
+│ │ ├── provider.js  //提供数据的基础组件
+│ ├── common // 公共资源
+│ │ ├── components // 公共组件 
+│ │ ├── fetch // fetch模块 
+│ │ ├── module // 公共模块
+│ ├── config // 基础配置文件
+│ ├── krs-base // krs基础组件
+│ ├── pages // 业务页面
+│ │ ├── index //默认首页
+│ │ │ ├── config 路由配置
+│ ├── routes // 路由配置 无需维护
+├── test // 单页测试
+├── webpack //构建配置
+├── app.js //生产环境 app 启动入口  ---> 比如 pm2 start app.js
+```
+
+## 约定
+
+**页面入口**
+
+关于`/src/pages/`下每个页面的入口的约定，目前只支持一级路由的设置，所有的页面的入口都是 `index.js`, `krs`内部会自动进行识别。
+
+**路由约定**
+
+每个页面的路由配置的方式不再是集中式配置，而是分治配置，每个页面对应一个路由配置，请按照下面的格式进行配置
+
+举个栗子
+
+```javascript
+
+// /src/pages/index  页面目录
+
+// /src/pages/index/config/route.js 路由配置
+
+//路由代码,可以方便的设置路由是否按需加载
 
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
+//import LazyPageCom from '../index'; //静态组件模式
 
+//动态组件配置   
 const LazyPageCom = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
+    <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
         {(CompIndex) => <CompIndex {...props} />}
     </BaseBundle>
 );
 
+//一个页面组件可配置多个路由入口
 export default [
     {
-        path:'/detail',
+        path:'/',
         component: LazyPageCom,
         exact:true
-    },
-    {
-        path:'/detail/:id',
+    },{
+        path: '/index',
         component: LazyPageCom
     }
 ]
 
 ```
 
-你只需要修改 `webpackChunkName` 的名称和 `export` 导出的数据即可，当然也可以对当前页面配置多个路由.
+你只需要修改 webpackChunkName 的名称和 export 导出的数据即可，当然也可以对当前页面配置多个路由.
 
-### 数据预取
+## 创建页面
 
-上一步已经创建了一个页面的入口组件和路由的配置，那页面入口组件也没什么奇怪的，和平时创建组件一样。
+可通过脚手架快速的创建页面
 
-只是增加了一内容。
+```javascript
+$ cd <Your Project Name>
+$ mmkrs -i -----> select page ----> <Your  pageName>
+$ open http://<Your local ip>:8808/<Your  pageName>
+```
 
-* 需要继承一个 krs 的基础组件，为我们封装了一些基础数据获取和存储功能
-* 需要设置 `static contextType = RootContext` 为的是让组件可以获得全局的数据
-* 声明静态数据预取方法 `static async getInitialProps`,数据的获取就是从这个方法拿到的，这是一个同构方法 node 端和浏览器端都会调用
-* 设置 `static async getInitialProps` 的返回数据，返回数据有一个固定的格式，下面代码会说明
-* `componentDidMount`内是否需要做数据的更新，如果需要更新可以调用`getInitialProps`方法
+## 路由分治管理
 
-具体代码
+为了方便维护和扩展，krs 把路由进行了分治管理，每个页面的路由都是独立的，只需要单独的配置即可。
+
+请参考路由约定
+
+## 数据预取同构
+
+数据预取的目的是在 `node` 端渲染组件前提前从接口或者某个数据源获取到数据，也可以让某个页面在 `CSR` 下可以拿到数据，进行组件的 update。
+
+为了方便的实现同构我们在页面组件内约定了一个数据预取的静态方法  `getInitialProps`,当前页面首屏数据都是从这个方法内进行返回。
+
+```javascript
+    //基础参数的带入
+    //opt={query:{},params:{}}  
+    static async getInitialProps(krsOpt){//数据预取
+        
+
+        if(__SERVER__){
+            //如果是服务端渲染的话  可以做的处理
+        }
+        //接口 a
+       const fetch1= fetch.postForm('/fe_api/a', {
+            data: { a: 4000 }
+        });
+
+        //接口 b
+       const fecth2= fetch.postForm('/fe_api/b', {
+            data: { c: 2000 }
+        });
+
+        const resArr =await fetch.multipleFetch(fetch1, fecth2);
+       
+        //返回数据固定格式  page 代表页面信息，支持 seo 的设置
+        //fetchData是接口返回的数据 
+        return {
+            page:{
+                tdk: {
+                    title: 'ksr 框架',
+                    keyword: 'ssr react',
+                    description: '我是描述'
+                }
+            },
+            fetchData: resArr
+        } 
+    }
+
+```
+
+## 页面 SEO
+
+在 数据预取同构 已经看到了 `getInitialProps` 方法返回的数据是一个固定的格式，结果内包含一个 `page`字段.
+
+`page` 字段表示的就是当前页面的 `SEO` 的信息.
+
+```javascript
+    //此处代码已略
+   return {
+            page:{
+                tdk: {
+                    title: 'ksr 框架',
+                    keyword: 'ssr react',
+                    description: '我是描述'
+                }
+            },
+            fetchData: resArr
+        } 
+```
+
+## 页面渲染
+
+一个page 的渲染
+
+* 页面组件需要继承一个 `krs` 的基础组件 `KrsPageBase`,为我们封装了一些基础数据获取和存储功能.
+
+* 需要设置 static contextType = RootContext 为的是让组件可以获得全局的数据.
+
+* 实现 static async getInitialProps 数据预取方法.
+
+* `componentDidMount` 内是否需要做数据的更新，如果需要更新可以调用getInitialProps方法.
+
+参考完整代码
 
 ```javascript
 import React,{useContext} from 'react';
@@ -184,43 +317,34 @@ export default class Index extends KrsPageBase{
         </div>
     }
 }
-
-
 ```
 
 
-### 快捷键
 
-上面已经将两个非常重要的内容说完了。但是每次手动需要创建这么多文件夹和页面也是很浪费时间的。
-所以我这里在脚手架工具里提供了一个快捷命令，方便我们创建页面，通过命令代替手动创建.
+
+## 伪 PWA 支持
+
+在页面组件内设置`enableSpaDataCache`值，即可开启这个特性。此特性开启后，可以让这个页面的二次访问不再有数据请求，当前是否需要还要根据自己的实际业务触发。
 
 ```javascript
-cd 项目目录
-mmkrs-cli -i --->select page ---> 输入 pagename
+export default class Index extends KrsPageBase{
 
+    constructor(props,context){
+        super(props,context);
+    }
+
+    enableSpaDataCache=true;//开启 伪 pwa 数据缓存 
+
+}
 ```
-操作完后就可以看到你配置的页面路由已生效。
 
-![图片](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/krs-page-show.jpg?raw=true)
+## 特殊字段
 
+`__SERVER__`  常量、表示当前是否是服务端渲染，经常会在组件内被使用
 
-### 生产环境构建
+`this.isSSR` 常量、表示当前页面的渲染是服务端渲染还是客户端渲染
 
-`npm run build`
-
-然后可以本地模拟查看：`npm run build:start`
-
-### 生产环境部署
-
-这个很简单，只需要运行 根目录的 `app.js` 即可
-
-`pm2 start app.js`
-
-### 更多自定义配置
-
-更多的配置，比如静态资源的 cdn 路径配置，开发端口的配置，是否开启 ssr 等
-
-都可以在 `/src/config/project-config.js`内进行配置
+`this.hasSpaCacheData` 常量 、 表示当前页面内是否有伪 `pwa` 的数据
 
 ### 更多 待续....
 
