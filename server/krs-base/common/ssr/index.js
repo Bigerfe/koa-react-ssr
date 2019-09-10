@@ -99,6 +99,13 @@ export default async (ctx) => {
         renderData.propsData = `<textarea style="display:none" id="krs-server-render-data-BOX">${base64Str}</textarea>` ;
         renderData.config = config.cdnHost;
         renderData.page =res.page;
+    }else{
+        renderData.propsData='';
+        renderData.page.tdk={
+            title:'krs',
+            keyword:'krs keyword',
+            description:'krs description'
+        };
     }
     
     //是不是服务端的渲染静态资源都要输出

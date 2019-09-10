@@ -13,7 +13,7 @@ export default {
         return process.env.NODE_ENV ==='production'
     },
     openProductionStaticFolder: true,//线上环境是否开启静态目录访问能力
-    isSSR: true,//是否开启 ssr 
+    isSSR: false,//项目是否开启 ssr 
     isComponentLazyLoad:true,//组件是否按需加载（现在没有用到，内部已经后处理）
     nodeServerPort:8808,//服务器和本地 node 服务器启动端口，可自行设置
     //业务开发中 fecth api 的地址 ，可以根据环境进行区分
