@@ -2,20 +2,24 @@ import ejs from 'ejs';
 //引入 react ssr 中间件处理
 import renderReact from '../krs-base/common/ssr/';
 import config from '../krs-base/config';
+import fs from 'fs';
+import path from 'path';
+
 export default async function (ctx, next) {
-    let path = ctx.path,
-        query = ctx.query,
-        url = ctx.url,
+    let query = ctx.query,
         body = {};
 
-    console.log('path', path);
-    console.log('url', url);
+    console.log('path', ctx.path);
+    console.log('url', ctx.url);
 
-    //TODO:这里还需要完善
-    if(path.indexOf('.')===-1){
+    //TODO:这里还需要完善  为了防止类似图片的请求进入到 ssr 处理
+    if (ctx.path.indexOf('.')===-1){
         await renderReact(ctx);
     }else{
-        const html ='';
+        //如果没有开启 ssr 则输出 csr 页面  此逻辑
+        // const readStream = fs.createReadStream(path.resolve(__dirname,'../krs-base/temp/csr.html'));
+        // readStream.pipe(ctx.res);
+        return null;
     }
 
     await next();

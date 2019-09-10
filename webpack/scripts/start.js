@@ -4,6 +4,12 @@ const processArgvs= process.argv;
 const RunSource ='--scripts';
 const envUtils = require('./env-utils');
 
+const EnvDevByWds = process.env.EnvDevByWds;
+
+console.log('process.env.ENV_DEV_IN_WDS_CSR;', process.env.EnvDevByWds);
+
+//本地开发是否使用 wds server
+const isDevByWdsServer = () => { return EnvDevByWds==1};
 
 envUtils.setDev();
 
@@ -59,7 +65,7 @@ devServer.listen(devServerConfig.port, devServerConfig.host, err => {
 	}
 	console.log(chalk.cyan('Starting the development node server...\n'));
 	//TODO:这里先打开了浏览器，但是服务还没有起来,浏览器打开后需要等一下 会自动刷新
-	openBrowser(`http://${devServerConfig.host}:${projectConfig.nodeServerPort}`);
+	openBrowser(`http://${devServerConfig.host}:${isDevByWdsServer() ? projectConfig.devWdsPort:projectConfig.nodeServerPort}`);
 	console.log('🚀 started');
 });
 
