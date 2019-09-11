@@ -1,6 +1,6 @@
 # krs (koa2 + react16 + ssr) 应用开发骨架
 
-`node8.5+` `babel7` `react-router5` `webpack4`
+`node10+` `babel7` `react-router5` `webpack4`
 
 ## 最清凉（轻量）的 react ssr 应用开发骨架 
 

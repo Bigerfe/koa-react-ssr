@@ -1,4 +1,9 @@
-//react 服务端组件渲染的入口文件
+/**
+ * author:bigerfe.com
+ * react 服务端组件渲染的入口文件
+ * **/
+
+
 import React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import matchComponent from '../../../../src/app/match-component';
