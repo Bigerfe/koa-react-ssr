@@ -4,11 +4,11 @@
 
 ## 环境准备
 
-首先你需要安装 [node](https://nodejs.org/en/) ,并且确保 node 版本是8.10或以上。mac 下推荐使用 [nvm](https://github.com/creationix/nvm) 来管理 node 版本）
+首先你需要安装 [node](https://nodejs.org/en/) ,并且确保 node 版本是10或以上。mac 下推荐使用 [nvm](https://github.com/creationix/nvm) 来管理 node 版本）
 
 ```javascript
 $ node -v
-8.1x
+10.0x
 ```
 
 ## 脚手架安装

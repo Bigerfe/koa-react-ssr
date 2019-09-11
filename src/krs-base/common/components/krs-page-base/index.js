@@ -1,4 +1,5 @@
 /***
+ * author:bigerfe.com
  * 页面 page 容器组件的父组件
  * 所有页面都需要继承此组件
  * 此组件包含了基础的通用的功能，可以节省一些开发量
@@ -11,13 +12,9 @@ export default class Index extends React.Component {
     constructor(props,context) {
         super(props,context);
         console.log('base constructor');
-        console.log(this.props);
-        console.log('context', context);
         this.state = {
             ... this.getInitialData(context)
         }
-
-        console.log('this init state', this.state);
 
         console.log('this.isssr', this.isSSR);
     }
@@ -50,8 +47,6 @@ export default class Index extends React.Component {
     componentWillUnmount(){
         //组件销毁前
         console.log('unmount');
-        //可以把数据存起来，下次在使用
-        console.log(this.state);
         console.log(this.isSSR);
         if (!this.isSSR && this.enableSpaDataCache){
             let url =this.props.match.url;
