@@ -27,6 +27,8 @@ export default class Index extends KrsPageBase {
 
     componentDidMount(){
         console.log('process.env.IS_DEV', process.env.IS_DEV);
+
+        const mmmSet = new Set();
     }
 
     render() {

@@ -108,13 +108,13 @@ const plugins = [
         __SERVER__: false,
         __CLIENT__: true
     }),
-    new friendlyError()
+    new friendlyError(),
     // new DashboardPlugin(dashboard.setData),
-    // new ProgressBarPlugin({
-    //     format: 'build [:bar] :percent (:elapsed seconds)',
-    //     clear: false,
-    //     width: 60
-    // })
+    new ProgressBarPlugin({
+        format: 'build [:bar] :percent (:elapsed seconds)',
+        clear: false,
+        width: 60
+    })
 ];
 
 
