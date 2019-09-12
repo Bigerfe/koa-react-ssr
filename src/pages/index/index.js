@@ -10,7 +10,7 @@ import KrsPageBase from '../../krs-base/common/components/krs-page-base';
 export default class Index extends KrsPageBase {
 
     constructor(props,context){
-        super(props);
+        super(props,context);
     }
 
     static async  getInitialProps() {
@@ -31,7 +31,7 @@ export default class Index extends KrsPageBase {
 
     render() {
         return <div>
-        <Link to="/detail">首页，点击跳转到详情页面</Link>
+        <Link to="/detail">首页，点击跳转到详情页面 123</Link>
         </div>
     }
 

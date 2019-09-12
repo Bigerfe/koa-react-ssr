@@ -13,12 +13,6 @@ export default class Index extends React.Component {
     }
 
     changeContext=(data)=>{
-       
-        // this.setState({
-        //    list:[{
-        //        id:100,name:
-        //    }]
-        // });
     }
 
     render() {

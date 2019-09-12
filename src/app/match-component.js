@@ -12,8 +12,6 @@ import {
  *  }
  */
 export default async (url,staticRoutes) => {
-
-    console.log('base routes');
     
     const routes = matchRoutes(staticRoutes, url);
     let len = routes.length,

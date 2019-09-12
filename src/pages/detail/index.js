@@ -1,7 +1,6 @@
 import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
 import './css/index.scss';
-import Panel from './components/Panel';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
 import KrsPageBase from '../../krs-base/common/components/krs-page-base';
@@ -76,7 +75,6 @@ export default class Index extends KrsPageBase{
 
         return <div className="detailBox">
             <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
-            <Panel title="详情页面 数据统计模块1123"></Panel>
            <Child color={this.context.color}></Child>
            <div>
            {

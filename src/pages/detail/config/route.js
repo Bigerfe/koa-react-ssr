@@ -2,22 +2,18 @@
 
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
-
-const LazyPageCom = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
-        {(CompIndex) => <CompIndex {...props} />}
-    </BaseBundle>
-);
+import LazyPageCom from '../index';
+// const LazyPageCom = (props) => (
+//     <BaseBundle load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
+//         {(CompIndex) => <CompIndex {...props} />}
+//     </BaseBundle>
+// );
 
 export default [
     {
         path:'/detail',
         component: LazyPageCom,
         exact:true
-    },
-    {
-        path:'/detail/:id',
-        component: LazyPageCom
     }
 ]
 

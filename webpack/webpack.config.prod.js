@@ -26,7 +26,7 @@ const ImgFileName = 'krs-static/img/[name].[hash:8].[ext]';
 
 const wpConfig = {
     entry: {
-        entry: [resolvePath('../src/app/index.js')]
+        entry: [resolvePath('../src/app/polyfill.js'),resolvePath('../src/app/index.js')]
     },
     output: {
         path: OutPutPath,
@@ -157,10 +157,14 @@ const handler = (percentage, message, ...args) => {
     console.info(percentage, message, ...args);
 };
 
+//TODO:压缩不需要 source map
 wpConfig.optimization = {
     minimizer: [
-        new UglifyJsPlugin({
-        }),
+        // new UglifyJsPlugin({
+        //     cache:true,
+        //     parallel:true,
+        //     sourceMap:true
+        // }),
         new OptimizeCSSAssetsPlugin(),
         //new webpack.ProgressPlugin(handler) 显示的很多信息其实没什么用
     ],

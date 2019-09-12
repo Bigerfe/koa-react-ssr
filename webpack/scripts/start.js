@@ -8,6 +8,8 @@ const EnvDevByWds = process.env.EnvDevByWds;
 
 console.log('process.env.ENV_DEV_IN_WDS_CSR;', process.env.EnvDevByWds);
 
+console.log('process.env.BABEL_ENV;', process.env.BABEL_ENV);
+
 //本地开发是否使用 wds server
 const isDevByWdsServer = () => { return EnvDevByWds==1};
 
