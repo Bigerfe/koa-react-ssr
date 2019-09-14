@@ -10,6 +10,8 @@ console.log(chalk.green('Compiling server '));
 //spawn('babel', ['client', '--out-dir', 'build/server/client'], { stdio: 'inherit' });
 //使用这个方式 命令配置在了 scripts 里
 
+process.env.BABEL_ENV='node';
+
 //浏览器的文件生成一份在服务端运行
 spawn('npm', ['run', 'babel-csfile'], { stdio: 'inherit' });
 

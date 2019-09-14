@@ -3,11 +3,13 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const path = require('path');
+const chalk = require('chalk');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const ProgressBar = require('progress-bar-webpack-plugin');
 const formatMessages = require('./common/format-messages');
 const config = require('./config');
 const resolvePath = p => path.resolve(__dirname, p);
@@ -26,7 +28,7 @@ const ImgFileName = 'krs-static/img/[name].[hash:8].[ext]';
 
 const wpConfig = {
     entry: {
-        entry: [resolvePath('../src/app/index.js')]
+        entry: [resolvePath('../src/app/polyfill.js'),resolvePath('../src/app/index.js')]
     },
     output: {
         path: OutPutPath,
@@ -147,6 +149,10 @@ const plugins = [
     //生成 manifest 方便定位对应的资源文件
     new ManifestPlugin({
         fileName: '../server/server/asset-manifest.json',
+    }),
+    new ProgressBar({
+        format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+        clear: false
     })
 ];
 
@@ -154,15 +160,19 @@ wpConfig.plugins = wpConfig.plugins.concat(plugins);
 
 const handler = (percentage, message, ...args) => {
     // e.g. Output each progress message directly to the console:
-    console.info(percentage, message, ...args);
+    //console.info(percentage, message, ...args);
 };
 
+//TODO:压缩不需要 source map
 wpConfig.optimization = {
     minimizer: [
-        new UglifyJsPlugin({
-        }),
+        // new UglifyJsPlugin({
+        //     cache:true,
+        //     parallel:true,
+        //     sourceMap:true
+        // }),
         new OptimizeCSSAssetsPlugin(),
-        //new webpack.ProgressPlugin(handler) 显示的很多信息其实没什么用
+       // new webpack.ProgressPlugin(handler) 
     ],
     splitChunks: {
         cacheGroups: {

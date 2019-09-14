@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-t": "node ./webpack/scripts/free-port.js && node ./webpack/scripts/compile.js && node ./app.js",
-    "dev": "node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js && node ./webpack/scripts/start.js --scripts",
+    "dev": "cross-env BABEL_ENV=node node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js && cross-env BABEL_ENV=development node ./webpack/scripts/start.js --scripts",
     "dev:csr": "node ./webpack/scripts/compile.js && node ./webpack/scripts/free-port.js &&  cross-env  EnvDevByWds=1  node ./webpack/scripts/start.js --scripts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel --no-babelrc server -d dist/server/server --plugins=@babel/plugin-transform-modules-commonjs --presets=@babel/preset-react",
@@ -29,7 +29,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.4.4",
     "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/polyfill": "^7.4.4",
+    "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.5.4",

@@ -24,7 +24,7 @@ const CssChunkFileName = 'krs-static/css/[name].css';
 const ImgFileName = 'krs-static/img/[name].[ext]';
 
 const wpConfig ={
-    entry: { entry: ['react-hot-loader/patch', resolvePath('../src/app/index.js')]},
+    entry: { entry: [resolvePath('../src/app/polyfill.js'), 'react-hot-loader/patch',  resolvePath('../src/app/index.js')]},
     output: {
         path: OutPutPath,
         publicPath: config.devStaticResourceHost,
@@ -47,7 +47,7 @@ const wpConfig ={
 
 wpConfig.mode = 'development';
 
-wpConfig.devtool = 'cheap-module-eval-source-map';
+wpConfig.devtool = 'inline-source-map';
 
 
 wpConfig.module.rules.push({
@@ -108,13 +108,13 @@ const plugins = [
         __SERVER__: false,
         __CLIENT__: true
     }),
-    new friendlyError()
+    new friendlyError(),
     // new DashboardPlugin(dashboard.setData),
-    // new ProgressBarPlugin({
-    //     format: 'build [:bar] :percent (:elapsed seconds)',
-    //     clear: false,
-    //     width: 60
-    // })
+    new ProgressBarPlugin({
+        format: 'build [:bar] :percent (:elapsed seconds)',
+        clear: false,
+        width: 60
+    })
 ];
 
 

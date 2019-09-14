@@ -9,10 +9,13 @@
  */
 import utils from '../module/utils';
 import hostConfig from '../../config/project-config';
-import fetch from 'axios';
+import fetch from 'node-fetch';
 
 const requestHost = hostConfig.reqApiUrlHost;
 
+const getFetchInstance = ()=>{
+    return fetch || window.fetch;
+}
 
 
 /**
@@ -56,24 +59,25 @@ const doRequest = (url, opt) => {
         method: opt.method,
         headers: opt.headers,
         credentials:'include'
-        }
+    }
     if (opt.method === REQ_METHOD.POST && opt.contentType === REQ_CONTENT_TYPE.JSON) {
-        config.data = JSON.stringify(opt.data || {}); //发送 json
+        config.body = JSON.stringify(opt.data || {}); //发送 json
     } else if (opt.method === REQ_METHOD.POST && opt.contentType === REQ_CONTENT_TYPE.FORM) {
-        config.data = utils.querySerialize(opt.data); //发送 form 表单
-
+        config.body = utils.querySerialize(opt.data); //发送 form 表单
+        //console.log('config.body');
+        //console.log(config.body);
     } else {
         if (opt.method === REQ_METHOD.GET) {
             url = url + utils.querySerialize(opt.data); //走 get
         }
         else if(opt.contentType ===  REQ_CONTENT_TYPE.FILE){
-            config.data = opt.data;
+            config.body = opt.data;
         }
     }
   
     let promise = fetch(url,config).then(checkStatus)
-    .then(res=>{
-        return res.data;
+    .then(parseJSON).then(res=>{
+        return res;
     })
     .catch(error=>{
         console.log('request failed', error)
