@@ -24,7 +24,7 @@ const CssChunkFileName = 'krs-static/css/[name].css';
 const ImgFileName = 'krs-static/img/[name].[ext]';
 
 const wpConfig ={
-    entry: { entry: [resolvePath('../src/app/polyfill.js'), 'react-hot-loader/patch',  resolvePath('../src/app/index.js')]},
+    entry: { entry: ['react-hot-loader/patch',  resolvePath('../src/app/index.js')]},
     output: {
         path: OutPutPath,
         publicPath: config.devStaticResourceHost,

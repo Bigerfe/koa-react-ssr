@@ -149,11 +149,11 @@ const plugins = [
     //生成 manifest 方便定位对应的资源文件
     new ManifestPlugin({
         fileName: '../server/server/asset-manifest.json',
-    }),
-    new ProgressBar({
-        format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
-        clear: false
     })
+    // new ProgressBar({
+    //     format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+    //     clear: false
+    // })
 ];
 
 wpConfig.plugins = wpConfig.plugins.concat(plugins);
@@ -166,11 +166,11 @@ const handler = (percentage, message, ...args) => {
 //TODO:压缩不需要 source map
 wpConfig.optimization = {
     minimizer: [
-        // new UglifyJsPlugin({
-        //     cache:true,
-        //     parallel:true,
-        //     sourceMap:true
-        // }),
+        new UglifyJsPlugin({
+            cache:true,
+            parallel:true,
+            sourceMap:false
+        }),
         new OptimizeCSSAssetsPlugin(),
        // new webpack.ProgressPlugin(handler) 
     ],

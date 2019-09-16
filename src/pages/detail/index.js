@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/index.scss';
 import utils from '../../common/module/utils';
@@ -74,7 +74,7 @@ export default class Index extends KrsPageBase{
         const [res] = fetchData||[];
 
         return <div className="detailBox">
-            <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
+            <Link to="/index">go 首页 1234</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
            <Child color={this.context.color}></Child>
            <div>
            {
