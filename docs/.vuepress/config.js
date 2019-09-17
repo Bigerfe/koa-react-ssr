@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'Krs (koa2+react+ssr) 服务端渲染',
-    description: '轻量易用的 react ssr 服务端渲染开发骨架',
+    title: 'Krs.js',
+    description: '轻量易用的基于 koa2的 react ssr 服务端渲染开发骨架',
     themeConfig: {
         nav: [
             { text: '首页', link: '/' },

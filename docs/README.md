@@ -17,7 +17,7 @@ next: false
 sidebarDepth: 2
 ---
 
-## 快速启动 `krs`
+## 快速启动 `krs.js`
 ### 创建项目
 ```javascript
 $ npm i mmkrs-cli -g

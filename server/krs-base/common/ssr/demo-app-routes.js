@@ -7,12 +7,6 @@ import { Router, Route, BrowserRouter, Switch } from 'react-router-dom';
 
 class Detail extends React.Component{
 
-    static fetchData(){
-        return {
-            a:100
-        }
-    }
-
     render(){
         return <div>detail</div>
     }
@@ -62,16 +56,6 @@ const routes = [
                 path: "/",
                 exact: true,
                 component: Home
-            },
-            {
-                path: "/child/:id",
-                component: Child,
-                routes: [
-                    {
-                        path: "/child/:id/grand-child",
-                        component: GrandChild
-                    }
-                ]
             },
             {
                 path: '/detail', exact: true,

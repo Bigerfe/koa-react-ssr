@@ -1,4 +1,4 @@
-# krs (koa2 + react16 + ssr) 应用开发骨架
+# krs.js (koa2 + react16 + ssr) 服务端渲染应用开发骨架
 
 `node10+` `babel7` `react-router5` `webpack4`
 
@@ -354,7 +354,7 @@ export default class Index extends KrsPageBase{
 
 ### 社区交流
 
-![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxq.png?raw=true)
+![](https://github.com/Bigerfe/koa-react-ssr/blob/v1.2/docs/imgs/wxq917.png?raw=true)
 
 ### 作者
 
