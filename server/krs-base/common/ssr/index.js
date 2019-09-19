@@ -40,8 +40,17 @@ const getComponentHtml =async (ctx)=>{
     //TODO:不知道还有没有更好的办法
     const initialData = {};//用于前端获取数据，区分多页面
     const fallData = initialData[path] = {};
+
+    if (COM.closeThePageSSR){
+        //此页面关闭了服务端渲染
+        return {
+            state:false
+        }
+    }
+
     fallData.init = true;
     fallData.res = await (COM.getInitialProps ? COM.getInitialProps(krsOpt) : {});
+
 
     //处理页面 tdk
     fallData.res.page || (fallData.res.page={
@@ -71,6 +80,7 @@ const getComponentHtml =async (ctx)=>{
     </Provider>);
 
     return {
+        state:true,
         html, initialData, page: fallData.res.page};
 }
 
@@ -79,16 +89,33 @@ const renderBody =async  (ctx,data)=>{
     ctx.body = await ejsHtml('../../temp/ssr.html',data);
 }
 
+//返回默认的渲染数据
+function getDefaultRenderData() {
+    return {
+        htmlContent: '',
+        propsData: getPropsDataHtml("{}"),
+        config: config.cdnHost,
+        page: {
+            tdk: {
+                title: 'krs',
+                keyword: 'krs keyword',
+                description: 'krs description'
+            }
+        }
+    };
+}
+
+function getPropsDataHtml(content) {
+    return `<textarea style="display:none" id="krs-server-render-data-BOX">${content}</textarea>`;
+}
+
 export default async (ctx) => {
 
     ctx.set('Content-Type', 'text/html;charset=UTF-8');
-    let htmlstr='',
-    renderData={
-        htmlContent:htmlstr,
-        propsData:"{}",
-        config:config.cdnHost,
-        page:{}
-    };
+
+    let renderData= getDefaultRenderData();
+
+    console.log(renderData);
 
     if(config.isSSR){
         const res = await getComponentHtml(ctx);
@@ -96,26 +123,24 @@ export default async (ctx) => {
             console.log('render html =======================');
             console.log('res',res);
         }
-        renderData.htmlContent = res.html;
 
-        //数据转成 base64 客户端再进行转换
-        const base64Str = Buffer.from(JSON.stringify({ initialData: res.initialData || {} })).toString('base64');
+        if(res.state){
+            renderData.htmlContent = res.html;
 
-        renderData.propsData = `<textarea style="display:none" id="krs-server-render-data-BOX">${base64Str}</textarea>` ;
-        renderData.config = config.cdnHost;
-        renderData.page =res.page;
-    }else{
-        renderData.propsData='';
-        renderData.page.tdk={
-            title:'krs',
-            keyword:'krs keyword',
-            description:'krs description'
-        };
+            //数据转成 base64 客户端再进行转换
+            const base64Str = Buffer.from(JSON.stringify({ initialData: res.initialData || {} })).toString('base64');
+
+            renderData.propsData = getPropsDataHtml(base64Str);
+            renderData.config = config.cdnHost;
+            renderData.page =res.page;
+        }
     }
-    
-    //是不是服务端的渲染静态资源都要输出
-    renderData.page.staticSource=config.staticSource;
 
+    //静态zi'yuan资源
+    renderData.page.staticSource = config.staticSource
+    
     await renderBody(ctx,renderData);
  
 }
+
+

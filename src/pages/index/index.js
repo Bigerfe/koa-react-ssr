@@ -13,6 +13,9 @@ export default class Index extends KrsPageBase {
         super(props,context);
     }
 
+    //关闭这个页面的服务端渲染 默认为 false
+    static closeThePageSSR=true;
+
     static async  getInitialProps() {
         return {
             page:{
