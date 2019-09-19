@@ -6,6 +6,8 @@ const { matchRoutes } =require( "react-router-config");
 
 const http = require('http');
 
+import './css/index.scss';
+
 //组件
 class Index extends React.Component{
     constructor(props){
