@@ -19,7 +19,7 @@ module.exports = {
                 {
                     title: 'krs指南',
                     collapsable: false,
-                    children: ['', 'fast', 'config','principle','deploy','faq']
+                    children: ['', 'fast', 'config','demo','principle','deploy','faq']
                 }
             ]
         }
