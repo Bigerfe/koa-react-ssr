@@ -21,7 +21,7 @@ process.on('unhandledRejection', err => {
 });
 
 
-const IPAddress = require('../../server/krs-base/common/other/local-ip')();
+const IPAddress = require('../../server/zz-base/common/other/local-ip')();
 const config = require('../config');
 console.log(`本机Ip为:${IPAddress}`);
 
@@ -120,7 +120,7 @@ watcher.on('addDir', fpath => {
 	try {
 		if (!fs.existsSync(newpath)) {
 			fs.mkdirSync(newpath);
-			if (fpath.indexOf('empty-folder-create-by-krscli') > -1 && fpath.indexOf('/src/pages/')>-1){
+			if (fpath.indexOf('empty-folder-create-by-zzcli') > -1 && fpath.indexOf('/src/pages/')>-1){
 				var folder = fileName.match(/(src\/pages\/[\w-_]+\/)/)[1];
 				var sourcePageFolder = path.resolve(folder);
 				var destPageFolder = path.resolve('dist/server', folder);

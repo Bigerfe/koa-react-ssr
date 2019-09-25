@@ -16,7 +16,7 @@ function App(){
                         {
                             routes.map((item,index)=>{
                                 return <Route path={item.path} key={index} exact={item.exact} render={(props)=>{
-                                    props.krsOpt={
+                                    props.zzOpt={
                                         qeury: searchToQuery(props.location.search),
                                         params:props.match.params
                                     };

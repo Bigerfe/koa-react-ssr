@@ -1,7 +1,7 @@
 import ejs from 'ejs';
 //引入 react ssr 中间件处理
-import renderReact from '../krs-base/common/ssr/';
-import config from '../krs-base/config';
+import renderReact from '../zz-base/common/ssr/';
+import config from '../zz-base/config';
 import fs from 'fs';
 import path from 'path';
 
@@ -17,7 +17,7 @@ export default async function (ctx, next) {
         await renderReact(ctx);
     }else{
         //如果没有开启 ssr 则输出 csr 页面  此逻辑
-        // const readStream = fs.createReadStream(path.resolve(__dirname,'../krs-base/temp/csr.html'));
+        // const readStream = fs.createReadStream(path.resolve(__dirname,'../zz-base/temp/csr.html'));
         // readStream.pipe(ctx.res);
         return null;
     }

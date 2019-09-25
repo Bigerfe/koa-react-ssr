@@ -1,6 +1,6 @@
-# krs介绍
+# zz介绍
 
-krs 是一个基于 koa2 react16  webpack4 babel7 react-router5 的 ssr 服务端渲染开发骨架。
+zz 是一个基于 koa2 react16  webpack4 babel7 react-router5 的 ssr 服务端渲染开发骨架。
 
 可以方便的帮我们快速的构建起一个基础开发服务，帮助我们迅速进入 'react ssr'的开发。
 
@@ -11,7 +11,7 @@ krs 是一个基于 koa2 react16  webpack4 babel7 react-router5 的 ssr 服务�
 所有就萌生了打造一个开源项目，可以帮助一些小伙伴儿快速的搞定 `react srr` 基础骨架的搭建，做到开箱即用。另外一个目的也算是提供一个基于  `koa2 的 react ssr` 的完整实现，可以让对 `ssr` 服务端渲染感兴趣的同学方便学习和研究，如果还能一起来完善这个项目那就更好了。
 
 
-最后，这个项目我会持续的进行维护和更新，当然一个人的力量是有限的，希望更多的人可以一起来帮助 `krs` 成长和完善，欢迎提交 pull request 作出贡献！
+最后，这个项目我会持续的进行维护和更新，当然一个人的力量是有限的，希望更多的人可以一起来帮助 `zz` 成长和完善，欢迎提交 pull request 作出贡献！
 
 
 

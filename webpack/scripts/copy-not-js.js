@@ -9,8 +9,8 @@ const path  = require('path');
 
 const FIELS=[
     {
-        src:'../../server/krs-base/temp/ssr.html',
-        dest: '../../dist/server/server/krs-base/temp/ssr.html'
+        src:'../../server/zz-base/temp/ssr.html',
+        dest: '../../dist/server/server/zz-base/temp/ssr.html'
     }
 ];
 

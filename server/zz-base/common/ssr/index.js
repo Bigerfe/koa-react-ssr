@@ -32,7 +32,7 @@ const getComponentHtml =async (ctx)=>{
     const match = routeMatch.match || {};
 
     //参数带入
-    const krsOpt = {
+    const zzOpt = {
         query:ctx.query,
         params:match.params
     }
@@ -49,7 +49,7 @@ const getComponentHtml =async (ctx)=>{
     }
 
     fallData.init = true;
-    fallData.res = await (COM.getInitialProps ? COM.getInitialProps(krsOpt) : {});
+    fallData.res = await (COM.getInitialProps ? COM.getInitialProps(zzOpt) : {});
 
 
     //处理页面 tdk
@@ -97,16 +97,16 @@ function getDefaultRenderData() {
         config: config.cdnHost,
         page: {
             tdk: {
-                title: 'krs',
-                keyword: 'krs keyword',
-                description: 'krs description'
+                title: 'zz',
+                keyword: 'zz keyword',
+                description: 'zz description'
             }
         }
     };
 }
 
 function getPropsDataHtml(content) {
-    return `<textarea style="display:none" id="krs-server-render-data-BOX">${content}</textarea>`;
+    return `<textarea style="display:none" id="zz-server-render-data-BOX">${content}</textarea>`;
 }
 
 export default async (ctx) => {

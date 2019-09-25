@@ -31,7 +31,7 @@ function entryIndex() {
     let APP_INIT_DATA = {};
     let state = true;
 
-    let stateText = document.getElementById('krs-server-render-data-BOX');
+    let stateText = document.getElementById('zz-server-render-data-BOX');
  
     if (!stateText) {
         state = false;

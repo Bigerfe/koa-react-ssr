@@ -20,11 +20,11 @@ const resolvePath = p => path.resolve(__dirname, p);
 //////////******** */
 
 const OutPutPath = resolvePath('../dist/static');
-const JsFileName = 'krs-static/js/[name].[chunkhash:8].js';
-const JsChunkFileName = 'krs-static/js/[name].[chunkhash:8].js';
-const CssFileName = 'krs-static/css/[name].[contenthash:8].css';
-const CssChunkFileName = 'krs-static/css/[name].[contenthash:8].css';
-const ImgFileName = 'krs-static/img/[name].[hash:8].[ext]';
+const JsFileName = 'zz-static/js/[name].[chunkhash:8].js';
+const JsChunkFileName = 'zz-static/js/[name].[chunkhash:8].js';
+const CssFileName = 'zz-static/css/[name].[contenthash:8].css';
+const CssChunkFileName = 'zz-static/css/[name].[contenthash:8].css';
+const ImgFileName = 'zz-static/img/[name].[hash:8].[ext]';
 
 const wpConfig = {
     entry: {

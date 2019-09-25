@@ -17,11 +17,11 @@ next: false
 sidebarDepth: 2
 ---
 
-## 快速启动 `krs.js`
+## 快速启动 `zz.js`
 ### 创建项目
 ```javascript
-$ npm i mmkrs-cli -g
-$ mmkrs -i ---> select project
+$ npm i mmzz-cli -g
+$ mmzz -i ---> select project
 $ <Your Project Name>
 $ cd <Your Project Name>
 $ npm i
@@ -32,6 +32,6 @@ $ open http://<Your local ip>:8808
 
 ``` javascript
 $ cd <Your Project Name>
-$ mmkrs -i -----> select page ----> <Your  pageName>
+$ mmzz -i -----> select page ----> <Your  pageName>
 $ open http://<Your local ip>:8808/<Your  pageName>
 ```

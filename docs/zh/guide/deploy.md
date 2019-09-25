@@ -11,5 +11,5 @@ $ npm run build
 使用 pm2 启动 app.js
 
 ```javascript
-$ pm2 start app.js -n krs-ssr
+$ pm2 start app.js -n zz-ssr
 ```

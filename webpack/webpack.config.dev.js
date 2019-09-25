@@ -17,11 +17,11 @@ const friendlyError = require('friendly-errors-webpack-plugin');
 //////********/
 
 const OutPutPath = resolvePath('../dist/static');
-const JsFileName = 'krs-static/js/[name].js';
-const JsChunkFileName ='krs-static/js/[name].js';
-const CssFileName ='krs-static/css/[name].css';
-const CssChunkFileName = 'krs-static/css/[name].css';
-const ImgFileName = 'krs-static/img/[name].[ext]';
+const JsFileName = 'zz-static/js/[name].js';
+const JsChunkFileName ='zz-static/js/[name].js';
+const CssFileName ='zz-static/css/[name].css';
+const CssChunkFileName = 'zz-static/css/[name].css';
+const ImgFileName = 'zz-static/img/[name].[ext]';
 
 const wpConfig ={
     entry: { entry: ['react-hot-loader/patch',  resolvePath('../src/app/index.js')]},
@@ -94,7 +94,7 @@ const plugins = [
     new HtmlWebPackPlugin({
         title: 'this is the title',
         filename: 'index.html',
-        template: './server/krs-base/temp/csr.html',
+        template: './server/zz-base/temp/csr.html',
         inject: 'body',
         favicon: '',
         minify: {},

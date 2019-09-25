@@ -3,9 +3,9 @@
 import React from 'react';
 import BaseBundle from '../../../routes/route-base-bundle';
 //import LazyPageCom from '../index';
-
+// <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
 const LazyPageCom = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
+    <BaseBundle load={() => import('../index')}>
         {(CompIndex) => <CompIndex {...props} />}
     </BaseBundle>
 );

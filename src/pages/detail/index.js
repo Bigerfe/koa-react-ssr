@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import './css/index.scss';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
-import KrsPageBase from '../../krs-base/common/components/krs-page-base';
+import ZzPageBase from '../../zz-base/common/components/zz-page-base';
 import fetch from '../../common/fetch';
 
 
 function Child(props) {
     return <span style={{ backgroundColor: props.color }}>我是 child  11111</span>
 }
-export default class Index extends KrsPageBase{
+export default class Index extends ZzPageBase{
 
     constructor(props,context){
         super(props,context);
@@ -23,9 +23,9 @@ export default class Index extends KrsPageBase{
 
     //基础参数的带入
     //opt={query:{},params:{}}
-    static async getInitialProps(krsOpt){
+    static async getInitialProps(zzOpt){
         
-        console.log('=====opt', krsOpt);
+        console.log('=====opt', zzOpt);
 
         if(__SERVER__){
             //如果是服务端渲染的话  可以做的处理
@@ -58,7 +58,7 @@ export default class Index extends KrsPageBase{
         console.log('detail com did');
        
         if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据
-            Index.getInitialProps(this.props.krsOpt).then(data=>{
+            Index.getInitialProps(this.props.zzOpt).then(data=>{
                 this.setState({
                     ...data
                 },()=>{

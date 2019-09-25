@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'krs.js -- react ssr 开发骨架',
+    title: 'zz.js -- react ssr 开发骨架',
     description: '轻量易用，基于 koa2 的 react ssr 服务端渲染开发骨架',
     themeConfig: {
         nav: [
@@ -17,7 +17,7 @@ module.exports = {
             ],
             '/zh/guide/':[
                 {
-                    title: 'krs指南',
+                    title: 'zz指南',
                     collapsable: false,
                     children: ['', 'fast', 'config','demo','principle','deploy','faq']
                 }

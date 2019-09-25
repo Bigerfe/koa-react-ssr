@@ -5,9 +5,9 @@ import React, {
 import {Link} from 'react-router-dom';
 import utils from '../../common/module/utils';
 import './css/index.scss';
-import KrsPageBase from '../../krs-base/common/components/krs-page-base';
+import ZzPageBase from '../../zz-base/common/components/zz-page-base';
 
-export default class Index extends KrsPageBase {
+export default class Index extends ZzPageBase {
 
     constructor(props,context){
         super(props,context);

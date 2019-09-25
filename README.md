@@ -1,4 +1,4 @@
-# krs.js (koa2 + react16 + ssr) 服务端渲染应用开发骨架
+# zz.js (koa2 + react16 + ssr) 服务端渲染应用开发骨架
 
 `node10+` `babel7` `react-router5` `webpack4`
 
@@ -6,14 +6,14 @@
 
 * 上手快速: 都是你熟悉的事物，基于 koa2 react16 ssr 搭建
 * 双模式无缝切换: 支持SSR/CSR两种渲染模式，只需更改配置属性即可，也可以对组件设置按需渲染模式
-* 路由分治管理: 你写你的路由，我写我的路由，krs 自动合并，不再需要维护整个路由表
+* 路由分治管理: 你写你的路由，我写我的路由，zz 自动合并，不再需要维护整个路由表
 * 路由动静结合: 支持组件的按需加载设置，A 路由动态吧，B 路由静态
 * 伪 pwa 支持: 访问过的路由中的 state 可按需设置本地缓存,页面二次访问可无接口请求
 * 开放: 代码完全开放，纯白盒，完全可以作为个人的 `ssr` 学习参考资源
 
 # 快速上手
 
- 从这里开始你将了解到怎样让 `krs`  在本地快速的跑起来，然后进行实际项目开发。
+ 从这里开始你将了解到怎样让 `zz`  在本地快速的跑起来，然后进行实际项目开发。
 
 ## 环境准备
 
@@ -26,20 +26,20 @@ $ node -v
 
 ## 脚手架安装
 
-为了方便我们创建应用和页面，这里提供了一个配套的 `mmkrs-cli` 脚手架。
+为了方便我们创建应用和页面，这里提供了一个配套的 `zz-cli` 脚手架。
 
 先全局安装脚手架。
 
 ```javascript
 
-$ npm i mmkrs-cli -g
+$ npm i zz-cli -g
 
 ```
 
 ## 创建应用
 
 ```
-$ mmkrs -i ---> select project
+$ zz -i ---> select project
 $ <Your Project Name>
 $ cd <Your Project Name>
 $ npm i
@@ -75,7 +75,7 @@ $ //更多.....
 │ │ ├── fetch // fetch模块 
 │ │ ├── module // 公共模块
 │ ├── config // 基础配置文件
-│ ├── krs-base // krs基础组件
+│ ├── zz-base // zz基础组件
 │ ├── pages // 业务页面
 │ │ ├── index //默认首页
 │ │ │ ├── config 路由配置
@@ -89,7 +89,7 @@ $ //更多.....
 
 **页面入口**
 
-关于`/src/pages/`下每个页面的入口的约定，目前只支持一级路由的设置，所有的页面的入口都是 `index.js`, `krs`内部会自动进行识别。
+关于`/src/pages/`下每个页面的入口的约定，目前只支持一级路由的设置，所有的页面的入口都是 `index.js`, `zz`内部会自动进行识别。
 
 **路由约定**
 
@@ -138,13 +138,13 @@ export default [
 
 ```javascript
 $ cd <Your Project Name>
-$ mmkrs -i -----> select page ----> <Your  pageName>
+$ zz -i -----> select page ----> <Your  pageName>
 $ open http://<Your local ip>:8808/<Your  pageName>
 ```
 
 ## 路由分治管理
 
-为了方便维护和扩展，krs 把路由进行了分治管理，每个页面的路由都是独立的，只需要单独的配置即可。
+为了方便维护和扩展，zz 把路由进行了分治管理，每个页面的路由都是独立的，只需要单独的配置即可。
 
 请参考路由约定
 
@@ -157,7 +157,7 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 ```javascript
     //基础参数的带入
     //opt={query:{},params:{}}  
-    static async getInitialProps(krsOpt){//数据预取
+    static async getInitialProps(zzOpt){//数据预取
         
 
         if(__SERVER__){
@@ -215,7 +215,7 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 
 一个page 的渲染
 
-* 页面组件需要继承一个 `krs` 的基础组件 `KrsPageBase`,为我们封装了一些基础数据获取和存储功能.
+* 页面组件需要继承一个 `zz` 的基础组件 `zzPageBase`,为我们封装了一些基础数据获取和存储功能.
 
 * 需要设置 static contextType = RootContext 为的是让组件可以获得全局的数据.
 
@@ -229,11 +229,11 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
 import RootContext from '../../app/route-context';//自定义 context
-import KrsPageBase from '../../krs-base/common/components/krs-page-base';//基础组件 页面组件都需要继承
+import zzPageBase from '../../zz-base/common/components/zz-page-base';//基础组件 页面组件都需要继承
 import fetch from '../../common/fetch';//内置的 fech 模块
 
 
-export default class Index extends KrsPageBase{
+export default class Index extends zzPageBase{
 
     constructor(props,context){
         super(props,context);
@@ -246,7 +246,7 @@ export default class Index extends KrsPageBase{
 
     //基础参数的带入
     //opt={query:{},params:{}}  
-    static async getInitialProps(krsOpt){//数据预取
+    static async getInitialProps(zzOpt){//数据预取
         
 
         if(__SERVER__){
@@ -284,7 +284,7 @@ export default class Index extends KrsPageBase{
        //this.hasSpaCacheData标识是否有伪 pwa 的缓存数据
 
         if (!this.isSSR && !this.hasSpaCacheData){// 页面如果是客户端的需要重新获取数据
-            Index.getInitialProps(this.props.krsOpt).then(data=>{
+            Index.getInitialProps(this.props.zzOpt).then(data=>{
                 this.setState({
                     ...data
                 },()=>{
@@ -327,7 +327,7 @@ export default class Index extends KrsPageBase{
 在页面组件内设置`enableSpaDataCache`值，即可开启这个特性。此特性开启后，可以让这个页面的二次访问不再有数据请求，当前是否需要还要根据自己的实际业务触发。
 
 ```javascript
-export default class Index extends KrsPageBase{
+export default class Index extends zzPageBase{
 
     constructor(props,context){
         super(props,context);
@@ -350,7 +350,7 @@ export default class Index extends KrsPageBase{
 
 ### Demo 演示（有点丑,别介意）
 
-[http://demo.krs.bigerfe.com](http://demo.krs.bigerfe.com)
+[http://demo.zz.bigerfe.com](http://demo.zz.bigerfe.com)
 
 ### 社区交流
 
