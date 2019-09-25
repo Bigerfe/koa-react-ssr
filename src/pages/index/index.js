@@ -20,9 +20,9 @@ export default class Index extends ZzPageBase {
         return {
             page:{
                 tdk:{
-                    title:1,
-                    keyword:2,
-                    description:3
+                    title:'zz.js',
+                    keyword:'关键字',
+                    description:'描述'
                 }
             }
         }

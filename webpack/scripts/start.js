@@ -92,7 +92,7 @@ watcher.on('change', path => {
 });
 //新建文件
 watcher.on('add', filepath => {
-	console.log('file wacher : add');
+	console.log('f a d ...');
 
 	var fileName = /(src|server).*/.exec(filepath)[0];
 	var ext = path.extname(fileName);

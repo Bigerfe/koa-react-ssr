@@ -20,9 +20,9 @@ sidebarDepth: 2
 ## 快速启动 `zz.js`
 ### 创建项目
 ```javascript
-$ npm i mmzz-cli -g
-$ mmzz -i ---> select project
-$ <Your Project Name>
+$ npm i zzjs-cli -g
+//初始化项目
+$ zzjs -i 
 $ cd <Your Project Name>
 $ npm i
 $ npm run dev //本地开发的watch 模式
@@ -32,6 +32,8 @@ $ open http://<Your local ip>:8808
 
 ``` javascript
 $ cd <Your Project Name>
-$ mmzz -i -----> select page ----> <Your  pageName>
+//创建page
+$ zzjs -p 
+$ <Your  pageName>
 $ open http://<Your local ip>:8808/<Your  pageName>
 ```

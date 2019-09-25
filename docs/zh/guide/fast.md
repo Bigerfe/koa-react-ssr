@@ -26,7 +26,8 @@ $ npm i zz-cli -g
 ## 创建应用
 
 ```
-$ zz -i ---> select project
+//初始化项目
+$ zzjs -i 
 $ <Your Project Name>
 $ cd <Your Project Name>
 $ npm i
@@ -125,7 +126,8 @@ export default [
 
 ```javascript
 $ cd <Your Project Name>
-$ mmzz -i -----> select page ----> <Your  pageName>
+$ zzjs -p
+$ <Your  pageName>
 $ open http://<Your local ip>:8808/<Your  pageName>
 ```
 
@@ -202,7 +204,7 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 
 一个page 的渲染
 
-* 页面组件需要继承一个 `zz` 的基础组件 `zzPageBase`,为我们封装了一些基础数据获取和存储功能.
+* 页面组件需要继承一个 `zz` 的基础组件 `ZzPageBase`,为我们封装了一些基础数据获取和存储功能.
 
 * 需要设置 static contextType = RootContext 为的是让组件可以获得全局的数据.
 
@@ -216,11 +218,11 @@ $ open http://<Your local ip>:8808/<Your  pageName>
 import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
 import RootContext from '../../app/route-context';//自定义 context
-import zzPageBase from '../../zz-base/common/components/zz-page-base';//基础组件 页面组件都需要继承
+import ZzPageBase from '../../zz-base/common/components/zz-page-base';//基础组件 页面组件都需要继承
 import fetch from '../../common/fetch';//内置的 fech 模块
 
 
-export default class Index extends zzPageBase{
+export default class Index extends ZzPageBase{
 
     constructor(props,context){
         super(props,context);

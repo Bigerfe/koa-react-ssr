@@ -15,30 +15,20 @@ export default class Bundle extends React.Component {
         };
     }
 
-    //即将废弃
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         if (!this.state.mod) {
-            console.log('async did mount');
             this.load(this.props);
         }
     }
 
-    // componentDidMount(){
-    //     if(!this.state.mod){
-    //         console.log('async did mount');
-    //         this.load(this.props);
-    //     }
-    // }
+    UNSAFE_componentWillReceiveProps(nextProps) {
 
-    // componentWillReceiveProps(nextProps) {
-    //     //TODO://问题在这里，导致每次都会重新渲染组件
-    //     console.log(nextProps.load);
-    //     console.log(this.props.load);
-    //     console.log(nextProps.load == this.props.load);
-    //     if (nextProps.load !== this.props.load) {
-    //         this.load(nextProps)
-    //     }
-    // }
+        //路由改变才会按需
+        if (nextProps.match && this.props.match && (nextProps.match.url !== this.props.match.url)) {
+            this.load(nextProps);
+        }
+    }
+
 
     load(props) {
         this.setState({

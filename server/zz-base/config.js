@@ -7,7 +7,7 @@ const projectConfig = require('../../src/config/project-config').default; //本�
 const ISimulateProduction = process.env.SimulateProduction;
 const LocalNodeServerPort = projectConfig.nodeServerPort;
 const DevClientServerPort = projectConfig.devWdsPort;
-const StaticFolderName = 'zz-static'; // TODO:// 配置需要进行提取 生产环境的js 资源和 css 资源的 host  ，这个可以进行配置
+const StaticFolderName = projectConfig.StaticFolderName; 
 
 let Production_JS_Host = projectConfig.Production_JS_Host;
 let Production_CSS_Host = projectConfig.Production_CSS_Host;

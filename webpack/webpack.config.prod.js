@@ -128,7 +128,7 @@ const plugins = [
         filename: CssFileName,
         chunkFilename: CssChunkFileName
     }),
-    //生产换就不需要了
+    //生产环境不需要
     // new HtmlWebPackPlugin({
     //     title: 'this is the title',
     //     filename: 'index.html',
@@ -142,7 +142,7 @@ const plugins = [
     // 删除文件 保留新文件
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-        "process.env.IS_DEV": false,
+        'process.env': { NODE_ENV: '"development"', IS_DEV: true },
         __SERVER__: false,
         __CLIENT__: true
     }),
@@ -191,6 +191,7 @@ wpConfig.optimization = {
             },
             commons: { // 抽离自己写的公共代码
                 chunks: 'async',
+                test: /\.jsx?$/,
                 name: 'commons', // 任意命名
                 minSize: 0, // 只要超出0字节就生成一个新包
                 minChunks: 2,

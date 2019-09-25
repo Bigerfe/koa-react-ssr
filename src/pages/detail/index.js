@@ -44,7 +44,7 @@ export default class Index extends ZzPageBase{
         return {
             page:{
                 tdk: {
-                    title: 'ksr 框架',
+                    title: 'zz 框架',
                     keyword: 'ssr react',
                     description: '我是描述'
                 }

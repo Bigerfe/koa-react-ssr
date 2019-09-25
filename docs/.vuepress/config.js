@@ -1,6 +1,9 @@
 module.exports = {
-    title: 'zz.js -- react ssr 开发骨架',
+    title: 'zz.js - react ssr 开发骨架',
     description: '轻量易用，基于 koa2 的 react ssr 服务端渲染开发骨架',
+    head: [
+        ['link', { rel: 'shortcut icon', type: "image/jpeg", href: `https://github.com/Bigerfe/koa-react-ssr/blob/v1.2/docs/imgs/sss-head.jpg` }]
+    ],
     themeConfig: {
         nav: [
             { text: '首页', link: '/' },
