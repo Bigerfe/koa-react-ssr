@@ -112,7 +112,7 @@ import BaseBundle from '../../../routes/route-base-bundle';
 
 //动态组件配置   
 const LazyPageCom = (props) => (
-    <BaseBundle load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
+    <BaseBundle {..props} load={() => import(/*webpackChunkName:"chunk-index"*/'../index')}>
         {(CompIndex) => <CompIndex {...props} />}
     </BaseBundle>
 );
