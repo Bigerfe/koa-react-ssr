@@ -20,7 +20,8 @@
                     }
                 ],
                 "@babel/plugin-syntax-dynamic-import",
-                "./webpack/babel/plugin/no-require-css"          
+                "./webpack/babel/plugin/no-require-css",
+                "./webpack/babel/plugin/on-server-module-hack"
             ]
         },
         "development": {
