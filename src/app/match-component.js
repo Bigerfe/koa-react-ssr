@@ -26,7 +26,10 @@ export default async (url,staticRoutes) => {
 
         const component = route.component;
 
-        if (component && component.hasOwnProperty('load') && typeof component.load === 'function') {
+        console.log('component.asyncLoad', component.asyncLoad);
+
+        //TODO:这么写为了不增加多余配置，但是生产环境可能不一样
+        if (component.toString().indexOf('load')>-1) {
             //异步组件的查找
             matchC.component = (await component({
                 match
