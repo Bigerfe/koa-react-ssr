@@ -1,7 +1,11 @@
-const envUtils = require('./scripts/env-utils');
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge')
 const path = require('path');
+
+const envUtils = require('./scripts/env-utils');
 const config = require('./config');
+const webpackBaseConfig = require('./webpack.config.base');
+
 const resolvePath = p => path.resolve(__dirname, p);
 
 const {
@@ -32,13 +36,7 @@ const wpConfig ={
         chunkFilename: JsChunkFileName
     },
     module: {
-        rules: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules|bower_components)/,
-            use: [{
-                loader: "babel-loader"
-            }]
-        }]
+        rules: []
     },
     plugins: []
 }
@@ -155,4 +153,4 @@ wpConfig.resolve={
         }
 }
 
-module.exports = wpConfig;
+module.exports = webpackMerge(webpackBaseConfig,wpConfig);

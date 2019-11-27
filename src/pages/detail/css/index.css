@@ -1,3 +1,7 @@
+.detailBox {
+  background-color: #333;
+}
+
 .detailBox .row {
   height: 100px;
 }

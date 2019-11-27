@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './css/index.scss';
 import utils from '../../common/module/utils';
 import RootContext from '../../app/route-context';
 import ZzPageBase from '../../zz-base/common/components/zz-page-base';
 import fetch from '../../common/fetch';
+
+import './css/index.scss';
 
 
 function Child(props) {
@@ -74,7 +75,7 @@ export default class Index extends ZzPageBase{
         const [res] = fetchData||[];
 
         return <div className="detailBox">
-            <Link to="/index">go 首页 1234</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
+            <Link to="/index">go 首页 12</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
            <Child color={this.context.color}></Child>
            <div>
            {

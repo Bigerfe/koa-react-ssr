@@ -14,7 +14,7 @@ export default class Index extends ZzPageBase {
     }
 
     //关闭这个页面的服务端渲染 默认为 false
-    static closeThePageSSR=true;
+    static closeThePageSSR=false;
 
     static async  getInitialProps() {
         return {
