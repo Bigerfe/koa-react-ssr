@@ -154,9 +154,20 @@ const handler = (percentage, message, ...args) => {
 wpConfig.optimization = {
     minimizer: [
         new UglifyJsPlugin({
-            cache:true,
-            parallel:true,
-            sourceMap:false
+            uglifyOptions: {
+                compress: {
+                    drop_console: true,
+                    drop_debugger: true
+                },
+                warnings: false,
+                ie8: true,
+                output: {
+                    comments: false,
+                },
+            },
+            cache: true,
+            parallel: true,
+            sourceMap: false
         }),
         new OptimizeCSSAssetsPlugin(),
        // new webpack.ProgressPlugin(handler) 
