@@ -75,7 +75,7 @@ export default class Index extends ZzPageBase{
         const [res] = fetchData||[];
 
         return <div className="detailBox">
-            <Link to="/index">go 首页 12</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
+            <Link to="/index">go 首页</Link> |   <Link to="/list">go 列表</Link> |  <Link to="/tudou">go 土豆</Link>
            <Child color={this.context.color}></Child>
            <div>
            {

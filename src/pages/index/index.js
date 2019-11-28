@@ -36,7 +36,7 @@ export default class Index extends ZzPageBase {
 
     render() {
         return <div>
-        <Link to="/detail">首页，点击跳转到详情页面 123</Link>
+        <Link to="/detail">首页-点跳转到详情页面 123</Link>
         </div>
     }
 
