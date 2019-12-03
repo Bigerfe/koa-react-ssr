@@ -4,23 +4,7 @@ const {
   renderToString
 } = require('react-dom/server');
 
-const http = require('http'); //模拟数据的获取
-
-
-const fetchData = function () {
-  return {
-    list: [{
-      name: '包子',
-      num: 10
-    }, {
-      name: '饺子',
-      num: 200
-    }, {
-      name: '馒头',
-      num: 1
-    }]
-  };
-}; //组件
+const http = require('http'); //组件
 
 
 class Index extends React.Component {
@@ -29,12 +13,7 @@ class Index extends React.Component {
   }
 
   render() {
-    const {
-      data
-    } = this.props;
-    return React.createElement("div", null, data && data.list.map(item => {
-      return React.createElement("div", null, item.name, "\u6709", item.num, "\u4E2A");
-    }));
+    return React.createElement("div", null, "click here!");
   }
 
 } //服务
@@ -44,15 +23,12 @@ http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
-  const data = fetchData();
-  const html = renderToString(React.createElement(Index, {
-    data: data
-  }));
+  const html = renderToString(React.createElement(Index, null));
   res.end(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>传统 ssr</title>
+    <title>my react ssr</title>
 </head>
 <body>
     <div id="root">
