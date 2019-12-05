@@ -1,3 +1,4 @@
+// /webpack/scripts/server-file-watch
 //服务端代码监控
 
 const chokidar = require('chokidar');

@@ -19,5 +19,3 @@ module.exports = {
         ]
     }
 }
-
-console.log(process.env.BABEL_ENV);

@@ -6,6 +6,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Index from '../pages/index';
+import ArticleList from '../pages/article-list';
 
 //渲染index 组件1
-ReactDom.hydrate(<Index />, document.getElementById('root'))
+ReactDom.hydrate(<>
+    <Index /><ArticleList/>
+     </>, document.getElementById('root'))

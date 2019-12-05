@@ -9,7 +9,7 @@ export default class Index extends React.Component {
         super(props);
     }
     handlerClick(){
-        alert('一起来玩 react 服务端渲染呗');
+        alert('一起来玩 react 服务端渲染');
     }
 
     render() {

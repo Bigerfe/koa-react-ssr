@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node webpack/scripts/start.js",
     "start0": "npm run babel-node &&  npm-run-all --parallel fe:watch svr:watch node:server",
-    "fe:watch": "webpack --config ./webpack/webpack.dev.config.js --watch",
+    "fe:watch": "BABEL_ENV=development webpack --config ./webpack/webpack.dev.config.js --watch",
     "babel-node": "BABEL_ENV=node babel  src -d dist/src",
     "svr:watch": "node ./webpack/scripts/server-file-watch.js",
     "node:server": "supervisor ./dist/src"

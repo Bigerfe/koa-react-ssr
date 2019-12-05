@@ -18,7 +18,7 @@ class Index extends _react.default.Component {
   }
 
   handlerClick() {
-    alert('一起来玩 react 服务端渲染呗');
+    alert('一起来玩 react 服务端渲染');
   }
 
   render() {
