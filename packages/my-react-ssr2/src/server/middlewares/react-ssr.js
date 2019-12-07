@@ -21,9 +21,7 @@ export default  (ctx,next)=>{
 
     let context={};
 
-    const html = renderToString(<StaticRouter location={path} context={context}>
-            <App></App>
-    </StaticRouter>);
+    const html = renderToString(<StaticRouter location={path} context={context}><App></App></StaticRouter>);
 
     console.log(html);
 
@@ -34,9 +32,7 @@ export default  (ctx,next)=>{
     <title>my react ssr</title>
 </head>
 <body>
-    <div id="root">
-       ${html}
-    </div>
+    <div id="root">${html}</div>
 </body>
 </html>
 </body>

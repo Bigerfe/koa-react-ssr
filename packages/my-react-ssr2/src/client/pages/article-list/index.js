@@ -9,6 +9,6 @@ export default class Index extends React.Component {
             super(props);
         }
         render() {
-            return <div>文章列表</div>
+            return <div><span>文章列表</span></div>
         }
 }

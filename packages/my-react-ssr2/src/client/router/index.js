@@ -17,7 +17,7 @@ function App() {
                             return <Route key={item.path} {...item}></Route>
                     })
                 }
-            </Switch>
+                </Switch>
             </Layout>
     );
 }
