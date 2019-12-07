@@ -1,5 +1,6 @@
-//完成 react ssr 工作的中间件
+// /src/server/middlewares/react-ssr.js
 
+//完成 react ssr 工作的中间件
 //引入Index 组件
 import React from 'react';
 import Index from '../../client/pages/index';
@@ -16,7 +17,7 @@ export default  (ctx,next)=>{
 </head>
 <body>
     <div id="root">
-       ${html}
+       ${html} <span>测试内容</span>
     </div>
 </body>
 </html>

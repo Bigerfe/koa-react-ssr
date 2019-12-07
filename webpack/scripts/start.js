@@ -33,7 +33,6 @@ const fs = require('fs');
 const openBrowser = require('../common/open-browser');
 const path = require('path');
 const chalk = require('chalk');
-const spawn = require('cross-spawn');
 const projectConfig = require('../../dist/server/src/config/project-config').default;
 //监听client server文件 change时用babel编译该文件
 const chokidar = require('chokidar');

@@ -19,15 +19,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //组件
 var Index =
@@ -36,30 +34,23 @@ function (_React$Component) {
   _inherits(Index, _React$Component);
 
   function Index(props) {
-    var _this;
-
     _classCallCheck(this, Index);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_this), "handlerClick", function () {
-      alert('一起来玩 react 服务端渲染啊');
-    });
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
   }
 
   _createClass(Index, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log('did mount');
+    key: "handlerClick",
+    value: function handlerClick() {
+      alert('一起来玩 react 服务端渲染啊');
     }
   }, {
     key: "render",
     value: function render() {
+      var str = 'click here!';
       return _react.default.createElement("div", {
         onClick: this.handlerClick
-      }, "click here!");
+      }, str);
     }
   }]);
 

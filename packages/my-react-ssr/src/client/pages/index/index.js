@@ -16,6 +16,7 @@ export default class Index extends React.Component {
 
 
     render() {
-        return <div onClick={this.handlerClick}>click here!</div>
+        const str='click here!';
+        return <div onClick={this.handlerClick}>{str}</div>
     }
 }

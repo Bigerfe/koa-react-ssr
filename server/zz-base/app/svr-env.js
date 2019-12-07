@@ -1,6 +1,5 @@
 //当前运行的环境 
 'use strict';
-
 let args = process.argv,
     envs = {
         dev: {

@@ -5,26 +5,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import { StaticRouter,Route} from 'react-router';
+import { StaticRouter, Route} from 'react-router';
 import { renderRoutes} from 'react-router-config';
 
 import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
-import routeList from '../../client/router/route-config';
 
-//根据请求 path 查找组件
-const findRouteByPath=(opt)=>{
-    let {path} = opt;
-    let Component;
-    for(var item of routeList){
-        if(item.path===path){//路由匹配
-            Component = item.component;
-               break;
-        }
-     
-    }
 
-    return Component;
-}
+import App from '../../client/router/index';
 
 export default  (ctx,next)=>{
 
@@ -32,23 +19,14 @@ export default  (ctx,next)=>{
 
     const path = ctx.request.path;
 
-    let Component = findRouteByPath({
-        path
-    });
-
-    if (!Component){
-        Component = function Not() {
-            return <div>404</div>
-        }
-    }
-
     let context={};
 
     const html = renderToString(<StaticRouter location={path} context={context}>
-        <Layout>
-            {renderRoutes(routeList)}
-        </Layout>
+            <App></App>
     </StaticRouter>);
+
+    console.log(html);
+
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +40,7 @@ export default  (ctx,next)=>{
 </body>
 </html>
 </body>
-<script type="text/javascript"  src="index.js"></script>
+<script type="text/javascript"  src="/index.js"></script>
 `;
 
     return next();

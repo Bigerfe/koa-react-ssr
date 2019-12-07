@@ -3,22 +3,21 @@
 
 
 import Layout from '../app/layout';
-
 import routesList  from './route-config';
 
 import React  from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
     return (
             <Layout> 
-                <Switch>
+               <Switch>
                 {
                     routesList.map(item=>{
-                            return <Route key={item.path} path={item.path} exact={true} component={item.component}></Route>
+                            return <Route key={item.path} {...item}></Route>
                     })
                 }
-                </Switch>
+            </Switch>
             </Layout>
     );
 }
