@@ -17,11 +17,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function Page404() {
+  return _react.default.createElement("div", null, "404\u62C9 ");
+}
+
 function App() {
   return _react.default.createElement(_layout.default, null, _react.default.createElement(_reactRouterDom.Switch, null, _routeConfig.default.map(item => {
     return _react.default.createElement(_reactRouterDom.Route, _extends({
       key: item.path
     }, item));
+  }), _react.default.createElement(_reactRouterDom.Route, {
+    to: "*",
+    component: Page404
   })));
 }
 

@@ -16,8 +16,10 @@ function buildFile(filepath, spawn) {
     var fileName = /(src).*/.exec(filepath)[0];//文件路径
     var newpath = path.resolve('dist/', fileName);//编译到的目标文件地址
 
+    process.env.BABEL_ENV='node';
     spawn.sync('babel', [filepath, '--out-file', newpath]);
     log(chalk.green('build ok', getFileName(newpath)));
+    process.env.BABEL_ENV='development';
 }
 
 function getFileName(path) {

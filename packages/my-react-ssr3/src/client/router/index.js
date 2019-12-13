@@ -6,7 +6,11 @@ import Layout from '../app/layout';
 import routesList  from './route-config';
 
 import React  from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter,Redirect } from 'react-router-dom';
+
+function Page404() {
+    return <div>404拉 </div>
+}
 
 function App() {
     return (
@@ -17,6 +21,7 @@ function App() {
                             return <Route key={item.path} {...item}></Route>
                     })
                 }
+                <Route to="*" component={Page404}></Route>
             </Switch>
             </Layout>
     );

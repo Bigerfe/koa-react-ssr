@@ -17,6 +17,8 @@ var _layout = _interopRequireDefault(require("../../client/app/layout"));
 
 var _routeConfig = _interopRequireDefault(require("../../client/router/route-config"));
 
+var _provider = _interopRequireDefault(require("../../client/app/provider"));
+
 var _index = _interopRequireDefault(require("../../client/router/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -25,62 +27,80 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //完成 react ssr 工作的中间件
 //引入Index 组件
 //如果有 layout 组件，也需要一起转换为 html
+//自定义 provider 用来传递数据
 //根据请求 path 查找组件
-var findRouteByPath = function findRouteByPath(opt) {
-  var path = opt.path;
-  var Component;
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+const findRouteByPath = opt => {
+  let {
+    path
+  } = opt;
+  let Component;
 
-  try {
-    for (var _iterator = _routeConfig.default[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var item = _step.value;
-
-      if ((0, _reactRouter.matchPath)(path, item)) {
-        Component = item.component;
-        break;
-      }
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
+  for (var item of _routeConfig.default) {
+    if ((0, _reactRouter.matchPath)(path, item)) {
+      Component = item.component;
+      break;
     }
   }
 
   return Component;
 };
 
-var _default = function _default(ctx, next) {
+var _default = async (ctx, next) => {
+  const path = ctx.request.path;
+
+  if (path.indexOf('.') > -1) {
+    ctx.body = null;
+    return next();
+  }
+
   console.log('ctx.request.path', ctx.request.path);
-  var path = ctx.request.path;
-  var Component = findRouteByPath({
-    path: path
+  let Component = findRouteByPath({
+    path
   });
 
   if (!Component) {
     Component = function Not() {
       return _react.default.createElement("div", null, "404");
     };
-  }
+  } //得到数据
 
-  var context = {};
-  var html = (0, _server.renderToString)(_react.default.createElement(_reactRouter.StaticRouter, {
+
+  let fetchDataFn = Component.getInitialProps;
+  let fetchResult = {};
+
+  if (fetchDataFn) {
+    fetchResult = await fetchDataFn();
+  } //数据传入组件，通过react context 特性传入
+
+
+  let context = {};
+  const html = (0, _server.renderToString)(_react.default.createElement(_provider.default, {
+    initialData: fetchResult
+  }, _react.default.createElement(_reactRouter.StaticRouter, {
     location: path,
     context: context
-  }, _react.default.createElement(_index.default, null)));
-  console.log(html);
-  ctx.body = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>my react ssr</title>\n</head>\n<body>\n    <div id=\"root\">\n       ".concat(html, "\n    </div>\n</body>\n</html>\n</body>\n<script type=\"text/javascript\"  src=\"/index.js\"></script>\n");
-  return next();
+  }, _react.default.createElement(_index.default, null))));
+  console.log(context); //console.log(html);
+
+  ctx.body = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my react ssr</title>
+</head>
+<body>
+    <div id="root">
+       ${html}
+    </div>
+    <textarea id="ssrTextInitData" style="display:none;">
+    ${JSON.stringify(fetchResult)}
+    </textarea>
+</body>
+</html>
+</body>
+<script type="text/javascript"  src="/index.js"></script>
+`;
+  await next();
 };
 
 exports.default = _default;

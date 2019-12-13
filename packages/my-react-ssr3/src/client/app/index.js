@@ -8,7 +8,19 @@ import ReactDom from 'react-dom';
 import App from '../router/index';
 import { BrowserRouter} from 'react-router-dom';
 
-//渲染index 组件1
-ReactDom.hydrate(<BrowserRouter>
-    <App /></BrowserRouter>
-, document.getElementById('root'))
+import Provider from './provider';
+
+function clientRender() {
+    let data =JSON.parse( document.getElementById('ssrTextInitData').value);
+
+    //渲染index 组件1
+    ReactDom.hydrate(<BrowserRouter>
+        <Provider initialData={data}>
+            <App />
+        </Provider>
+    </BrowserRouter>
+        , document.getElementById('root'))
+
+}
+//渲染入口
+clientRender();

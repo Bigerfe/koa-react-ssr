@@ -8,9 +8,19 @@ var _index = _interopRequireDefault(require("../router/index"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _provider = _interopRequireDefault(require("./provider"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //client/app/index.js
 //浏览器端页面结构渲染入口
-//渲染index 组件1
-_reactDom.default.hydrate(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_index.default, null)), document.getElementById('root'));
+function clientRender() {
+  let data = JSON.parse(document.getElementById('ssrTextInitData').value); //渲染index 组件1
+
+  _reactDom.default.hydrate(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_provider.default, {
+    initialData: data
+  }, _react.default.createElement(_index.default, null))), document.getElementById('root'));
+} //渲染入口
+
+
+clientRender();

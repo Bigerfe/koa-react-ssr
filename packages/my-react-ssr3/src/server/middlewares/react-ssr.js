@@ -11,6 +11,8 @@ import { renderRoutes} from 'react-router-config';
 import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
 import routeList from '../../client/router/route-config';
 
+//自定义 provider 用来传递数据
+import Provider from '../../client/app/provider';
 
 import App from '../../client/router/index';
 
@@ -27,11 +29,18 @@ const findRouteByPath=(opt)=>{
     return Component;
 }
 
-export default  (ctx,next)=>{
+export default  async (ctx,next)=>{
+
+
+    const path = ctx.request.path;
+
+    if(path.indexOf('.')>-1){
+        ctx.body=null;
+        return next();
+    }
 
     console.log('ctx.request.path', ctx.request.path);
 
-    const path = ctx.request.path;
 
     let Component = findRouteByPath({
         path
@@ -43,13 +52,24 @@ export default  (ctx,next)=>{
         }
     }
 
+    //得到数据
+    let fetchDataFn = Component.getInitialProps;
+    let fetchResult = {};
+    if(fetchDataFn){
+        fetchResult = await fetchDataFn();
+    }
+
+    //数据传入组件，通过react context 特性传入
+
     let context={};
 
-    const html = renderToString(<StaticRouter location={path} context={context}>
-            <App></App>
-    </StaticRouter>);
+    const html = renderToString(<Provider initialData={fetchResult}>
+        <StaticRouter location={path} context={context}><App></App></StaticRouter>
+    </Provider>);
 
-    console.log(html);
+    console.log(context);
+
+    //console.log(html);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
@@ -61,11 +81,14 @@ export default  (ctx,next)=>{
     <div id="root">
        ${html}
     </div>
+    <textarea id="ssrTextInitData" style="display:none;">
+    ${JSON.stringify(fetchResult)}
+    </textarea>
 </body>
 </html>
 </body>
 <script type="text/javascript"  src="/index.js"></script>
 `;
 
-    return next();
+    await next();
 }
