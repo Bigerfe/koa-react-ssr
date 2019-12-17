@@ -1,16 +1,19 @@
 // webpack/webpack.dev.config.js
 //webpack 配置文件
 const path = require('path')
+const webpack = require('webpack');
 
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
 
 
 module.exports = {
     mode: 'development',
-    entry: resolvePath('../src/client/app/index.js'),//入口文件
+    devtool: 'inline-source-map',
+    entry: ['react-hot-loader/patch', resolvePath('../src/client/app/index.js')],//入口文件
     output: {
         filename: 'index.js',
-        path: resolvePath('../dist/static')
+        path: resolvePath('../dist/static'),
+        publicPath:'http://localhost:9002/'
     },
     module: {
         rules: [{
@@ -48,5 +51,6 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [new webpack.HotModuleReplacementPlugin()]
 }

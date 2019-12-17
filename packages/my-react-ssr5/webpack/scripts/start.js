@@ -29,7 +29,9 @@ serverFileWatchFn(restartServer);
 
 
 //启动客户端代码构建监听
-spawn('npm', ['run', 'fe:watch'], { stdio: 'inherit' });
+//spawn('npm', ['run', 'fe:watch'], { stdio: 'inherit' });
+
+spawn('npm', ['run', 'wds:start'], { stdio: 'inherit' });
 
 
 //node server 监听并自动重启

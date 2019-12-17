@@ -61,15 +61,13 @@ export default  async (ctx,next)=>{
         <StaticRouter location={path} context={context}><App></App></StaticRouter>
     </Provider>);
 
-    console.log(context);
-
-    console.log(html);
-
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>my react ssr</title>
+    <title>my react ssr 标题</title>
+    <meta name="keywords" content="关键词内容" />
+    <meta name="description" content="描述内容" />
 </head>
 <body>
     <div id="root">
@@ -81,7 +79,7 @@ export default  async (ctx,next)=>{
 </body>
 </html>
 </body>
-<script type="text/javascript"  src="/index.js"></script>
+<script type="text/javascript"  src="//localhost:9002/index.js"></script>
 `;
 
     await next();

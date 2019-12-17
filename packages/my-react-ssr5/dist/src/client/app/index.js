@@ -23,4 +23,8 @@ function clientRender() {
 } //渲染入口
 
 
-clientRender();
+clientRender(); //开发环境才会开启
+
+if (module.hot) {
+  module.hot.accept();
+}

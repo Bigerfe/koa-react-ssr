@@ -50,8 +50,6 @@ class Index extends _react.default.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.data);
-
     if (!this.state.data) {
       //如果没有数据，则进行数据请求
       Index.getInitialProps().then(res => {

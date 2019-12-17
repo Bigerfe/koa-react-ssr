@@ -68,7 +68,7 @@ class Index extends React.Component {
                 <p>{item.desc}</p>
             </div>
         })}
-        {!data&&<div>暂无数据</div>}
+        {!data&&<div>暂无数据1-1</div>}
         </div>
     }
 }
