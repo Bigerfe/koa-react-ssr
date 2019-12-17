@@ -6,7 +6,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { StaticRouter, Route} from 'react-router';
-import { renderRoutes} from 'react-router-config';
+
 
 import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
 

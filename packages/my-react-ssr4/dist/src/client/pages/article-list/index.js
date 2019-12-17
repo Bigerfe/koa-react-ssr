@@ -19,7 +19,7 @@ class Index extends _react.default.Component {
   render() {
     return _react.default.createElement("div", {
       className: "article-list"
-    }, "\u6587\u7AE0\u5217\u8868");
+    }, "\u6587\u7AE0\u5217\u8868 111");
   }
 
 }

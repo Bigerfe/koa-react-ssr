@@ -36,9 +36,13 @@ function (_React$Component) {
   _inherits(Index, _React$Component);
 
   function Index(props) {
+    var _this;
+
     _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
+    console.log(_this.props);
+    return _this;
   }
 
   _createClass(Index, [{

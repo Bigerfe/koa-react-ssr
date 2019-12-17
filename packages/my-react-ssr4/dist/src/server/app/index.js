@@ -18,7 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //web 服务启动入口对象
 const app = new _koa.default(); //设置可访问的静态资源
 
-app.use((0, _koaStatic.default)(_path.default.join(__dirname, '../../../static'))); //ssr 中间件
+app.use((0, _koaStatic.default)('./dist/static')); //ssr 中间件
 
 app.use(_reactSsr.default);
 var _default = app;

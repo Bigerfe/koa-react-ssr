@@ -13,6 +13,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //路由配置文件
 var _default = [{
+  path: '/',
+  component: _index.default
+}, {
   path: '/index',
   component: _index.default
 }, {

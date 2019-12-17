@@ -47,12 +47,6 @@ const findRouteByPath = opt => {
 
 var _default = async (ctx, next) => {
   const path = ctx.request.path;
-
-  if (path.indexOf('.') > -1) {
-    ctx.body = null;
-    return next();
-  }
-
   console.log('ctx.request.path', ctx.request.path);
   let Component = findRouteByPath({
     path
@@ -60,7 +54,7 @@ var _default = async (ctx, next) => {
 
   if (!Component) {
     Component = function Not() {
-      return _react.default.createElement("div", null, "404");
+      return _react.default.createElement("div", null, "404 page");
     };
   } //得到数据
 
@@ -80,8 +74,8 @@ var _default = async (ctx, next) => {
     location: path,
     context: context
   }, _react.default.createElement(_index.default, null))));
-  console.log(context); //console.log(html);
-
+  console.log(context);
+  console.log(html);
   ctx.body = `<!DOCTYPE html>
 <html lang="en">
 <head>
