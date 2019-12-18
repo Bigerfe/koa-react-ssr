@@ -76,7 +76,6 @@ export default  async (ctx,next)=>{
         <StaticRouter location={path} context={context}><App></App></StaticRouter>
     </Provider>);
 
-  
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">

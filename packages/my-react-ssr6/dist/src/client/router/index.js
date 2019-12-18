@@ -24,7 +24,6 @@ function Page404() {
 function App() {
   return _react.default.createElement(_layout.default, null, _react.default.createElement(_reactRouterDom.Switch, null, _routeConfig.default.map(item => {
     return _react.default.createElement(_reactRouterDom.Route, _extends({
-      exact: item.exact,
       key: item.path
     }, item));
   }), _react.default.createElement(_reactRouterDom.Route, {

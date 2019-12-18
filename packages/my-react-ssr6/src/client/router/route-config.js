@@ -2,6 +2,7 @@
 
 import Index from '../pages/index';
 import ArticeList from '../pages/article-list';
+import Search from '../pages/search';
 
 export default [
 
@@ -18,6 +19,11 @@ export default [
     {
         path: '/article',
         component: ArticeList,
+        exact: true
+    },
+    {
+        path: '/search',
+        component: Search,
         exact: true
     }
 ]

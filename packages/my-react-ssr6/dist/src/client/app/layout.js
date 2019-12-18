@@ -30,7 +30,13 @@ class Index extends _react.default.Component {
       },
       onClick: this.click,
       to: "/article"
-    }, "\u5217\u8868\u9875"), this.props.children);
+    }, "\u5217\u8868\u9875"), _react.default.createElement(_reactRouterDom.NavLink, {
+      style: {
+        marginLeft: "10px"
+      },
+      onClick: this.click,
+      to: "/search"
+    }, "\u641C\u7D22\u9875"), this.props.children);
   }
 
 } //带入路由信息
