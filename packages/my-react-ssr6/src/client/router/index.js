@@ -18,7 +18,7 @@ function App() {
                <Switch>
                 {
                     routesList.map(item=>{
-                            return <Route exact={item.exact} key={item.path} {...item}></Route>
+                            return <Route key={item.path} {...item}></Route>
                     })
                 }
                 <Route to="*" component={Page404}></Route>

@@ -6,11 +6,18 @@ import ArticeList from '../pages/article-list';
 export default [
 
     {
+        path: '/',
+        component: Index,
+        exact:true
+    },
+    {
         path:'/index',
-        component:Index
+        component:Index,
+        exact: true
     },
     {
         path: '/article',
-        component: ArticeList
+        component: ArticeList,
+        exact: true
     }
 ]
