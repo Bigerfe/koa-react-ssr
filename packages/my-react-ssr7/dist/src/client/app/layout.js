@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _root = require("react-hot-loader/root");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
-
-var _reactRouter = require("react-router");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42,6 +42,6 @@ class Index extends _react.default.Component {
 } //带入路由信息
 
 
-var _default = (0, _reactRouter.withRouter)(Index);
+var _default = (0, _root.hot)(Index);
 
 exports.default = _default;

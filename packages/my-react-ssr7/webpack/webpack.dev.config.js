@@ -52,5 +52,10 @@ module.exports = {
             }
         ]
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [new webpack.HotModuleReplacementPlugin()],
+    resolve: {
+        alias: {
+        'react-dom': '@hot-loader/react-dom',
+        }
+  }
 }

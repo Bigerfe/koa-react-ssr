@@ -9,10 +9,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _reactRouter = require("react-router");
+var _root = require("react-hot-loader/root");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// src/client/app/layout.js
 class Index extends _react.default.Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,8 @@ class Index extends _react.default.Component {
     }, "\u5217\u8868\u9875"), this.props.children);
   }
 
-} //带入路由信息
+}
 
-
-var _default = (0, _reactRouter.withRouter)(Index);
+var _default = (0, _root.hot)(Index);
 
 exports.default = _default;

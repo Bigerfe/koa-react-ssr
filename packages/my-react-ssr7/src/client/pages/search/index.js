@@ -42,7 +42,7 @@ export default class Index extends React.Component {
                 <meta name="description" content="前端技术江湖,终身学习"/>
                   <meta name="keywords" content="前端技术江湖"/>
                 </Helmet>
-                <h2>搜索页面1</h2>
+                <h2>搜索页面3</h2>
             
                 <input type="text" value={this.state.text} onChange={this.textChangeHandler}/>
         

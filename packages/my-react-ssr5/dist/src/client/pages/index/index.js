@@ -75,7 +75,7 @@ class Index extends _react.default.Component {
         className: "item",
         key: index
       }, _react.default.createElement("h3", null, item.title), _react.default.createElement("p", null, item.desc));
-    }), !data && _react.default.createElement("div", null, "\u6682\u65E0\u6570\u636E"));
+    }), !data && _react.default.createElement("div", null, "\u6682\u65E0\u6570\u636E1212"));
   }
 
 }

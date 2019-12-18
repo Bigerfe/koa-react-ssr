@@ -7,7 +7,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import App from '../router/index';
 import { BrowserRouter} from 'react-router-dom';
-
 import Provider from './provider';
 
 function clientRender() {
@@ -22,6 +21,9 @@ function clientRender() {
         , document.getElementById('root'))
 
 }
+
+
+
 //渲染入口
 clientRender();
 
