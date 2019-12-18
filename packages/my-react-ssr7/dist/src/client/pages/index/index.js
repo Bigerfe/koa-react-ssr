@@ -72,13 +72,6 @@ class Index extends _react.default.Component {
           fetchData: res.fetchData,
           page: res.page
         });
-        let {
-          tdk
-        } = this.state.page;
-
-        if (tdk) {
-          document.title = tdk.title;
-        }
       });
     }
   }
@@ -91,7 +84,13 @@ class Index extends _react.default.Component {
     } = this.state.fetchData || {};
     return _react.default.createElement("div", {
       className: "index-content"
-    }, _react.default.createElement(_Title.default, null), _react.default.createElement("p", {
+    }, _react.default.createElement(_reactHelmet.Helmet, null, _react.default.createElement("title", null, "\u524D\u7AEF\u6280\u672F\u6C5F\u6E56"), _react.default.createElement("meta", {
+      name: "description",
+      content: "\u524D\u7AEF\u6280\u672F\u6C5F\u6E56,\u7EC8\u8EAB\u5B66\u4E60"
+    }), _react.default.createElement("meta", {
+      name: "keywords",
+      content: "\u524D\u7AEF\u6280\u672F\u6C5F\u6E56"
+    })), _react.default.createElement(_Title.default, null), _react.default.createElement("p", {
       className: "img"
     }), data && data.map((item, index) => {
       return _react.default.createElement("div", {

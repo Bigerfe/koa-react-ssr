@@ -21,6 +21,8 @@ var _provider = _interopRequireDefault(require("../../client/app/provider"));
 
 var _index = _interopRequireDefault(require("../../client/router/index"));
 
+var _reactHelmet = require("react-helmet");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // /src/server/middlewares/react-ssr.js
@@ -92,13 +94,15 @@ var _default = async (ctx, next) => {
     location: path,
     context: context
   }, _react.default.createElement(_index.default, null))));
+
+  const helmet = _reactHelmet.Helmet.renderStatic();
+
   ctx.body = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>${tdk.title}</title>
-    <meta name="keywords" content="${tdk.keywords}" />
-    <meta name="description" content="${tdk.description}" />
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
 </head>
 <body>
     <div id="root">
