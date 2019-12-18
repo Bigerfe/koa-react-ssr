@@ -54,7 +54,7 @@ class Index extends _react.default.Component {
     }), _react.default.createElement("meta", {
       name: "keywords",
       content: "\u524D\u7AEF\u6280\u672F\u6C5F\u6E56"
-    })), _react.default.createElement("h2", null, "\u641C\u7D22\u9875\u97623"), _react.default.createElement("input", {
+    })), _react.default.createElement("h2", null, "\u641C\u7D22\u9875\u9762"), _react.default.createElement("input", {
       type: "text",
       value: this.state.text,
       onChange: this.textChangeHandler

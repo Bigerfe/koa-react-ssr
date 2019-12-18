@@ -2,7 +2,7 @@
 
 使用react-hot-loader实现组件状态的保存
 
-服务运行
+服务启动
 
 ```
 npm i 
