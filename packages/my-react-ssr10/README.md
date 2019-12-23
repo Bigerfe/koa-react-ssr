@@ -6,7 +6,8 @@
 
 
 ```
-修改webpack 配置
+修改webpack.dev 配置
+合并为一个 css文件 
 服务端加载指定的css 文件
 ```
 
