@@ -17,6 +17,10 @@ var _Title = _interopRequireDefault(require("../../common/components/Title"));
 
 var _reactHelmet = require("react-helmet");
 
+var _withStyles = _interopRequireDefault(require("isomorphic-style-loader/withStyles"));
+
+var _index = _interopRequireDefault(require("./index.scss"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -25,14 +29,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//组件
+console.log('css', _index.default); //组件
+
 class Index extends _react.default.Component {
   constructor(props, context) {
-    super(props, context); //数据通过 context 传递到组件里
+    super(props, context);
+    console.log('index com'); //数据通过 context 传递到组件里
 
+    let initalData = context.initialData;
     this.state = {
-      page: context.page || {},
-      fetchData: context.fetchData
+      page: initalData.page || {},
+      fetchData: initalData.fetchData
     };
   } //得到 context 对象
 
@@ -91,7 +98,7 @@ class Index extends _react.default.Component {
       name: "keywords",
       content: "\u524D\u7AEF\u6280\u672F\u6C5F\u6E56"
     })), _react.default.createElement(_Title.default, null), _react.default.createElement("p", {
-      className: "img"
+      className: "contentimg"
     }), data && data.map((item, index) => {
       return _react.default.createElement("div", {
         className: "item",
@@ -100,9 +107,11 @@ class Index extends _react.default.Component {
     }), !data && _react.default.createElement("div", null, "\u6682\u65E0\u6570\u636E"));
   }
 
-}
+} //export default Index;
+
 
 _defineProperty(Index, "contextType", _rootContext.default);
 
-var _default = Index;
+var _default = (0, _withStyles.default)(_index.default)(Index);
+
 exports.default = _default;

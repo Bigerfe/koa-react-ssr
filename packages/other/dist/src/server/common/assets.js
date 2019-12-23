@@ -3,8 +3,6 @@
 //生产环境中 静态资源的处理
 module.exports = function () {
   let devHost = '//localhost:9002';
-  let jsScript = `<script type="text/javascript"  src="/index.js"></script>`;
-  let cssLink = ``;
   let prodJsFile = ['main.js', 'libs.js', 'common.js'];
   let prodCssFile = ['main.css'];
   const assets = {
@@ -15,7 +13,7 @@ module.exports = function () {
   if (!global.isProd()) {
     assets.js.push(`<script type="text/javascript"  src="${devHost}/index.js"></script>`);
   } else {
-    //导入 asset-manifest.json
+    //导入 asset-manifest.json 111dddfff
     const map = require('../asset-manifest.json');
 
     prodJsFile.forEach(item => {

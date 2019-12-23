@@ -11,6 +11,10 @@ var _reactRouterDom = require("react-router-dom");
 
 var _reactHelmet = require("react-helmet");
 
+var _index = _interopRequireDefault(require("./index.scss"));
+
+var _withStyles = _interopRequireDefault(require("isomorphic-style-loader/withStyles"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -63,4 +67,6 @@ class Index extends _react.default.Component {
 
 }
 
-exports.default = Index;
+var _default = (0, _withStyles.default)(_index.default)(Index);
+
+exports.default = _default;

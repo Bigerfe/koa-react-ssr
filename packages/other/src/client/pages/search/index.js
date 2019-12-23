@@ -3,8 +3,10 @@ import {
     Link
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import css from './index.scss';
+import withStyles from 'isomorphic-style-loader/withStyles'
 
-export default class Index extends React.Component {
+class Index extends React.Component {
         constructor(props) {
             super(props);
             this.state={
@@ -48,3 +50,5 @@ export default class Index extends React.Component {
             </div>
         }
 }
+
+export default withStyles(css)(Index);

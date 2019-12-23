@@ -9,19 +9,20 @@ import { Helmet } from 'react-helmet';
 
 import withStyles from 'isomorphic-style-loader/withStyles'
 
-import style from  './index.css';
+import css from  './index.scss';
 
-
+console.log('css',css);
 //组件
 class Index extends React.Component {
     constructor(props,context) {
         super(props,context);
+        console.log('index com');
         //数据通过 context 传递到组件里
+        let initalData = context.initialData;
         this.state={
-            page:context.page||{},
-            fetchData:context.fetchData
+            page: initalData.page||{},
+            fetchData: initalData.fetchData
         }
-        console.log(style._getCss());
     }
 
 
@@ -83,7 +84,7 @@ class Index extends React.Component {
                   <meta name="keywords" content="前端技术江湖"/>
                 </Helmet>
             <Title></Title>
-            <p className="img"></p>
+            <p className="contentimg"></p>
         {data && data.map((item,index)=>{
             return <div className="item" key={index}>
                 <h3>{item.title}</h3>
@@ -95,4 +96,5 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+//export default Index;
+export default withStyles(css)(Index);

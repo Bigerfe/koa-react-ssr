@@ -22,7 +22,7 @@ export default class Index extends React.Component {
 
     render() {
         //使用了 provider 可以让消费者订阅变化，从而重新渲染
-        return <RootContext.Provider value={this.props.initialData||{}}>
+        return <RootContext.Provider value={{ initialData: this.props.initialData||{},insertCss:this.props.insertCss||null}}>
             {this.props.children}
         </RootContext.Provider>
     }

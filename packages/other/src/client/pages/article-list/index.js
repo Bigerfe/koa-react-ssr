@@ -3,9 +3,10 @@ import {
     Link
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import css from './index.scss';
+import withStyles from 'isomorphic-style-loader/withStyles'
 
-
-export default class AticleList extends React.Component {
+class Index extends React.Component {
         constructor(props) {
             super(props);
         }
@@ -19,3 +20,5 @@ export default class AticleList extends React.Component {
             文章列表1</div>
         }
 }
+
+export default withStyles(css)(Index);

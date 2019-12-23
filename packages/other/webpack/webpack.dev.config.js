@@ -24,17 +24,15 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    {
-                        loader: "style-loader",
-                    },
+                    'isomorphic-style-loader',
                     {
                         loader: "css-loader",
                     },
                     {
-                        loader: "sass-loader"
+                        loader: "postcss-loader"
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "sass-loader"
                     }
                 ]
             },

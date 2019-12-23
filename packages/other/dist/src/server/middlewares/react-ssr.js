@@ -19,6 +19,8 @@ var _routeConfig = _interopRequireDefault(require("../../client/router/route-con
 
 var _provider = _interopRequireDefault(require("../../client/app/provider"));
 
+var _StyleContext = _interopRequireDefault(require("isomorphic-style-loader/StyleContext"));
+
 var _index = _interopRequireDefault(require("../../client/router/index"));
 
 var _reactHelmet = require("react-helmet");
@@ -30,6 +32,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //引入Index 组件
 //如果有 layout 组件，也需要一起转换为 html
 //自定义 provider 用来传递数据
+//css 同构的上下文
 const getAssets = require('../common/assets'); //根据请求 path 查找组件
 
 
@@ -92,12 +95,20 @@ var _default = async (ctx, next) => {
     tdk = page.tdk;
   }
 
+  const css = new Set(); // CSS for all rendered React components
+
+  const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()));
+
   const html = (0, _server.renderToString)(_react.default.createElement(_provider.default, {
     initialData: fetchResult || {}
+  }, _react.default.createElement(_StyleContext.default.Provider, {
+    value: {
+      insertCss
+    }
   }, _react.default.createElement(_reactRouter.StaticRouter, {
     location: path,
     context: context
-  }, _react.default.createElement(_index.default, null))));
+  }, _react.default.createElement(_index.default, null)))));
 
   const helmet = _reactHelmet.Helmet.renderStatic();
 
@@ -107,7 +118,7 @@ var _default = async (ctx, next) => {
     <meta charset="UTF-8">
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
-    ${assetsMap.css.join('')}
+   <style> ${[...css].join('')}</style>
 </head>
 <body>
     <div id="root">

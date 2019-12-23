@@ -22,7 +22,7 @@ log(chalk.red('build starting....'));
 
 
 //服务端代码编译：首次运行 将服务端代码批量编译
-crossSpawn.sync('npm', ['run', 'babel-node'], { stdio: 'inherit' });
+//crossSpawn.sync('npm', ['run', 'babel-node'], { stdio: 'inherit' });
 
 //监听服务端用到的文件
 serverFileWatchFn(restartServer);
@@ -32,6 +32,8 @@ serverFileWatchFn(restartServer);
 //spawn('npm', ['run', 'fe:watch'], { stdio: 'inherit' });
 
 spawn('npm', ['run', 'wds:start'], { stdio: 'inherit' });
+
+spawn('npm', ['run', 'server:watch'], { stdio: 'inherit' });
 
 
 //node server 监听并自动重启

@@ -9,7 +9,7 @@ process.env.BABEL_ENV = 'node';
 
 module.exports = {
     target:'node',
-    mode: 'development',
+    mode: 'production',
     entry: resolvePath('../src/server/app/index.js'),//入口文件
     output: {
         filename: 'app.js',
@@ -30,8 +30,18 @@ module.exports = {
                           options: {
                             importLoaders: 1
                         }
-                    },'sass-loader','postcss-loader'
+                    },'postcss-loader','sass-loader'
                 ]
+            },
+            {
+                test:/.(png|jpg|gif)$/,
+                use:{
+                    loader:'file-loader',
+                    options:{
+                        emitFile:false,
+                        publicPaht:'//9002/[name].[ext]'
+                    }
+                }
             }
         ]
     }

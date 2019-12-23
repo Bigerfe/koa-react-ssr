@@ -14,6 +14,9 @@ import routeList from '../../client/router/route-config';
 //自定义 provider 用来传递数据
 import Provider from '../../client/app/provider';
 
+//css 同构的上下文
+import StyleContext from 'isomorphic-style-loader/StyleContext'
+
 import App from '../../client/router/index';
 
 import { Helmet } from 'react-helmet';
@@ -79,10 +82,12 @@ export default  async (ctx,next)=>{
         tdk=page.tdk;
     }
    
-    const html = renderToString(<Provider initialData={fetchResult||{}}>
-        <StaticRouter location={path} context={context}><App></App></StaticRouter>
-    </Provider>);
+    const css = new Set() // CSS for all rendered React components
+    const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()));
 
+    const html = renderToString(<Provider initialData={fetchResult||{}}>
+        <StyleContext.Provider value={{ insertCss }} ><StaticRouter location={path} context={context}><App></App></StaticRouter></StyleContext.Provider>
+    </Provider>);
 
     const helmet = Helmet.renderStatic();
 
@@ -92,7 +97,7 @@ export default  async (ctx,next)=>{
     <meta charset="UTF-8">
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
-    ${assetsMap.css.join('')}
+   <style> ${[...css].join('')}</style>
 </head>
 <body>
     <div id="root">
