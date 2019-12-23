@@ -5,7 +5,7 @@ import BaseBundle from '../../../routes/route-base-bundle';
 //import LazyPageCom from '../index';
 
 const LazyPageCom = (props) => (
-    <BaseBundle {...props} load={() => import('../index')}>
+    <BaseBundle {...props} load={() => import(/*webpackChunkName:"chunk-detail"*/'../index')}>
         {(CompIndex) => <CompIndex {...props} />}
     </BaseBundle>
 );
