@@ -41,12 +41,8 @@ module.exports = {
             },
             {
                 test: /\.(sa|sc|c)ss$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: false
-                        }
-                    },
+                use: [
+                    'isomorphic-style-loader',
                     {
                         loader: "css-loader",
                     },
@@ -72,9 +68,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css'
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: 'css/[name].[contenthash:8].css'
+        // }),
         // 删除文件 保留新文件
         new CleanWebpackPlugin(),
         //生成 manifest 方便定位对应的资源文件
@@ -88,8 +84,8 @@ module.exports = {
             new UglifyJsPlugin({
                 uglifyOptions: {
                     compress: {
-                        drop_console: true,
-                        drop_debugger: true
+                        //drop_console: true,
+                        //drop_debugger: true
                     },
                     warnings: false,
                     ie8: true,
@@ -105,22 +101,22 @@ module.exports = {
         ],
         splitChunks: {
             cacheGroups: {
-                libs: { // 抽离第三方库
-                    test: /node_modules/, // 指定是node_modules下的第三方包
-                    chunks: 'initial',
-                    name: 'libs', // 打包后的文件名，任意命名    
-                    // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
-                    priority: -10
-                },
-                commons: { // 抽离业务中的公共代码
-                    chunks: 'initial',
-                    test: /\.jsx?$/,
-                    name: 'commons', // 任意命名
-                    minSize: 0, // 只要超出0字节就生成一个新包
-                    minChunks: 2,
-                    priority: 5,
-                    reuseExistingChunk: true
-                }
+                // libs: { // 抽离第三方库
+                //     test: /node_modules/, // 指定是node_modules下的第三方包
+                //     chunks: 'initial',
+                //     name: 'libs', // 打包后的文件名，任意命名    
+                //     // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                //     priority: -10
+                // },
+                // commons: { // 抽离业务中的公共代码
+                //     chunks: 'initial',
+                //     test: /\.jsx?$/,
+                //     name: 'commons', // 任意命名
+                //     minSize: 0, // 只要超出0字节就生成一个新包
+                //     minChunks: 2,
+                //     priority: 5,
+                //     reuseExistingChunk: true
+                // }
             }
         }
     }

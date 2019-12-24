@@ -37,6 +37,7 @@ class Index extends React.Component {
         }
 
         render() {
+            console.log('render seach');
             return <div className="search-page">
                <Helmet>
                 <title>搜索页</title>

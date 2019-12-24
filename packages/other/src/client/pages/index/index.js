@@ -12,11 +12,15 @@ import withStyles from 'isomorphic-style-loader/withStyles'
 import css from  './index.scss';
 
 console.log('css',css);
+
+
 //组件
 class Index extends React.Component {
     constructor(props,context) {
         super(props,context);
         console.log('index com');
+        console.log('css', css._getContent());
+
         //数据通过 context 传递到组件里
         let initalData = context.initialData;
         this.state={
@@ -74,7 +78,7 @@ class Index extends React.Component {
 
     render() {
         //渲染数据
-
+        console.log('render index');
         const {code,data}=this.state.fetchData||{};
         
         return <div className="index-content">

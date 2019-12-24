@@ -6,7 +6,7 @@ module.exports = function () {
     let devHost = '//localhost:9002';
 
 
-    let prodJsFile = ['main.js', 'libs.js', 'common.js'];
+    let prodJsFile = ['libs.js', 'main.js',  'common.js'];
     let prodCssFile = ['main.css'];
 
     const assets = {
@@ -24,8 +24,7 @@ module.exports = function () {
         });
         prodCssFile.forEach(item => {
             if(map[item])
-                assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}">
-`)
+                assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}">`)
         });
     }
 

@@ -21,7 +21,7 @@ function clientRender() {
 
     //渲染index 组件1
     ReactDom.hydrate(<BrowserRouter>
-        <Provider initialData={data} insertCss={insertCss}>
+        <Provider initialData={data}>
             <StyleContext.Provider value={{ insertCss }}>
             <App />
             </StyleContext.Provider>
