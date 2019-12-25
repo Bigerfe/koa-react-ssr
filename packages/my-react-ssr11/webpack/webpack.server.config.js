@@ -38,7 +38,8 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     emitFile: false,
-                    name: 'img/[name].[hash:8].[ext]'
+                    name: 'img/[name].[hash:8].[ext]',
+                    publicPath: '/'
                 }
             }
         }

@@ -84,6 +84,13 @@ class Index extends React.Component {
                   <meta name="keywords" content="前端技术江湖"/>
                 </Helmet>
             <Title></Title>
+
+            <Title></Title>
+
+            <Title></Title>
+
+            <Title></Title>
+            
             <p className="img"></p>
         {data && data.map((item,index)=>{
             return <div className="item" key={index}>
