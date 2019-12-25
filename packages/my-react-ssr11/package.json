@@ -14,8 +14,7 @@
     "svr01:watch": "node ./webpack/scripts/server-file-watch.js",
     "svr:watch": "node ./webpack/scripts/svr-code-watch",
     "svr:watch1": "BABEL_ENV=node webpack --config ./webpack/webpack.server.config.js --mode=development --watch",
-    "svr:build": "BABEL_ENV=node webpack --config ./webpack/webpack.server.config.js --mode=production",
-    "t":"node ./webpack/scripts/t.js"
+    "svr:build": "BABEL_ENV=node webpack --config ./webpack/webpack.server.config.js --mode=production"
   },
   "author": "",
   "license": "ISC",

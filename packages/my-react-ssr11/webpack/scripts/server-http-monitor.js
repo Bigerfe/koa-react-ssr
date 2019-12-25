@@ -23,7 +23,6 @@ function nodeHttpMonitor(options) {
    
     if (child) {//启动前杀掉进程
         child.kill();
-        log(chalk.red('node server is killed.'));
         log(chalk.green('node server is started.'))
     }
 
@@ -35,8 +34,6 @@ function run(options) {
     child = spawn('node', options);
     child.stdout.on('data', print);
     child.stderr.on('data', print);
-    process.stdin.pipe(child.stdin);
-
     return child;
 }
 
@@ -50,7 +47,6 @@ function print(data) {
 function restartServer() {
     if (child) {
         child.kill();
-        log(chalk.red('node server is killed.'));
         log(chalk.green('node server is started.'))
     }
     run(globalStr);
