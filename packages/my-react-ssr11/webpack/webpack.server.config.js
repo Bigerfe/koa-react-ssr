@@ -7,6 +7,8 @@ const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
 
 process.env.BABEL_ENV = 'node';
 
+const isProd=process.env.NODE_ENV==='production';
+
 module.exports = {
     target: 'node',
     entry: resolvePath('../src/server/app/index.js'),//入口文件
@@ -38,8 +40,8 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     emitFile: false,
-                    name: 'img/[name].[hash:8].[ext]',
-                    publicPath: '/'
+                    name: isProd ? 'img/[name].[hash:8].[ext]' : 'img/[name].[ext]',
+                    publicPath: isProd ? '/' : 'http://localhost:9002/'
                 }
             }
         }

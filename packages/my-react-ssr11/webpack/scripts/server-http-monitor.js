@@ -20,6 +20,13 @@ function nodeHttpMonitor(options) {
         print('need options nodeMonitor([\'./app.js\'])');
         process.exit(0);
     }
+   
+    if (child) {//启动前杀掉进程
+        child.kill();
+        log(chalk.red('node server is killed.'));
+        log(chalk.green('node server is started.'))
+    }
+
     globalStr = options;
     return run(options);
 }

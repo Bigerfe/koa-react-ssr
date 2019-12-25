@@ -46,3 +46,11 @@ function runWdsServer() {
 
 
 runWdsServer();
+
+
+//收到退出信号 退出自身进程
+process.stdin.on('data', function (data) {
+    if (data.toString() === 'exit') {
+        process.exit();
+    }
+});

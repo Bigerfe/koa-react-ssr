@@ -24,33 +24,30 @@ module.exports = {
             },
             {
                 test: /\.(sa|sc|c)ss$/,
-                use: [
-                   'isomorphic-style-loader',
+                use: ['isomorphic-style-loader',
                     {
                         loader: "css-loader",
-                    },
-                    {
-                        loader: "sass-loader"
-                    },
-                    {
-                        loader: "postcss-loader"
-                    }
+                        options: {
+                            importLoaders: 2
+                        }
+                    }, 'postcss-loader', 'sass-loader'
                 ]
             },
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
                             name:'img/[name].[ext]',
+                            publicPath: 'http://localhost:9002/'
                         }
                     }
                 ]
             }
         ]
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.HashedModuleIdsPlugin()],
     optimization: {
         splitChunks: {
             cacheGroups: {

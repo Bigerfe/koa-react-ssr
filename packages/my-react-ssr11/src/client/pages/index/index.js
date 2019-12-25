@@ -68,29 +68,18 @@ class Index extends React.Component {
 
             })
         }
-       
-      
     }
-
-    render() {
+        render() {
         //渲染数据
-
         const {code,data}=this.state.fetchData||{};
-        
+        //console
         return <div className="index-content">
                 <Helmet>
                 <title>前端技术江湖</title>
                 <meta name="description" content="前端技术江湖,终身学习"/>
                   <meta name="keywords" content="前端技术江湖"/>
                 </Helmet>
-            <Title></Title>
-
-            <Title></Title>
-
-            <Title></Title>
-
-            <Title></Title>
-            
+            <Title></Title> <Title></Title> <Title></Title>
             <p className="img"></p>
         {data && data.map((item,index)=>{
             return <div className="item" key={index}>
