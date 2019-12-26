@@ -17,8 +17,8 @@ function clientRender() {
     let data =JSON.parse( document.getElementById('ssrTextInitData').value);
 
      const insertCss = (...styles) => {
-        const removeCss = styles.map(style => style._insertCss())
-        return () => removeCss.forEach(dispose => dispose())
+        const removeCss = styles.map(style => style._insertCss());//客户端执行，插入style
+        return () => removeCss.forEach(dispose => dispose());//组件卸载时 移除当前的 style 标签
     }
 
     //渲染index 组件1
@@ -53,3 +53,5 @@ render();
 if (module.hot) {
     module.hot.accept();
 }
+
+console.log('modle.hot',module.hot);
