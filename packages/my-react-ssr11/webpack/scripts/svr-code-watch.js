@@ -3,11 +3,8 @@
 //配置文件为 webpack.server.config.js
 
 const webpack  = require('webpack');
-
 const config =  require('../webpack.server.config');
-
 const constantCode = require('./constant');
-
 config.mode='development';//设置编译模式
 
 
@@ -23,25 +20,35 @@ const watching = compiler.watch({
    
     let json = stats.toJson("minimal");
     if(json.errors){
-        console.log('svr code 编译出错数量', json.errors.length);
         json.errors.forEach(item => {
             console.log(item);
         });
     }
     if (json.warnings) {
-        console.log('svr code 编译警告数量', json.warnings.length);
         json.warnings.forEach(item => {
             console.log(item);
         });
     }
-    //console.log(json);
 
     //编译完成后 通知主进程来重启node 服务
     console.log(constantCode.SVRCODECOMPLETED);
-    console.log('svr code compile callback invoke');
-
 });
 
+compiler.hooks.done.tap('done',function (data) {
+    console.log('\n svr code done' ); //编译完成的时候  可以监听每次的监听
+});
+
+// compiler.hooks.watchRun.tap('watchRun', function (data) {
+//     console.log('svr code watch done');//有新的编译的时候
+// });
+
+
+
+// afterEmit
+
+// done
+
+// failed
 
 //收到退出信号 退出自身进程
 process.stdin.on('data', function (data) {

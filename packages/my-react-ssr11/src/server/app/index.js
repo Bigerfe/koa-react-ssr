@@ -24,4 +24,4 @@ const port = process.env.PROT || proConfig.nodeServerPort;
 //启动服务
 app.listen(port);
 
-console.log('node server is start ', port, 'env is ', global.isProd() ? 'prod' : 'dev');
+console.log( '\n port is ',port, ' , node server is ready', ',current env is ', global.isProd() ? 'prod' : 'dev');
