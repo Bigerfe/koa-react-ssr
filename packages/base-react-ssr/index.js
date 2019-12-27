@@ -12,7 +12,7 @@ class Index extends React.Component {
     }
 
     render() {
-        return <div>click here!</div>
+        return <h1>hello react ssr!</h1>
     }
 }
 
@@ -28,7 +28,7 @@ http.createServer((req, res) => {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>my react ssr</title>
+    <title>React SSR</title>
 </head>
 <body>
     <div id="root">

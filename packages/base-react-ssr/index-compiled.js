@@ -13,7 +13,7 @@ class Index extends React.Component {
   }
 
   render() {
-    return React.createElement("div", null, "click here!");
+    return React.createElement("div", null, "hello react ssr!");
   }
 
 } //服务
@@ -28,7 +28,7 @@ http.createServer((req, res) => {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>my react ssr</title>
+    <title>React SSR</title>
 </head>
 <body>
     <div id="root">

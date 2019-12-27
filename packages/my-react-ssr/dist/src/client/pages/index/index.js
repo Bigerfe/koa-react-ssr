@@ -42,15 +42,14 @@ function (_React$Component) {
   _createClass(Index, [{
     key: "handlerClick",
     value: function handlerClick() {
-      alert('一起来玩 react 服务端渲染啊');
+      alert('一起来玩 react ssr 呀');
     }
   }, {
     key: "render",
     value: function render() {
-      var str = 'click here!';
-      return _react.default.createElement("div", {
+      return _react.default.createElement("h1", {
         onClick: this.handlerClick
-      }, str);
+      }, "hello react ssr!");
     }
   }]);
 
