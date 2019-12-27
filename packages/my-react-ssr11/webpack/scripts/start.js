@@ -16,10 +16,11 @@ const webpack=require('webpack');
 const {spawn} = require('child_process');//用于创建子进程
 const constantCode = require('./constant');
 const chalk = require('chalk');
-const freePort= require('./free-port');
 const log = console.log;
+const proConfig  = require('../../src/share/pro-config');
 
-const nodeServerPort = 9001;
+//node server port
+const nodeServerPort = proConfig.nodeServerPort;
 
 log(chalk.red('servers starting....'));
 

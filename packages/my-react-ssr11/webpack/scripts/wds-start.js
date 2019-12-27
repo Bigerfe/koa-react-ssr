@@ -4,10 +4,14 @@ const webpack = require('webpack');
 const freePort = require('./free-port');
 const WebpackDevServer = require('webpack-dev-server');
 const open = require('./open-browser');
+const proConfig = require('../../src/share/pro-config');
+
+
 let compilationTime=0;//编译次数
 
-//释放端口
-freePort(9002);
+
+//释放wds端口
+freePort(proConfig.wdsPort);
 
 //webapck dev 环境配置
 const clientConfig = require('../webpack.dev.config');

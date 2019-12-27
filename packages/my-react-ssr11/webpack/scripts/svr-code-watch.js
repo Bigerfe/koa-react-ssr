@@ -5,6 +5,7 @@
 const webpack  = require('webpack');
 const config =  require('../webpack.server.config');
 const constantCode = require('./constant');
+
 config.mode='development';//设置编译模式
 
 
@@ -38,17 +39,6 @@ compiler.hooks.done.tap('done',function (data) {
     console.log('\n svr code done' ); //编译完成的时候  可以监听每次的监听
 });
 
-// compiler.hooks.watchRun.tap('watchRun', function (data) {
-//     console.log('svr code watch done');//有新的编译的时候
-// });
-
-
-
-// afterEmit
-
-// done
-
-// failed
 
 //收到退出信号 退出自身进程
 process.stdin.on('data', function (data) {
