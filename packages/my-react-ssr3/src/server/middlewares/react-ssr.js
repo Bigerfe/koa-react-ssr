@@ -31,7 +31,6 @@ const findRouteByPath=(opt)=>{
 
 export default  async (ctx,next)=>{
 
-
     const path = ctx.request.path;
 
     if(path.indexOf('.')>-1){
@@ -40,7 +39,6 @@ export default  async (ctx,next)=>{
     }
 
     console.log('ctx.request.path', ctx.request.path);
-
 
     let Component = findRouteByPath({
         path
@@ -64,12 +62,8 @@ export default  async (ctx,next)=>{
     let context={};
 
     const html = renderToString(<Provider initialData={fetchResult}>
-        <StaticRouter location={path} context={context}><App></App></StaticRouter>
+        <StaticRouter location={path} context={context}><App routeList={routeList}></App></StaticRouter>
     </Provider>);
-
-    console.log(context);
-
-    //console.log(html);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">

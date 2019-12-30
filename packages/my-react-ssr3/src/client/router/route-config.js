@@ -1,16 +1,22 @@
 //路由配置文件
 
 import Index from '../pages/index';
-import ArticeList from '../pages/article-list';
+import List from '../pages/list';
 
 export default [
-
     {
-        path:'/index',
-        component:Index
+        path: '/',
+        component: Index,
+        exact:true
     },
     {
-        path: '/article',
-        component: ArticeList
+        path:'/index',
+        component:Index,
+        exact: true
+    },
+    {
+        path: '/list',
+        component: List,
+        exact: true
     }
 ]

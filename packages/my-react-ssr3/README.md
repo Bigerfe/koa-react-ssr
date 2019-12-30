@@ -1,4 +1,4 @@
-# react ssr 数据同构
+# react ssr 实现数据同构
 
 服务运行
 

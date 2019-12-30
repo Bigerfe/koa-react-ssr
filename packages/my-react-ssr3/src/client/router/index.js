@@ -3,7 +3,6 @@
 
 
 import Layout from '../app/layout';
-import routesList  from './route-config';
 
 import React  from 'react';
 import { Route, Switch, BrowserRouter,Redirect } from 'react-router-dom';
@@ -12,12 +11,12 @@ function Page404() {
     return <div>404拉 </div>
 }
 
-function App() {
+function App({routeList}) {
     return (
             <Layout> 
                <Switch>
                 {
-                    routesList.map(item=>{
+                    routeList.map(item=>{
                             return <Route key={item.path} {...item}></Route>
                     })
                 }

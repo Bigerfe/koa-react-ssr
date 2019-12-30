@@ -10,7 +10,7 @@ import {withRouter} from 'react-router';
     render(){
     return  <div>
         <NavLink to="/index" style={{ marginLeft: "10px" }} >首页</NavLink>   
-        <NavLink style={{ marginLeft: "10px" }} onClick={this.click}  to="/article">列表页</NavLink>
+        <NavLink style={{ marginLeft: "10px" }} to="/list">列表页</NavLink>
       {this.props.children} 
         </div>
     }

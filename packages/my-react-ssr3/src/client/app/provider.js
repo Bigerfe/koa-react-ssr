@@ -5,8 +5,6 @@
 import React,{createContext} from 'react';
 import RootContext from './root-context';
 
-
-
 export default class Index extends React.Component {
     constructor(props,context) {
         super(props);
