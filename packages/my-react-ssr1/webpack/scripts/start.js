@@ -3,29 +3,79 @@
 //包括以下功能----
 //服务端代码的首次编译 
 //文件的监听
-//前端代码的打包和 watcht
+//前端代码的打包和 watch
 //node服务的启动
 
-require('./free-port');
 
-const serverFileWatchFn = require('./server-file-watch');
-const { nodeHttpMonitor, restartServer} = require('./server-http-monitor');
-const webapckDevConfig = require('../webpack.dev.config');
-const webpack=require('webpack');
-const spawn = require('child_process').spawn;
-const chalk = require('chalk');
+
+//服务度代码编译完成后 启动node 服务
+//服务代码每次编译后，重启node 服务
+
+
+const {spawn} = require('child_process');//用于创建子进程
+const constantCode = require('./constant');
+const chalk = require('chalk');//为控制台输出的信息增加点色彩
 const log = console.log;
+const proConfig  = require('../../src/share/pro-config');
 
-log(chalk.red('build server is running....'));
-
-
-//服务端代码编译：首次运行 将服务端代码批量编译
-spawn('npm', ['run', 'babel-node'], { stdio: 'inherit' });
-
-serverFileWatchFn(restartServer);
-
-nodeHttpMonitor(['app.js']);
-
-spawn('npm', ['run', 'fe:watch'], { stdio: 'inherit' });
+//node server port
+const nodeServerPort = proConfig.nodeServerPort;
 
 
+log(chalk.red('servers starting....'));
+
+
+
+//前端代码构建 服务进程
+const feCodeWatchProcess = spawn('npm', ['run', 'fe:watch'],{stdio:'inherit'});
+
+//服务端代码监控和编译进程
+const svrCodeWatchProcess = spawn('npm', ['run', 'svr:watch']);
+
+//node 服务进程
+let nodeServerProcess=null;
+//启动 node 服务
+const startNodeServer = () => { //重启 node 服务 
+    nodeServerProcess && nodeServerProcess.kill();
+    nodeServerProcess = spawn('node',['./webpack/scripts/svr-dev-server.js']);
+    nodeServerProcess.stdout.on('data', print);
+}
+
+//控制台输出信息
+function print(data) {
+    let str = data.toString();
+    if (str.indexOf(constantCode.SVRCODECOMPLETED) > -1) { //服务端代码编译完成
+        startNodeServer();//重启 node 服务
+    } else {
+        console.log(str);
+    }
+}
+
+//监听服务端代码构建服务的对外输出  stdout 事件
+svrCodeWatchProcess.stdout.on('data',print);
+
+//杀掉子进程
+const killChild=()=>{
+    svrCodeWatchProcess && svrCodeWatchProcess.kill();
+    nodeServerProcess && nodeServerProcess.kill();
+    feCodeWatchProcess && feCodeWatchProcess.kill();
+}
+
+//主进程关闭退出子进程
+process.on('close', (code) => {
+    console.log('main process  close', code);
+    killChild();
+});
+//主进程关闭退出子进程
+process.on('exit', (code) => {
+    console.log('main process  exit', code);
+    killChild();
+});
+
+//非正常退出情况
+process.on('SIGINT', function () {
+    svrCodeWatchProcess.stdin.write('exit', (error) => {
+        console.log('svr code watcher process exit!');
+    });
+    killChild();
+});

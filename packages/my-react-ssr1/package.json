@@ -4,12 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node webpack/scripts/start.js",
-    "start0": "npm run babel-node &&  npm-run-all --parallel fe:watch svr:watch node:server",
-    "fe:watch": "BABEL_ENV=development webpack --config ./webpack/webpack.dev.config.js --watch",
-    "babel-node": "BABEL_ENV=node babel  src -d dist/src",
-    "svr:watch": "node ./webpack/scripts/server-file-watch.js",
-    "node:server": "supervisor ./dist/src"
+    "dev": "node webpack/scripts/start.js",
+    "fe:watch": "webpack --config  ./webpack/webpack.dev.config.js --watch",
+    "svr:watch": "node ./webpack/scripts/svr-code-watch.js"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +24,8 @@
     "react-dom": "^16.12.0",
     "supervisor": "^0.12.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2",
+    "xl_close_port": "^1.0.1"
   }
 }

@@ -13,6 +13,7 @@ app.use(koaStatic(
         path.join(__dirname, './dist/static')
 ));
 
+console.log( path.join(__dirname, './dist/static'));
 
 //ssr 中间件
 app.use(reactSsr);

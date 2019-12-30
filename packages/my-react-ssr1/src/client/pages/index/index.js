@@ -9,11 +9,11 @@ export default class Index extends React.Component {
         super(props);
     }
     handlerClick(){
-        alert('一起来玩 react 服务端渲染');
+        alert('一起来玩 react 服务端渲染..');
     }
 
     render() {
-        const str='click here!1122';
+        const str='hello,world..';
         return <div onClick={this.handlerClick}>{str}</div>
     }
 }
