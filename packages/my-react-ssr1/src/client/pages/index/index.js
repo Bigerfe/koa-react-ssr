@@ -13,7 +13,7 @@ export default class Index extends React.Component {
     }
 
     render() {
-        const str='hello,world..';
+        const str='hello,world.';
         return <div onClick={this.handlerClick}>{str}</div>
     }
 }
