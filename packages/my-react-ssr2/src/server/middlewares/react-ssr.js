@@ -4,13 +4,9 @@
 //引入Index 组件
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-
 import { StaticRouter, Route} from 'react-router';
-
-
+import routeList from '../../client/router/route-config';
 import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
-
-
 import App from '../../client/router/index';
 
 export default  (ctx,next)=>{
@@ -21,9 +17,7 @@ export default  (ctx,next)=>{
 
     let context={};
 
-    const html = renderToString(<StaticRouter location={path} context={context}><App></App></StaticRouter>);
-
-    console.log(html);
+    const html = renderToString(<StaticRouter location={path} context={context}><App routeList={routeList}></App></StaticRouter>);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
