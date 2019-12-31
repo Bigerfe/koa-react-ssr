@@ -1,20 +1,17 @@
-//src/client/pages/index/index.js
+//src/client/pages/list/index.js
 //index 组件
-import './index.scss';
-import React,{useContext} from 'react';
+
+import React from 'react';
 import {Link} from 'react-router-dom';
 import RootContext from '../../app/root-context';
+
 import tempData from './data';
-import Title from '../../common/components/Title';
-import { Helmet } from 'react-helmet';
-
-
-
 //组件
-class Index extends React.Component {
+export default class Index extends React.Component {
     constructor(props,context) {
         super(props,context);
-        //数据通过 context 传递到组件里
+        console.log('list props',props);
+        //context即为服务端返回的数据，数据通过 context 传递到组件里
         this.state={
             page:context.page||{},
             fetchData:context.fetchData
@@ -44,7 +41,7 @@ class Index extends React.Component {
             fetchData:res,
             page:{
                 tdk:{
-                    title:'首页',
+                    title:'列表页',
                     keywords:'前端技术江湖',
                     description:'前端技术江湖'
                 }
@@ -53,7 +50,7 @@ class Index extends React.Component {
     }
 
     componentDidMount(){
-        if (!this.state.fetchData){
+       if (!this.state.fetchData){
             //如果没有数据，则进行数据请求
             Index.getInitialProps().then(res=>{
                 this.setState({
@@ -69,7 +66,6 @@ class Index extends React.Component {
             })
         }
        
-      
     }
 
     render() {
@@ -77,11 +73,9 @@ class Index extends React.Component {
 
         const {code,data}=this.state.fetchData||{};
         
-        return <div className="index-content">
-            <Title></Title>
-            <p className="img"></p>
+        return <div>
         {data && data.map((item,index)=>{
-            return <div className="item" key={index}>
+            return <div key={index}>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
             </div>
@@ -90,5 +84,3 @@ class Index extends React.Component {
         </div>
     }
 }
-
-export default Index;
