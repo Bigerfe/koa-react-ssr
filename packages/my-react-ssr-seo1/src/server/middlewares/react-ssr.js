@@ -62,7 +62,7 @@ export default  async (ctx,next)=>{
     let context={};
 
     let { page } = fetchResult || {};
-    
+
     let tdk = {
         title: '默认标题 - my react ssr',
         keywords: '默认关键词',
@@ -72,9 +72,13 @@ export default  async (ctx,next)=>{
         tdk=page.tdk;
     }
 
+    const props = {
+        routeList,
+        isOnServer:true
+    }
 
     const html = renderToString(<Provider initialData={fetchResult}>
-        <StaticRouter location={path} context={context}><App routeList={routeList}></App></StaticRouter>
+        <StaticRouter location={path} context={context}><Layout><Component initialData={fetchResult} /></Layout></StaticRouter>
     </Provider>);
 
     ctx.body=`<!DOCTYPE html>

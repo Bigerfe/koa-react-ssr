@@ -14,10 +14,14 @@ import Provider from './provider';
 function clientRender() {
     let data =JSON.parse( document.getElementById('ssrTextInitData').value);
 
-    //渲染index 组件1
+    const props = {
+        routeList,
+        isOnServer:false
+    }
+    //渲染组件到页面
     ReactDom.hydrate(<BrowserRouter>
         <Provider initialData={data}>
-            <App routeList={routeList}/>
+            <App {...props}/>
         </Provider>
     </BrowserRouter>
         , document.getElementById('root'))

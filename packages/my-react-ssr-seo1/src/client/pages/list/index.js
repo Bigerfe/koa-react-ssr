@@ -3,23 +3,13 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom';
-import RootContext from '../../app/root-context';
 
 import tempData from './data';
 //组件
 export default class Index extends React.Component {
-    constructor(props,context) {
-        super(props,context);
-        console.log('list props',props);
-        //context即为服务端返回的数据，数据通过 context 传递到组件里
-        this.state={
-            page:context.page||{},
-            fetchData:context.fetchData
-        }
+    constructor(props) {
+        super(props);
     }
-
-    //得到 context 对象
-    static contextType = RootContext;
 
     static async  getInitialProps() {
         console.log('fetch data');
@@ -49,30 +39,10 @@ export default class Index extends React.Component {
         }
     }
 
-    componentDidMount(){
-       if (!this.state.fetchData){
-            //如果没有数据，则进行数据请求
-            Index.getInitialProps().then(res=>{
-                this.setState({
-                    fetchData:res.fetchData,
-                    page:res.page
-                });
-
-                let { tdk } = this.state.page;
-                if (tdk) {
-                    document.title = tdk.title;
-                }
-
-            })
-        }
-       
-    }
-
     render() {
         //渲染数据
+        const { code, data } = this.props.initialData.fetchData ? this.props.initialData.fetchData:{} ;
 
-        const {code,data}=this.state.fetchData||{};
-        
         return <div>
         {data && data.map((item,index)=>{
             return <div key={index}>
