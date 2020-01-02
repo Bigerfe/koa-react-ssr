@@ -3,7 +3,6 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom';
-import RootContext from '../../app/root-context';
 
 import tempData from './data';
 import { EPROTONOSUPPORT } from 'constants';
@@ -11,11 +10,12 @@ import { EPROTONOSUPPORT } from 'constants';
 export default class Index extends React.Component {
     constructor(props) {
         super(props);        
-        this.state=props.initialData||{};//context即为服务端返回的数据，初始化 state.用于 render 方法内进行渲染
+        const initData = props.initialData || {};
+        this.state={
+            page:initData.page,
+            fetchData:initData.fetchData
+        }    
     }
-
-    //得到 context 对象
-    static contextType = RootContext;
 
     static async  getInitialProps() {
         console.log('fetch data');
@@ -33,24 +33,39 @@ export default class Index extends React.Component {
 
         let res = await fetchData();
 
-        return res;
+        return {
+            fetchData:res,
+            page:{
+                tdk:{
+                    title:'列表页 - react ssr',
+                    keywords:'前端技术江湖',
+                    description:'关键词'
+                }
+            }
+        };
     }
 
     componentDidMount(){
-        if(!this.state.data){
+        if(!this.state.fetchData){
             //如果没有数据，则进行数据请求
             Index.getInitialProps().then(res=>{
                 this.setState({
-                    data:res.data||[]
-                })
+                    fetchData:res.fetchData||[],
+                    page:res.page
+                });
+                
+                document.title = res.page.tdk.title;
             })
+        }
+        if(this.state.page && this.state.page.tdk){
+            document.title = this.state.page.tdk.title;
         }
     }
 
     render() {
         //渲染数据
 
-        const {code,data}=this.state;
+        const {code,data}=this.state.fetchData||{};
         
         return <div>
         {data && data.map((item,index)=>{

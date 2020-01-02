@@ -27,7 +27,7 @@ export default  async (ctx,next)=>{
         return next();
     }
 
-    console.log('ctx.request.path', ctx.request.path);
+    console.log('ctx.request.path.', ctx.request.path);
 
     //查找到的目标路由对象
     let targetRoute = matchRoute(path,routeList);
@@ -37,13 +37,6 @@ export default  async (ctx,next)=>{
     let fetchResult = {};
     if(fetchDataFn){
         fetchResult = await fetchDataFn();
-        //设置初始化数据，渲染时会作为属性传递给组件
-        targetRoute.initialData = fetchResult;
-    }
-
-    //渲染的路由和数据
-    const props = {
-        routeList
     }
 
     const html = renderToString(<StaticRouter><Layout>
