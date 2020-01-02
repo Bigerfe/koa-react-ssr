@@ -6,11 +6,12 @@ import {Link} from 'react-router-dom';
 import RootContext from '../../app/root-context';
 
 import tempData from './data';
+import { EPROTONOSUPPORT } from 'constants';
 //组件
 export default class Index extends React.Component {
-    constructor(props,context) {
-        super(props,context);
-        this.state=context;//context即为服务端返回的数据，初始化 state.用于 render 方法内进行渲染
+    constructor(props) {
+        super(props);        
+        this.state=props.initialData||{};//context即为服务端返回的数据，初始化 state.用于 render 方法内进行渲染
     }
 
     //得到 context 对象

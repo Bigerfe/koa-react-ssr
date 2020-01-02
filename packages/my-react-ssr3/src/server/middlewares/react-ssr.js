@@ -14,20 +14,9 @@ import routeList from '../../client/router/route-config';
 //自定义 provider 用来传递数据
 import Provider from '../../client/app/provider';
 
-import App from '../../client/router/index';
+import matchRoute from '../../share/match-route';
 
-//根据请求 path 查找组件
-const findRouteByPath=(opt)=>{
-    let {path} = opt;
-    let Component;
-    for(var item of routeList){
-       if(matchPath(path,item)){
-        Component = item.component;
-        break;
-       }
-    }
-    return Component;
-}
+import App from '../../client/router/index';
 
 export default  async (ctx,next)=>{
 
@@ -40,30 +29,26 @@ export default  async (ctx,next)=>{
 
     console.log('ctx.request.path', ctx.request.path);
 
-    let Component = findRouteByPath({
-        path
-    });
-
-    if (!Component){
-        Component = function Not() {
-            return <div>404</div>
-        }
-    }
+    //查找到的目标路由对象
+    let targetRoute = matchRoute(path,routeList);
 
     //得到数据
-    let fetchDataFn = Component.getInitialProps;
+    let fetchDataFn = targetRoute.component.getInitialProps;
     let fetchResult = {};
     if(fetchDataFn){
         fetchResult = await fetchDataFn();
+        //设置初始化数据，渲染时会作为属性传递给组件
+        targetRoute.initialData = fetchResult;
     }
 
-    //数据传入组件，通过react context 特性传入
+    //渲染的路由和数据
+    const props = {
+        routeList
+    }
 
-    let context={};
-
-    const html = renderToString(<Provider initialData={fetchResult}>
-        <StaticRouter location={path} context={context}><App routeList={routeList}></App></StaticRouter>
-    </Provider>);
+    const html = renderToString(<StaticRouter><Layout>
+        <targetRoute.component initialData={fetchResult} ></targetRoute.component></Layout>
+        </StaticRouter>);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
