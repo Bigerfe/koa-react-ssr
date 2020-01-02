@@ -8,22 +8,21 @@ import ReactDom from 'react-dom';
 import App from '../router/index';
 import { BrowserRouter} from 'react-router-dom';
 import routeList from '../router/route-config';
-import matchRoute from '../../share/match-route';
+
 import Provider from './provider';
 
 function clientRender() {
-    
-    let initialData =JSON.parse( document.getElementById('ssrTextInitData').value);
+    let data =JSON.parse( document.getElementById('ssrTextInitData').value);
 
-    //查找路由
-    let route = matchRoute(document.location.pathname,routeList);
-
-    //设置组件初始化数据
-    route.initialData = initialData;
-
-    //渲染index
+    const props = {
+        routeList,
+        isOnServer:false
+    }
+    //渲染组件到页面
     ReactDom.hydrate(<BrowserRouter>
-            <App routeList={routeList}/>
+        <Provider initialData={data}>
+            <App {...props}/>
+        </Provider>
     </BrowserRouter>
         , document.getElementById('root'))
 

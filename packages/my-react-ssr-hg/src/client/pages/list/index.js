@@ -5,17 +5,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import tempData from './data';
-import { Helmet } from 'react-helmet';
-
 //组件
 export default class Index extends React.Component {
     constructor(props) {
-        super(props);        
-        const initData = props.initialData || {};
-        this.state={
-            page:initData.page,
-            fetchData:initData.fetchData
-        }    
+        super(props);
     }
 
     static async  getInitialProps() {
@@ -38,41 +31,19 @@ export default class Index extends React.Component {
             fetchData:res,
             page:{
                 tdk:{
-                    title:'列表页 - react ssr',
+                    title:'列表页',
                     keywords:'前端技术江湖',
-                    description:'关键词'
+                    description:'前端技术江湖'
                 }
             }
-        };
-    }
-
-    componentDidMount(){
-        if(!this.state.fetchData){
-            //如果没有数据，则进行数据请求
-            Index.getInitialProps().then(res=>{
-                this.setState({
-                    fetchData:res.fetchData||[],
-                    page:res.page
-                });
-                
-            })
         }
     }
 
     render() {
         //渲染数据
+        const { code, data } = this.props.initialData.fetchData ? this.props.initialData.fetchData:{} ;
 
-        const {code,data}=this.state.fetchData||{};
-        const {tdk={}} = this.state.page || {};
-        
         return <div>
-
-        <Helmet>
-                <title>{tdk.title}</title>
-                <meta name="description" content={tdk.description}/>
-                <meta name="keywords" content={tdk.keywords}/>
-        </Helmet>
-
         {data && data.map((item,index)=>{
             return <div key={index}>
                 <h3>{item.title}</h3>

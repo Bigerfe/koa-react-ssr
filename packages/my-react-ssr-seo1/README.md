@@ -1,13 +1,12 @@
-# react ssr 项目脚手架 - seo 支持 原生法
+# react ssr 开发脚手架 seo 支持  使用组件`react-helmet`
 
-本次按照传统的方式实现了 seo 的支持,通过动态返回 page tdk 信息，服务端预取的时候拿到 page 信息，然后和 html 一起直出。
+本小节使用组件`react-helmet`实现了 tdk的管理，方便快捷。
 
-同时前端代码里需要动态的设置 title，即可。
 
 服务运行
 
 ```
 npm i 
 npm run dev 
-
 ```
+

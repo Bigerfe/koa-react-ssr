@@ -14,10 +14,20 @@ import routeList from '../../client/router/route-config';
 //自定义 provider 用来传递数据
 import Provider from '../../client/app/provider';
 
-import matchRoute from '../../share/match-route';
-
 import App from '../../client/router/index';
-import { Helmet } from 'react-helmet';
+
+//根据请求 path 查找组件
+const findRouteByPath=(opt)=>{
+    let {path} = opt;
+    let Component;
+    for(var item of routeList){
+       if(matchPath(path,item)){
+        Component = item.component;
+        break;
+       }
+    }
+    return Component;
+}
 
 export default  async (ctx,next)=>{
 
@@ -30,17 +40,26 @@ export default  async (ctx,next)=>{
 
     console.log('ctx.request.path', ctx.request.path);
 
-    //查找到的目标路由对象
-    let targetRoute = matchRoute(path,routeList);
+    let Component = findRouteByPath({
+        path
+    });
+
+    if (!Component){
+        Component = function Not() {
+            return <div>404</div>
+        }
+    }
 
     //得到数据
-    let fetchDataFn = targetRoute.component.getInitialProps;
+    let fetchDataFn = Component.getInitialProps;
     let fetchResult = {};
     if(fetchDataFn){
         fetchResult = await fetchDataFn();
-        //设置初始化数据，渲染时会作为属性传递给组件
-        targetRoute.initialData = fetchResult;
     }
+
+    //数据传入组件，通过react context 特性传入
+
+    let context={};
 
     let { page } = fetchResult || {};
 
@@ -53,24 +72,22 @@ export default  async (ctx,next)=>{
         tdk=page.tdk;
     }
 
-    //渲染的路由和数据
     const props = {
-        routeList
+        routeList,
+        isOnServer:true
     }
 
-    const html = renderToString(<StaticRouter><Layout>
-        <targetRoute.component initialData={fetchResult} ></targetRoute.component></Layout>
-        </StaticRouter>);
-
-    
-    const helmet = Helmet.renderStatic();
+    const html = renderToString(<Provider initialData={fetchResult}>
+        <StaticRouter location={path} context={context}><Layout><Component initialData={fetchResult} /></Layout></StaticRouter>
+    </Provider>);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    ${helmet.title.toString()}
-    ${helmet.meta.toString()}
+    <title>${tdk.title}</title>
+    <meta name="keywords" content="${tdk.keywords}" />
+    <meta name="description" content="${tdk.description}" />
 </head>
 <body>
     <div id="root">

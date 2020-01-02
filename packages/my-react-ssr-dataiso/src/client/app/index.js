@@ -19,7 +19,7 @@ function clientRender() {
     let route = matchRoute(document.location.pathname,routeList);
 
     //设置组件初始化数据
-    route.initialData ={};// initialData;
+    route.initialData =initialData;
 
     //渲染index
     ReactDom.hydrate(<BrowserRouter>
