@@ -1,0 +1,15 @@
+body {
+  background-color: #f4f5f5;
+}
+
+.layout-box {
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+}
+
+.layout-box h1 {
+  margin-top: 20px;
+  margin-top: 20px;
+}

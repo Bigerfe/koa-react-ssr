@@ -6,7 +6,7 @@ const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
 
 module.exports = {
     mode: 'development',
-    entry:{
+    entry: {
         main: resolvePath('../src/client/app/index.js'), //入口文件
     },
     output: {
@@ -21,11 +21,12 @@ module.exports = {
             },
             {
                 test: /\.(sa|sc|c)ss$/,
-                use: [
-                    {
+                use: [{
                         loader: MiniCssExtractPlugin.loader,
                     },
-                    {loader:'css-loader'},
+                    {
+                        loader: 'css-loader'
+                    },
                     {
                         loader: "postcss-loader"
                     },
@@ -48,6 +49,18 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-        filename: '[name].css' //设置名称
-    })]
+            filename: '[name].css' //设置名称
+        })
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                libs: { // 抽离第三方库
+                    test: /node_modules/, // 指定是node_modules下的第三方包
+                    chunks: 'initial',
+                    name: 'libs'// 打包后的文件名，任意命名    
+                }
+            }
+        }
+    }
 }

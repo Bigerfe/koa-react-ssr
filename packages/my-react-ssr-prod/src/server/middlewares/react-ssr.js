@@ -18,8 +18,16 @@ import matchRoute from '../../share/match-route';
 
 import App from '../../client/router/index';
 
+const getAssets = require('../common/assets');
+
+
 export default  async (ctx,next)=>{
 
+    console.log(process.env.NODE_ENV);
+    console.log(typeof process.env.NODE_ENV);
+    console.log(__IS_PROD__);
+    console.log(typeof __IS_PROD__);
+    console.log('====');
     const path = ctx.request.path;
 
     if(path.indexOf('.')>-1){
@@ -27,7 +35,7 @@ export default  async (ctx,next)=>{
         return next();
     }
 
-    console.log('ctx.request.path.', ctx.request.path);
+    console.log('ctx.request.path', ctx.request.path);
 
     //查找到的目标路由对象
     let targetRoute = matchRoute(path,routeList);
@@ -37,21 +45,43 @@ export default  async (ctx,next)=>{
     let fetchResult = {};
     if(fetchDataFn){
         fetchResult = await fetchDataFn();
+        //设置初始化数据，渲染时会作为属性传递给组件
+        targetRoute.initialData = fetchResult;
     }
 
-    const context={
-        initialData:fetchResult
-    };
+    let { page } = fetchResult || {};
 
-    const html = renderToString(<StaticRouter location={path} context={context}>
-        <App routeList={routeList}></App>
+    let tdk = {
+        title: '默认标题 - my react ssr',
+        keywords: '默认关键词',
+        description: '默认描述'};
+
+    if(page && page.tdk){
+        tdk=page.tdk;
+    }
+
+    //渲染的路由和数据
+    const props = {
+        routeList
+    }
+    
+
+    const html = renderToString(<StaticRouter><Layout>
+        <targetRoute.component initialData={fetchResult} ></targetRoute.component></Layout>
         </StaticRouter>);
+
+
+    //静态资源
+    const assetsMap = getAssets();
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>my react ssr</title>
+    <title>${tdk.title}</title>
+    <meta name="keywords" content="${tdk.keywords}" />
+    <meta name="description" content="${tdk.description}" />
+     ${assetsMap.css.join('')}
 </head>
 <body>
     <div id="root">
@@ -63,7 +93,7 @@ export default  async (ctx,next)=>{
 </body>
 </html>
 </body>
-<script type="text/javascript"  src="/index.js"></script>
+ ${assetsMap.js.join('')}
 `;
 
     await next();

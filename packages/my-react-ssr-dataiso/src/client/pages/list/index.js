@@ -8,9 +8,12 @@ import tempData from './data';
 import { EPROTONOSUPPORT } from 'constants';
 //list 页面 组件
 export default class Index extends React.Component {
-    constructor(props) {
+    constructor(props,context) {
         super(props);        
         this.state=props.initialData||{};
+
+        console.log('props',props);
+        console.log('context', context);
     }
 
     static async  getInitialProps() {
