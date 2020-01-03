@@ -18,8 +18,7 @@ function App({routeList}) {
                 {
                     routeList.map(item=>{
                         return item.initialData ? <Route key={item.path} exact={item.exact} path={item.path}  render={(props)=>{
-                            props.initialData = item.initialData;
-                            return <item.component {...props}></item.component>
+                            return <item.component {...props} initialData={item.initialData}></item.component>
                         }}></Route> : <Route key={item.path} {...item}></Route>
                     })
                 }

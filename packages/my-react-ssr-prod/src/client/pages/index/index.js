@@ -8,11 +8,19 @@ import img from '../../public/img.jpg';
 export default class Index extends React.Component {
     constructor(props) {
         super(props);
-        const initData = props.initialData || {};
-        this.state={
-            page:initData.page,
-            fetchData:initData.fetchData
+        let initialData = null;//初始化数据
+        if (__SERVER__) {
+            //如果是当然是服务端执行
+            initialData = props.staticContext.initialData || {};
+        } else {
+            //客户端渲染
+            initialData = props.initialData || {};
         }
+
+        this.state = {
+            page: initialData.page,
+            fetchData: initialData.fetchData
+        }  
     }
 
     static async  getInitialProps() {

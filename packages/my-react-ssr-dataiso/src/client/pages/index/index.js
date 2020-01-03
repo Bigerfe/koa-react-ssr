@@ -7,6 +7,7 @@ import {
 export default class Index extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state={
 
         }
@@ -30,8 +31,6 @@ export default class Index extends React.Component {
             })
         }
     }
-
-
 
     render() {
         return <div>首页</div>

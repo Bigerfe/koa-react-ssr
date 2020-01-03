@@ -30,7 +30,8 @@ export default  async (ctx,next)=>{
     console.log('ctx.request.path.', ctx.request.path);
 
     //查找到的目标路由对象
-    let targetRoute = matchRoute(path,routeList);
+    let matchResult = matchRoute(path,routeList);
+    let { targetRoute, targetMatch }=matchResult;
 
     //得到数据
     let fetchDataFn = targetRoute.component.getInitialProps;
@@ -42,7 +43,6 @@ export default  async (ctx,next)=>{
     const context={
         initialData:fetchResult
     };
-
     const html = renderToString(<StaticRouter location={path} context={context}>
         <App routeList={routeList}></App>
         </StaticRouter>);

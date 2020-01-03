@@ -6,13 +6,14 @@ import { matchPath} from 'react-router';
 
 export default (path,routeList)=>{ 
     
-        let route;
+        let targetRoute,targetMatch;
 
         for (var item of routeList) {
-            if (matchPath(path, item)) {
-                route = item;//查找到第一个路由后停止查找
+            targetMatch = matchPath(path, item);
+            if (targetMatch) {
+                targetRoute = item;//查找到第一个路由后停止查找
                 break;
             }
         }
-        return  route;
+    return { targetRoute, targetMatch};
 }

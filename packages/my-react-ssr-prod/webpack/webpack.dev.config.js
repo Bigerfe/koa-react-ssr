@@ -2,7 +2,7 @@ const path = require('path')
 //提取 css  插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
-
+const webpack=require('webpack');
 
 module.exports = {
     mode: 'development',
@@ -50,6 +50,11 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].css' //设置名称
+        }),
+        new webpack.DefinePlugin({
+            'process.env': { NODE_ENV: '"development"' },
+            '__IS_PROD__': false,
+            '__SERVER__': false
         })
     ],
     optimization: {

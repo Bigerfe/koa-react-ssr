@@ -40,7 +40,8 @@ module.exports = {
     plugins:[
         new webpack.DefinePlugin({
         'process.env': { NODE_ENV: `"${process.env.NODE_ENV}"`},
-        '__IS_PROD__':isProd
+        '__IS_PROD__':isProd,
+        '__SERVER__': true
         })
     ],
     resolve: {

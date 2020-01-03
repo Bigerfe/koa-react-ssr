@@ -5,15 +5,23 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import tempData from './data';
-import { EPROTONOSUPPORT } from 'constants';
+
+
+
 //list 页面 组件
 export default class Index extends React.Component {
-    constructor(props,context) {
-        super(props);        
-        this.state=props.initialData||{};
+    constructor(props) {
+        super(props);   
 
-        console.log('props',props);
-        console.log('context', context);
+        let initialData = null;//初始化数据
+        if(__SERVER__){
+            //如果是当然是服务端执行
+            initialData = props.staticContext.initialData||{};
+        }else{
+            //客户端渲染
+            initialData = props.initialData || {};
+        }
+        this.state=initialData;
     }
 
     static async  getInitialProps() {
@@ -35,16 +43,16 @@ export default class Index extends React.Component {
         return res;
     }
 
-    // componentDidMount(){
-    //     if(!this.state.data){
-    //         //如果没有数据，则进行数据请求
-    //         Index.getInitialProps().then(res=>{
-    //             this.setState({
-    //                 data:res.data||[]
-    //             })
-    //         })
-    //     }
-    // }
+    componentDidMount(){
+        if(!this.state.data){
+            //如果没有数据，则进行数据请求
+            Index.getInitialProps().then(res=>{
+                this.setState({
+                    data:res.data||[]
+                })
+            })
+        }
+    }
 
     render() {
         //渲染数据

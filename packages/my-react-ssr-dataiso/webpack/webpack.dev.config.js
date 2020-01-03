@@ -1,5 +1,5 @@
 const path = require('path')
-
+const webpack = require('webpack');
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
 
 
@@ -17,5 +17,10 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            '__SERVER__': false
+        })
+    ]
 }
