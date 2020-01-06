@@ -11,7 +11,7 @@ import withStyles from 'isomorphic-style-loader/withStyles'
         super(props);
     }
     render() {
-        return <div className="big-title">标题</div>
+        return <div className="big-title">标题2</div>
     }
 }
 
