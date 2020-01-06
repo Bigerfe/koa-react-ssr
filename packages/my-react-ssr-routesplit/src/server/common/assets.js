@@ -6,7 +6,7 @@ module.exports = function () {
     //let devHost = '//localhost:9001';
     let devHost = '//localhost:9002';
 
-    let jsFiles = ['libs.js','main.js'];
+    let jsFiles = ['libs.js', 'main.js','styles.js'];
     let cssFiles = ['styles.css'];
 
     const assets = {

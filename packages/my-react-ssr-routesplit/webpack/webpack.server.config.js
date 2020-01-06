@@ -4,7 +4,10 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack');
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
-
+//构建前清理目录
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 process.env.BABEL_ENV = 'node';//设置 babel 的运行环境
 
 const isProd=process.env.NODE_ENV==='production';
@@ -31,7 +34,7 @@ module.exports = {
                     options: {
                         emitFile: false,
                         name: isProd ? 'img/[name].[hash:8].[ext]' : 'img/[name].[ext]',
-                        publicPath: 'http://localhost:9002'
+                        publicPath: isProd ? '/' : 'http://localhost:9002'
                     }
                 }
             }
