@@ -11,15 +11,24 @@ import routeList from '../router/route-config';
 import matchRoute from '../../share/match-route';
 import proConfig from '../../share/pro-config';
 
+import StyleContext from 'isomorphic-style-loader/StyleContext'
+
 function renderDom(routeList) {
-        //渲染index
+        
+        const insertCss = (...styles) => {
+                const removeCss = styles.map(style => style._insertCss());//客户端执行，插入style
+                return () => removeCss.forEach(dispose => dispose());//组件卸载时 移除当前的 style 标签
+        }
         ReactDom.hydrate(<BrowserRouter>
-                <App routeList={routeList} />
+                <StyleContext.Provider value={{ insertCss }}>
+                        <App routeList={routeList} /></StyleContext.Provider>
         </BrowserRouter>
                 , document.getElementById('root'))
 }
 
 function clientRender(routeList) {
+
+      
 
         let initialData = JSON.parse(document.getElementById('ssrTextInitData').value);
         window.__INITIAL_DATA__ = initialData;

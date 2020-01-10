@@ -2,8 +2,9 @@ import React from 'react';
 import { Link,NavLink } from 'react-router-dom';
 import {withRouter} from 'react-router';
 import { hot } from 'react-hot-loader/root';
+import withStyles from 'isomorphic-style-loader/withStyles'
 
-import './layout.scss';
+import css from  './layout.scss';
 
  class Index extends React.Component{
     constructor(props){
@@ -21,4 +22,5 @@ import './layout.scss';
     }
 }
 
-export default hot(Index);
+export default withStyles(css)(hot(Index));
+

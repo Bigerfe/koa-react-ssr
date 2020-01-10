@@ -19,6 +19,8 @@ import matchRoute from '../../share/match-route';
 import App from '../../client/router/index';
 
 import getStaticRoutes from '../common/get-static-routes';
+//css 同构的上下文
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 const getAssets = require('../common/assets');
 
@@ -75,10 +77,20 @@ export default async (ctx, next) => {
         initialData: fetchResult
     };
 
+    const css = new Set() // CSS for all rendered React components
+    const insertCss = (...styles) => styles.forEach(style => css.add(style._getContent()));
+
 
     const html = renderToString(<StaticRouter location={path} context={context}>
-        <App routeList={staticRoutesList}></App>
+        <StyleContext.Provider value={{ insertCss }} >
+            <App routeList={staticRoutesList}></App></StyleContext.Provider>
     </StaticRouter>);
+
+    const styles = [];
+    [...css].forEach(item => {
+        let [mid, content] = item[0];
+        styles.push(`<style id="s${mid}-0">${content}</style>`)
+    });
 
     //静态资源
     const assetsMap = getAssets();
@@ -90,7 +102,7 @@ export default async (ctx, next) => {
     <title>${tdk.title}</title>
     <meta name="keywords" content="${tdk.keywords}" />
     <meta name="description" content="${tdk.description}" />
-     ${assetsMap.css.join('')}
+    ${styles.join('')}
 </head>
 <body>
     <div id="root">
