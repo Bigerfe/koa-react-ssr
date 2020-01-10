@@ -1,4 +1,4 @@
-# react ssr 项目脚手架 - 加入状态管理
+# react ssr 项目脚手架 - 接入 redux
 
 
 服务运行
