@@ -16,7 +16,7 @@ function Index(props) {
    
 
         return <div className="page-index-box">
-            <p>首页</p>
+            <p>首页11</p>
             <img src={img} />
         </div>
 }
