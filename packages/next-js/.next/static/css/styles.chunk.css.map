@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/styles.chunk.css","sources":["webpack:///./pages/index.css"],"sourcesContent":[".index-box{\n    font-size: 20px;\n    color: red;\n}"],"mappings":"AAAA;AACA;AACA;AACA;","sourceRoot":""}

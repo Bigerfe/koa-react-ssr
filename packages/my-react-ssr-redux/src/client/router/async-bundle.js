@@ -4,7 +4,7 @@ import LoadingCompoent from './loading-compoent';
 
 
 /**
- * 动态加载组件一个组的容器
+ * 动态加载组件组的容器组件
  *
  * @class Bundle
  * @extends {Component}
@@ -22,15 +22,6 @@ export default class AsyncBundle extends React.Component {
             this.load(this.props);
         }
     }
-
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-
-    //     //路由改变才会按需
-    //     if (nextProps.match && this.props.match && (nextProps.match.url !== this.props.match.url)) {
-    //         this.load(nextProps);
-    //     }
-    // }
-
 
     load(props) {
         this.setState({

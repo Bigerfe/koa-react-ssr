@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport './index.css';\n\nvar Index = function Index() {\n  return __jsx(\"div\", {\n    className: \"index-box\"\n  }, __jsx(\"p\", null, \"Hello Next.js\"), __jsx(\"p\", null, \"Hello Next.js\"));\n};\n\nexport default Index;","map":null,"metadata":{},"sourceType":"module"}

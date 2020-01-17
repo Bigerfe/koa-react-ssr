@@ -8,12 +8,17 @@ import PageContainer from '../../common/components/page-container';
 
 import withStyles from 'isomorphic-style-loader/withStyles'
 
+console.log('__SERVER__', __SERVER__);
+
+const dom = __SERVER__ ? {}: require('../../common/utils/dom')
+
 
 function Index(props) {
 
     console.log(css._getContent());
     console.log(css._getCss());
    
+   console.log('dom',dom && dom.default && dom.default.setColor());
 
         return <div className="page-index-box">
             <p>首页</p>

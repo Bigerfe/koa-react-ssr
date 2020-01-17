@@ -1,14 +1,26 @@
 exports.ids = [2];
 exports.modules = {
 
-/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/index/index.scss":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-1!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/index/index.scss ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/list/list.scss":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-1!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/list/list.scss ***!
+  \******************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".page-index-box {\\n  width: 750px;\\n  background-color: #fff;\\n  text-align: center; }\\n  .page-index-box img {\\n    width: 120px; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/client/pages/index/index.scss?./node_modules/css-loader/dist/cjs.js??ref--5-1!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".list-page-box {\\n  font-size: 14px;\\n  text-align: left;\\n  padding: 10px; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/client/pages/list/list.scss?./node_modules/css-loader/dist/cjs.js??ref--5-1!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js");
+
+/***/ }),
+
+/***/ "./src/client/common/components/iso-connect/index.js":
+/*!***********************************************************!*\
+  !*** ./src/client/common/components/iso-connect/index.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _page_container_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../page-container/index */ \"./src/client/common/components/page-container/index.js\");\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ \"react-redux\");\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! isomorphic-style-loader/withStyles */ \"isomorphic-style-loader/withStyles\");\n/* harmony import */ var isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (({\n  css,\n  mapStateToProps,\n  mapDispatchToProps\n}, ActiveComponet) => {\n  return isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_2___default()(css)(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__[\"connect\"])(mapStateToProps, mapDispatchToProps)(Object(_page_container_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(ActiveComponet)));\n});\n\n//# sourceURL=webpack:///./src/client/common/components/iso-connect/index.js?");
 
 /***/ }),
 
@@ -24,38 +36,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
-/***/ "./src/client/pages/index/index.js":
-/*!*****************************************!*\
-  !*** ./src/client/pages/index/index.js ***!
-  \*****************************************/
+/***/ "./src/client/pages/list/index.js":
+/*!****************************************!*\
+  !*** ./src/client/pages/list/index.js ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.scss */ \"./src/client/pages/index/index.scss\");\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_scss__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _public_img_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../public/img.jpg */ \"./src/client/public/img.jpg\");\n/* harmony import */ var _common_components_page_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/components/page-container */ \"./src/client/common/components/page-container/index.js\");\n/* harmony import */ var isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! isomorphic-style-loader/withStyles */ \"isomorphic-style-loader/withStyles\");\n/* harmony import */ var isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n\nfunction Index(props) {\n  console.log(_index_scss__WEBPACK_IMPORTED_MODULE_2___default.a._getContent());\n  console.log(_index_scss__WEBPACK_IMPORTED_MODULE_2___default.a._getCss());\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"page-index-box\"\n  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, \"\\u9996\\u9875\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"img\", {\n    src: _public_img_jpg__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n  }));\n}\n\nIndex.getInitialProps = async () => {\n  console.log('fetch data index'); //模拟数据请求方法\n  //...\n\n  return {\n    page: {\n      tdk: {\n        title: '首页 - koa-react-ssr',\n        keywords: '关键词 koa-react-ssr',\n        description: '描述 koa-react-ssr'\n      }\n    }\n  };\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (isomorphic_style_loader_withStyles__WEBPACK_IMPORTED_MODULE_5___default()(_index_scss__WEBPACK_IMPORTED_MODULE_2___default.a)(Object(_common_components_page_container__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(Index)));\n\n//# sourceURL=webpack:///./src/client/pages/index/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _list_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./list.scss */ \"./src/client/pages/list/list.scss\");\n/* harmony import */ var _list_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_list_scss__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _redux_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/index */ \"./src/client/pages/list/redux/index.js\");\n/* harmony import */ var _common_components_iso_connect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/components/iso-connect */ \"./src/client/common/components/iso-connect/index.js\");\n//src/client/pages/list/index.js\n//index 组件\n\n\n\n\n //组件\n\nclass Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n  }\n\n  static async getInitialProps({\n    store\n  }) {\n    return store.dispatch(Object(_redux_index__WEBPACK_IMPORTED_MODULE_3__[\"getInitialData\"])());\n  }\n\n  render() {\n    //渲染数据\n    const {\n      fetchData,\n      page\n    } = this.props.initialData;\n    const {\n      code,\n      data\n    } = fetchData || {};\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      className: \"list-page-box\"\n    }, data && data.map((item, index) => {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        key: index\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h3\", null, item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, item.desc));\n    }), !data && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"\\u6682\\u65E0\\u6570\\u636E\"));\n  }\n\n}\n\nconst mapStateToProps = state => ({\n  initialData: state.listPage\n});\n\nconst mapDispatchToProps = dispatch => ({\n  getInitialData() {\n    console.log('dispath fetch data');\n    return dispatch(Object(_redux_index__WEBPACK_IMPORTED_MODULE_3__[\"getInitialData\"])());\n  }\n\n});\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(_common_components_iso_connect__WEBPACK_IMPORTED_MODULE_4__[\"default\"])({\n  css: (_list_scss__WEBPACK_IMPORTED_MODULE_2___default()),\n  mapStateToProps,\n  mapDispatchToProps\n}, Index));\n\n//# sourceURL=webpack:///./src/client/pages/list/index.js?");
 
 /***/ }),
 
-/***/ "./src/client/pages/index/index.scss":
-/*!*******************************************!*\
-  !*** ./src/client/pages/index/index.scss ***!
-  \*******************************************/
+/***/ "./src/client/pages/list/list.scss":
+/*!*****************************************!*\
+  !*** ./src/client/pages/list/list.scss ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\n    var refs = 0;\n    var css = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js??ref--5-1!../../../../node_modules/postcss-loader/src!../../../../node_modules/sass-loader/dist/cjs.js!./index.scss */ \"./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/index/index.scss\");\n    var insertCss = __webpack_require__(/*! ../../../../node_modules/isomorphic-style-loader/insertCss.js */ \"./node_modules/isomorphic-style-loader/insertCss.js\");\n    var content = typeof css === 'string' ? [[module.i, css, '']] : css;\n\n    exports = module.exports = css.locals || {};\n    exports._getContent = function() { return content; };\n    exports._getCss = function() { return '' + css; };\n    exports._insertCss = function(options) { return insertCss(content, options) };\n\n    // Hot Module Replacement\n    // https://webpack.github.io/docs/hot-module-replacement\n    // Only activated in browser context\n    if (false) { var removeCss; }\n  \n\n//# sourceURL=webpack:///./src/client/pages/index/index.scss?");
-
-/***/ }),
-
-/***/ "./src/client/public/img.jpg":
-/*!***********************************!*\
-  !*** ./src/client/public/img.jpg ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"http://localhost:9002/img/img.jpg\");\n\n//# sourceURL=webpack:///./src/client/public/img.jpg?");
+eval("\n    var refs = 0;\n    var css = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js??ref--5-1!../../../../node_modules/postcss-loader/src!../../../../node_modules/sass-loader/dist/cjs.js!./list.scss */ \"./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js!./node_modules/sass-loader/dist/cjs.js!./src/client/pages/list/list.scss\");\n    var insertCss = __webpack_require__(/*! ../../../../node_modules/isomorphic-style-loader/insertCss.js */ \"./node_modules/isomorphic-style-loader/insertCss.js\");\n    var content = typeof css === 'string' ? [[module.i, css, '']] : css;\n\n    exports = module.exports = css.locals || {};\n    exports._getContent = function() { return content; };\n    exports._getCss = function() { return '' + css; };\n    exports._insertCss = function(options) { return insertCss(content, options) };\n\n    // Hot Module Replacement\n    // https://webpack.github.io/docs/hot-module-replacement\n    // Only activated in browser context\n    if (false) { var removeCss; }\n  \n\n//# sourceURL=webpack:///./src/client/pages/list/list.scss?");
 
 /***/ })
 

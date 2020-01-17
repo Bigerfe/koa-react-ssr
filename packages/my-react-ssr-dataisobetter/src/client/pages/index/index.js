@@ -22,9 +22,9 @@ Index.getInitialProps= async ()=>{
     return {
         page: {
             tdk: {
-                title: '首页 - react ssr',
-                keywords: '前端技术江湖',
-                description: '关键词'
+                title: '首页 - koa-react-ssr',
+                keywords: '关键词 - koa-react-ssr',
+                description: '描述'
             }
         }
     };
