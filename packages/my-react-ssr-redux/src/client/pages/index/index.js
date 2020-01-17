@@ -21,7 +21,7 @@ function Index(props) {
    console.log('dom',dom && dom.default && dom.default.setColor());
 
         return <div className="page-index-box">
-            <p>首页</p>
+            <p>首页11</p>
             <img src={img} />
         </div>
 }
