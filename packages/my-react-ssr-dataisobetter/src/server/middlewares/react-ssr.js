@@ -20,6 +20,8 @@ import App from '../../client/router/index';
 
 import getStaticRoutes from '../common/get-static-routes';
 
+import proConfig from '../../share/pro-config';
+
 const getAssets = require('../common/assets');
 
 
@@ -39,6 +41,15 @@ export default async (ctx, next) => {
 
     console.log('ctx.request.path', ctx.request.path);
 
+    let html='',//组件渲染结果
+        fetchResult={},//属于预取结果
+         tdk = {//tdk 默认值
+            title: '默认标题 - my react ssr',
+            keywords: '默认关键词',
+            description: '默认描述'
+        };
+
+    if (proConfig.__IS_SSR__){
     //获得静态路由
     const staticRoutesList = await getStaticRoutes(routeList);
 
@@ -49,7 +60,7 @@ export default async (ctx, next) => {
 
 
     //得到数据
-    let fetchDataFn,fetchResult={};
+    let fetchDataFn;
     if (targetRoute){
         fetchDataFn = targetRoute.component ?targetRoute.component.getInitialProps:null;
         if (fetchDataFn) {
@@ -60,11 +71,6 @@ export default async (ctx, next) => {
 
     let { page } = fetchResult || {};
 
-    let tdk = {
-        title: '默认标题 - my react ssr',
-        keywords: '默认关键词',
-        description: '默认描述'
-    };
 
     if (page && page.tdk) {
         tdk = page.tdk;
@@ -75,10 +81,10 @@ export default async (ctx, next) => {
         initialData: fetchResult
     };
 
-
-    const html = renderToString(<StaticRouter location={path} context={context}>
+    html = renderToString(<StaticRouter location={path} context={context}>
         <App routeList={staticRoutesList}></App>
     </StaticRouter>);
+    }
 
     //静态资源
     const assetsMap = getAssets();
@@ -102,6 +108,9 @@ export default async (ctx, next) => {
 </body>
 </html>
 </body>
+<script>
+window.__IS__SSR__=${proConfig.__IS_SSR__};
+</script>
  ${assetsMap.js.join('')}
 `;
 

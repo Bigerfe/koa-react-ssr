@@ -52,7 +52,7 @@ export default (SourceComponent)=>{
 
             const canClientFetch = this.props.history && this.props.history.action === 'PUSH';//路由跳转的时候可以异步请求数据
             console.log('canClientFetch', canClientFetch);
-            if (canClientFetch) {
+            if (canClientFetch || !window.__IS__SSR) {
                 await this.getInitialProps();
             }
         }

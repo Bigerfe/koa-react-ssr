@@ -55,7 +55,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: '"development"' },
             '__IS_PROD__': false,
-            '__SERVER__': false
+            '__SERVER__': false,
+            '__IS_SSR__':
         })
     ],
     optimization: {
