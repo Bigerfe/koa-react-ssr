@@ -3,6 +3,8 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
 const webpack=require('webpack');
+const proConfig = require('../src/share/pro-config');
+
 
 module.exports = {
     mode: 'development',
@@ -12,7 +14,7 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: resolvePath('../dist/static'),
-        publicPath: 'http://localhost:9002/'
+        publicPath: `http://${__LOCAL_IP__}:${proConfig.wdsPort}/`
     },
     module: {
         rules: [{
@@ -55,8 +57,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: '"development"' },
             '__IS_PROD__': false,
-            '__SERVER__': false,
-            '__IS_SSR__':
+            '__SERVER__': false
         })
     ],
     optimization: {

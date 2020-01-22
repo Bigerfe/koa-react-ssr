@@ -5,7 +5,7 @@ import {
 import './index.scss';
 import img from '../../public/img.jpg';
 import PageContainer from '../../common/components/page-container';
-
+const dom = __SERVER__ ? {} : require('./dom').default;
 
 function Index(props) {
         return <div className="page-index-box">
@@ -14,7 +14,7 @@ function Index(props) {
         </div>
 }
 
-Index.getInitialProps= async ()=>{
+Index.getInitialProps= async (ctx)=>{
     console.log('fetch data index');
     //模拟数据请求方法
     //...

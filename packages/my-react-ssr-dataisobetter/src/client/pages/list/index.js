@@ -14,7 +14,7 @@ class Index extends React.Component {
         super(props);
     }
 
-    static async  getInitialProps() {
+    static async  getInitialProps(ctx) {
         console.log('fetch data');
         //模拟数据请求方法
         const fetchData=()=>{

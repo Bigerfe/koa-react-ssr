@@ -58,6 +58,7 @@ export default async (ctx, next) => {
     let matchResult = await matchRoute(path, staticRoutesList);
     let { targetRoute, targetMatch } = matchResult;
 
+        console.log('targetMatch', targetMatch);
 
     //得到数据
     let fetchDataFn;

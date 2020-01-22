@@ -23,15 +23,15 @@ export default (SourceComponent)=>{
             }
         }
         //用于服务端调用
-        static async getInitialProps(props){
-            return SourceComponent.getInitialProps ? await SourceComponent.getInitialProps(props):{};
+        static async getInitialProps(ctx){
+            return SourceComponent.getInitialProps ? await SourceComponent.getInitialProps(ctx):{};
         }
 
         //用于封装处理
         async getInitialProps(){
             // ssr首次进入页面以及csr/ssr切换路由时才调用组件的getInitialProps方法
-            const props = this.props;
-            const res =  SourceComponent.getInitialProps ? await SourceComponent.getInitialProps(props) : {};
+            const {match,location} = this.props;
+            const res =  SourceComponent.getInitialProps ? await SourceComponent.getInitialProps({match,location}) : {};
             this.setState({
                 initialData: res,
                 canClientFetch: true
@@ -48,7 +48,7 @@ export default (SourceComponent)=>{
             
             _this = this; // 修正_this指向，保证_this指向当前渲染的页面组件
             //注册事件，用于在页面回退的时候触发
-            window.addEventListener('popstate', popStateCallback);
+            window.__IS__SSR && window.addEventListener('popstate', popStateCallback);
 
             const canClientFetch = this.props.history && this.props.history.action === 'PUSH';//路由跳转的时候可以异步请求数据
             console.log('canClientFetch', canClientFetch);
