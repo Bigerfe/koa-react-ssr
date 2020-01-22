@@ -22,7 +22,7 @@ class Index extends React.Component {
             fetchData:res.data ||{},
             page:{
                 tdk:{
-                    title:'小册详情 - koa-react-ssr',
+                    title:'小册详情 - koa-react-ssr demo',
                     keywords:'koa-react-ssr',
                     description:'koa-react-ssr'
                 }

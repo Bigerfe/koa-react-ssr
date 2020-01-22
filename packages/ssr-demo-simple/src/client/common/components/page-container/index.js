@@ -3,12 +3,16 @@
 import React from 'react';
 
 let _this = null;
-
+let _isPop=false;//是否触发过popState
+let _isMount=false;//组件是否挂载完成
 const popStateCallback = ()=> {
     // 使用 popStateCallback 保存函数防止 addEventListener 重复注册
     if (_this && _this.getInitialProps) {
         console.log('popStateFn');
-        _this.getInitialProps();
+        _isPop=true;
+        if(_isMount){//只有当前组件挂载后才能执行数据预取，否则会报错
+            _this.getInitialProps();
+        }
     }
 };
 
@@ -45,10 +49,16 @@ export default (SourceComponent)=>{
         }
         
         async componentDidMount() {
-            //注册事件，用于在页面回退的时候触发
+            //注册事件，用于在页面回退和前进的时候触发
+            _isMount=true;//组件挂载完成
             if (window.__IS__SSR__){//只有当启用 ssr 时
                 _this = this; // 修正_this指向，保证_this指向当前渲染的页面组件
+                //注册事件
                 window.addEventListener('popstate', popStateCallback);
+                
+                if(_isPop){//如果前进或者后退 则需要异步获取数据
+                    this.getInitialProps();
+                }
             }
 
             const canClientFetch = this.props.history && this.props.history.action === 'PUSH';//路由跳转的时候可以异步请求数据
@@ -56,6 +66,12 @@ export default (SourceComponent)=>{
             if (canClientFetch || !window.__IS__SSR__) {
                 await this.getInitialProps();
             }
+        }
+
+        componentWillUnmount(){
+            console.log('unmount');
+            _isPop=false; //重置为未触发
+            _isMount=false;//重置为未挂载
         }
 
         render() {
