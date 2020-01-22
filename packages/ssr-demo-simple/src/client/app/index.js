@@ -28,7 +28,7 @@ function clientRender(routeList) {
         let matchResult = matchRoute(document.location.pathname, routeList);
         let { targetRoute } = matchResult;
         if (targetRoute) {
-                //等待异步脚本加载完成
+                //预加载 等待异步脚本加载完成
                 if (targetRoute.component[proConfig.asyncComponentKey]) {
                         targetRoute.component().props.load().then(res => {
                                 //异步组件加载完成后再渲染页面
