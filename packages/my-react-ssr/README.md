@@ -9,4 +9,6 @@
 ```
 npm i 
 npm run dev 
+npm run babel-node
+node app.js
 ```

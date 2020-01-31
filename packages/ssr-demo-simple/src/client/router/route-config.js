@@ -6,7 +6,11 @@ import React from 'react';
 //组件动态加载容器
 import AsyncLoader from './async-loader';
 
-function pageNotFound() {
+function pageNotFound({staticContext}) {
+    if(staticContext){
+        staticContext.code=404;
+    }
+
     return <div>404页面</div>
 }
 
