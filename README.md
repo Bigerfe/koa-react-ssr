@@ -8,7 +8,6 @@
 * 双模式无缝切换: 支持SSR/CSR两种渲染模式，只需更改配置属性即可，也可以对组件设置按需渲染模式
 * 路由分治管理: 你写你的路由，我写我的路由，zz 自动合并，不再需要维护整个路由表
 * 路由动静结合: 支持组件的按需加载设置，A 路由动态吧，B 路由静态
-* 伪 pwa 支持: 访问过的路由中的 state 可按需设置本地缓存,页面二次访问可无接口请求
 * 开放: 代码完全开放，纯白盒，完全可以作为个人的 `ssr` 学习参考资源
 
 # 快速上手
@@ -318,21 +317,6 @@ export default class Index extends ZzPageBase{
 
 
 
-## 伪 PWA 支持
-
-在页面组件内设置`enableSpaDataCache`值，即可开启这个特性。此特性开启后，可以让这个页面的二次访问不再有数据请求，当前是否需要还要根据自己的实际业务触发。
-
-```javascript
-export default class Index extends zzPageBase{
-
-    constructor(props,context){
-        super(props,context);
-    }
-
-    enableSpaDataCache=true;//开启 伪 pwa 数据缓存 
-
-}
-```
 
 ## 特殊字段
 
