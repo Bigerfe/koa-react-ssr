@@ -334,11 +334,7 @@ export default class Index extends ZzPageBase{
 
 ### 社区交流
 
-微信群
-
-![](https://github.com/Bigerfe/koa-react-ssr/blob/v1.2/docs/imgs/wxq91701.png?raw=true)
-
-若无法进群，可以加作者微信:`223344386`,回复"进群".
+可以加作者微信:`223344386`,备注"进群".
 
 ### 作者
 
