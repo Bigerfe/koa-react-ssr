@@ -1,4 +1,4 @@
-# zz.js (koa2 + react16 + ssr) 服务端渲染应用开发骨架
+# zz.js v2.0 (koa2 + react16 + ssr) 服务端渲染应用开发骨架
 
 `node10+` `babel7` `react-router5` `webpack4`
 
