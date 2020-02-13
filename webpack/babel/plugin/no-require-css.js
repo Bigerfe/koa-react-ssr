@@ -5,6 +5,7 @@
  * @param {*} param0 
  */
 module.exports = function ({ types: babelTypes }) {
+    console.log('no-require-css 执行');
     return {
         name: "no-require-css",
         visitor: {

@@ -1,27 +1,21 @@
 {
     "env": {
-        "node": {
+        "node":{
             "presets": [
                 [
                     "@babel/preset-env",
                     {
-                        "targets": {
-                            "node": "current"
+                        "targets":{
+                            "node":"current"
                         }
                     }
                 ],
                 "@babel/preset-react"
             ],
             "plugins": [
-                [
-                    "@babel/plugin-proposal-class-properties",
-                    {
-                        "loose": true
-                    }
-                ],
                 "@babel/plugin-syntax-dynamic-import",
-                "./webpack/babel/plugin/no-require-css",
-                "./webpack/babel/plugin/on-server-module-hack"
+                "@babel/plugin-proposal-class-properties",
+                "./webpack/babel/plugin/no-require-css"
             ]
         },
         "development": {
@@ -31,7 +25,8 @@
                     {
                         "targets": {
                             "browsers": [
-                                ">1%","last 2 versions",
+                                ">1%",
+                                "last 2 versions",
                                 "not ie <= 8"
                             ]
                         },
@@ -44,13 +39,13 @@
             "plugins": [
                 "@babel/plugin-syntax-dynamic-import",
                 "@babel/plugin-proposal-class-properties",
-                    [
-                        "@babel/plugin-transform-runtime",
-                        {
-                            "corejs": 3
-                        }
-                    ],
-                    "react-hot-loader/babel"
+                [
+                    "@babel/plugin-transform-runtime",
+                    {
+                        "corejs": 3
+                    }
+                ],
+                "react-hot-loader/babel"
             ]
         }
     }
