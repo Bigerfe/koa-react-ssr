@@ -45,7 +45,7 @@ $ <Your Project Name>
 $ cd <Your Project Name>
 $ npm i
 $ npm run dev //本地开发的watch 模式
-$ open http://<Your local ip>:8808
+$ open http://<Your local ip>:9001
 ```
 
 ## 启动脚本
@@ -53,8 +53,7 @@ $ open http://<Your local ip>:8808
 可通过不同的命令开启不同的渲染模式。
 
 ```javascript
-$ npm run dev //开启本地开发 可修改配置内的属性 isSSR ，支持两种渲染模式
-$ npm run dev:csr //开启本地开发 并已 wds 为服务启动 - csr 模式
+$ npm run dev //开启本地开发 可修改配置内的属性 __IS_SSR__ 来支持两种渲染模式
 $ //更多.....
 ```
 
@@ -64,26 +63,20 @@ $ //更多.....
 ├── dist // 生产环境打包后的资源目录
 │ ├── static //打包的静态资源文件
 │ ├── server //用于同构的运行于 node 端的文件
+| │ ├── app.js //服务启动入口
 ├── docs //  帮助文档
-├── server // 开发时 node 端代码
 ├── src // 开发时 react 组件相关代码
-│ ├── app //应用入口
+│ ├── server //服务端代码目录
+│ ├── client //页面和组件目录
+| │ ├── app //应用入口
 │ │ ├── layout //layout 组件
 │ │ ├── index.js //webpack entry 打包入口
-│ │ ├── provider.js  //提供数据的基础组件
-│ ├── common // 公共资源
-│ │ ├── components // 公共组件 
-│ │ ├── fetch // fetch模块 
-│ │ ├── module // 公共模块
-│ ├── config // 基础配置文件
-│ ├── zz-base // zz基础组件
 │ ├── pages // 业务页面
 │ │ ├── index //默认首页
-│ │ │ ├── config 路由配置
-│ ├── routes // 路由配置 无需维护
+│ ├── router // 路由相关
+│ ├── share //存放公共代码
 ├── test // 单页测试
 ├── webpack //构建配置
-├── app.js //生产环境 app 启动入口  ---> 比如 pm2 start app.js
 ```
 
 ## 约定
@@ -365,8 +358,8 @@ export default class Index extends zzPageBase{
 
 ### 作者
 
-笔  名: 张大胖 
+笔  名: 前端双月 (zz_jesse)
 
-公众号: 前端张大胖 
+公众号: 前端技术江湖
 
 ![](https://github.com/Bigerfe/koa-react-ssr/blob/v1/docs/imgs/wxgzh.jpg?raw=true)
