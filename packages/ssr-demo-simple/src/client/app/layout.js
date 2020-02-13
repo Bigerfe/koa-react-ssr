@@ -13,7 +13,7 @@ import './layout.scss';
 
     render(){
     return  <div className="layout-box">
-        <h1>koa+react+ssr</h1>
+        <h1>zz.js ---> koa+react+ssr</h1>
       {this.props.children} 
         </div>
     }

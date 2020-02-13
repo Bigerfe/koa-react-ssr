@@ -3,6 +3,9 @@
 //基于 webpack  开启对服务端代码的编译和监听 
 //配置文件为 webpack.server.config.js
 
+const localIp = process.argv[process.argv.length - 1] || 'localhost';//获得 本机ip 地址
+global.__LOCAL_IP__ = localIp;
+
 const webpack  = require('webpack');
 const config =  require('../webpack.server.config');
 const constantCode = require('./constant');

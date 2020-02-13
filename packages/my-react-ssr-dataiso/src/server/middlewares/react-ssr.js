@@ -40,12 +40,15 @@ export default  async (ctx,next)=>{
         fetchResult = await fetchDataFn();
     }
 
-    const context={
-        initialData:fetchResult
+    //将预取数据在这里传递过去 组内通过props.staticContext获取
+    const context = {
+        initialData: fetchResult
     };
-    const html = renderToString(<StaticRouter location={path} context={context}>
-        <App routeList={routeList}></App>
-        </StaticRouter>);
+
+    html = renderToString(<StaticRouter location={path} context={context}>
+        <App routeList={staticRoutesList}></App>
+    </StaticRouter>);
+}
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">

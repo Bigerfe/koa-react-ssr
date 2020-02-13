@@ -36,7 +36,7 @@ const feCodeWatchProcess = spawn('npm', ['run', 'wds:watch',localHostIp], { stdi
 
 
 //服务端代码监控和编译进程
-const svrCodeWatchProcess = spawn('npm', ['run', 'svr:watch']);
+const svrCodeWatchProcess = spawn('npm', ['run', 'svr:watch',localHostIp]);
 
 //node 服务进程
 let nodeServerProcess=null;

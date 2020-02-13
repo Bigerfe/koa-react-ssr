@@ -69,7 +69,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"http://localhost:9002/img/img.jpg\");\n\n//# sourceURL=webpack:///./src/client/public/img.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"http://192.168.0.105:9002/img/img.jpg\");\n\n//# sourceURL=webpack:///./src/client/public/img.jpg?");
 
 /***/ })
 

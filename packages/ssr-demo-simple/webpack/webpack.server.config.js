@@ -9,6 +9,8 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 process.env.BABEL_ENV = 'node';//设置 babel 的运行环境
+const proConfig = require('../src/share/pro-config');
+
 
 const isProd=process.env.NODE_ENV==='production';
 
@@ -34,7 +36,7 @@ module.exports = {
                     options: {
                         emitFile: false,
                         name: isProd ? 'img/[name].[hash:8].[ext]' : 'img/[name].[ext]',
-                        publicPath: isProd ? '/' : 'http://localhost:9002'
+                        publicPath: isProd ? '/' : `http://${__LOCAL_IP__}:${proConfig.wdsPort}`
                     }
                 }
             }

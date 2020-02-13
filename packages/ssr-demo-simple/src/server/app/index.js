@@ -12,6 +12,7 @@ const app = new Koa();
 
 
 //设置可访问的静态资源
+//TODO:生产换需要删除此功能
 app.use(koaStatic('./dist/static'));
 
 
