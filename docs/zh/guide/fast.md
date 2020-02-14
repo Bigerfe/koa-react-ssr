@@ -19,7 +19,7 @@ $ node -v
 
 ```javascript
 
-$ npm i zz-cli -g
+$ npm i zzjs-cli -g
 
 ```
 

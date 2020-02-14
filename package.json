@@ -11,7 +11,9 @@
     "client:build": "cross-env  NODE_ENV=production webpack --config  ./webpack/webpack.prod.config.js",
     "server:build": "cross-env  NODE_ENV=production webpack --config  ./webpack/webpack.server.config.js",
     "prod:start": "node ./dist/server/app.js",
-    "wds:watch": "cross-env  BABEL_ENV=development node ./webpack/scripts/wds-start.js"
+    "wds:watch": "cross-env  BABEL_ENV=development node ./webpack/scripts/wds-start.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "author": "",
   "license": "ISC",
