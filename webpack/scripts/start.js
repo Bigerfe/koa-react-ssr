@@ -32,18 +32,19 @@ log(chalk.red('servers starting....'));
 
 //前端代码构建 服务进程
 //const feCodeWatchProcess = spawn('npm', ['run', 'fe:watch'],{stdio:'inherit'});
-const feCodeWatchProcess = spawn('npm', ['run', 'wds:watch',localHostIp], { stdio: 'inherit' });
-
+const feCodeWatchProcess = spawn('npm', ['run', 'wds:watch', localHostIp], { stdio: 'inherit', shell: process.platform === 'win32' });
 
 //服务端代码监控和编译进程
-const svrCodeWatchProcess = spawn('npm', ['run', 'svr:watch',localHostIp]);
-
+//服务端代码监控和编译进程
+const svrCodeWatchProcess = spawn('npm', ['run', 'svr:watch'], {
+    shell: process.platform === 'win32'
+});
 //node 服务进程
 let nodeServerProcess=null;
 //启动 node 服务
 const startNodeServer = () => { //重启 node 服务 
     nodeServerProcess && nodeServerProcess.kill();
-    nodeServerProcess = spawn('node', ['./webpack/scripts/svr-dev-server.js', localHostIp], { stdio: 'inherit' });
+    nodeServerProcess = spawn('node', ['./webpack/scripts/svr-dev-server.js', localHostIp], { stdio: 'inherit', shell: process.platform === 'win32' });
 }
 
 //控制台输出信息
