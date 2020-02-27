@@ -7,6 +7,17 @@ import img from '../../public/img.jpg';
 import PageContainer from '../../common/components/page-container';
 
 import withStyles from 'isomorphic-style-loader/withStyles'
+import counter from '../../common/utils/test';
+
+console.log('counter', counter());
+
+
+console.log('counter', counter());
+
+
+console.log('counter', counter());
+
+
 
 console.log('__SERVER__', __SERVER__);
 
