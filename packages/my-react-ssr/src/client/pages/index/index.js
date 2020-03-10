@@ -11,7 +11,7 @@ export default class Index extends React.Component {
 
 
    handlerClick(){
-       alert('一起来玩 react ssr 呀');
+       alert('一起来玩 react ssr 呀,点我有反应吗？');
    }
 
 

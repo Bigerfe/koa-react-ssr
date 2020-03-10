@@ -25,7 +25,7 @@ function nodeHttpMonitor(options) {
 }
 
 function run(options) {
-    child = spawn('node', options);
+    child = spawn('node', options,{shell: process.platform === 'win32'});
     child.stdout.on('data', print);
     child.stderr.on('data', print);
     process.stdin.pipe(child.stdin);

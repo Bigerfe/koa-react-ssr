@@ -10,6 +10,7 @@ process.env.BABEL_ENV = 'node'; //设置 babel 的运行环境
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
+    mode:'development',
     target: 'node',
     entry: resolvePath('../src/server/app/index.js'), //入口文件
     output: {

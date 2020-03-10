@@ -7,11 +7,11 @@
     "dev": "node webpack/scripts/start.js",
     "fe:watch": "webpack --config  ./webpack/webpack.dev.config.js --watch",
     "svr:watch": "node ./webpack/scripts/svr-code-watch.js",
-    "build": "NODE_ENV=production npm run client:build && npm run server:build",
-    "client:build": "NODE_ENV=production webpack --config  ./webpack/webpack.prod.config.js",
-    "server:build": "NODE_ENV=production webpack --config  ./webpack/webpack.server.config.js",
+    "build": "cross-env NODE_ENV=production npm run client:build && npm run server:build",
+    "client:build": "cross-env NODE_ENV=production webpack --config  ./webpack/webpack.prod.config.js",
+    "server:build": "cross-env NODE_ENV=production webpack --config  ./webpack/webpack.server.config.js",
     "prod:start": "node ./dist/server/app.js",
-    "wds:watch": "BABEL_ENV=development node ./webpack/scripts/wds-start.js"
+    "wds:watch": "cross-env BABEL_ENV=development node ./webpack/scripts/wds-start.js"
   },
   "author": "",
   "license": "ISC",
@@ -46,7 +46,10 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "koa-static": "^5.0.0",
+    "cross-env": "^6.0.3",
+    "core-js": "^3.1.4"
   },
   "devDependencies": {
     "react-hot-loader": "^4.12.18",

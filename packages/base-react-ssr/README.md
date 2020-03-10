@@ -1,4 +1,4 @@
-# react ssr 实现最基本的 服务端渲染 react 组件
+# react ssr 实现最基础的 服务端渲染 react 组件
 
 
 ## 最基本的 react ssr 

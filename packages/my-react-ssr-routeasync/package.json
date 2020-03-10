@@ -5,14 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start": "node webpack/scripts/start.js",
-    "server": "NODE_ENV=production node app.js",
+    "server": "core-js NODE_ENV=production node app.js",
     "build": "npm run babel-node && webpack --config ./webpack/webpack.prod.config.js",
     "start0": "npm run babel-node &&  npm-run-all --parallel fe:watch svr:watch node:server",
-    "fe:watch": "BABEL_ENV=development webpack --config ./webpack/webpack.dev.config.js --watch",
-    "wds:start": "BABEL_ENV=development node ./webpack/scripts/wds-start.js",
-    "babel-node": "BABEL_ENV=node babel src -d dist/src",
+    "fe:watch": "core-js BABEL_ENV=development webpack --config ./webpack/webpack.dev.config.js --watch",
+    "wds:start": "core-js BABEL_ENV=development node ./webpack/scripts/wds-start.js",
+    "babel-node": "core-js BABEL_ENV=node babel src -d dist/src",
     "svr:watch": "node ./webpack/scripts/server-file-watch.js",
-    "server:watch": "BABEL_ENV=node webpack --config ./webpack/webpack.server.config.js --watch"
+    "server:watch": "core-js BABEL_ENV=node webpack --config ./webpack/webpack.server.config.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -47,7 +47,10 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+      "koa-static": "^5.0.0",
+      "cross-env": "^6.0.3",
+      "core-js": "^3.1.4"
   },
   "devDependencies": {
     "react-hot-loader": "^4.12.18"

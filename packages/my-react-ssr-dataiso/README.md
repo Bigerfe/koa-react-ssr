@@ -4,7 +4,7 @@
 
 ```
 npm i 
-npm run start 
+npm run dev 
 ```
 
 ## 已升级体验

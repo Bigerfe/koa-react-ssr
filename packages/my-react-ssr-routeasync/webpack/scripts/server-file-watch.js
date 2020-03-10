@@ -20,7 +20,7 @@ function buildFile(filepath, spawn) {
     var newpath = path.resolve('dist/', fileName);//编译到的目标文件地址
 
     process.env.BABEL_ENV='node';
-    spawn.sync('babel', [filepath, '--out-file', newpath]);
+    spawn.sync('babel', [filepath, '--out-file', newpath],{shell: process.platform === 'win32'});
     log(chalk.green('build ok', getFileName(newpath)));
     process.env.BABEL_ENV='development';
 }
