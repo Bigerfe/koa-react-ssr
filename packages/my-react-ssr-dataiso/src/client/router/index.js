@@ -1,10 +1,8 @@
 // src/client/router/indxex.js
 //路由配置文件
-
-
+import React  from 'react';
 import Layout from '../app/layout';
 
-import React  from 'react';
 import { Route, Switch, BrowserRouter,Redirect } from 'react-router-dom';
 
 function Page404() {

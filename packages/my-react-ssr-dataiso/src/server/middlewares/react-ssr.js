@@ -45,10 +45,9 @@ export default  async (ctx,next)=>{
         initialData: fetchResult
     };
 
-    html = renderToString(<StaticRouter location={path} context={context}>
-        <App routeList={staticRoutesList}></App>
+    const html = renderToString(<StaticRouter location={path} context={context}>
+        <App routeList={routeList}></App>
     </StaticRouter>);
-}
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
@@ -66,8 +65,7 @@ export default  async (ctx,next)=>{
 </body>
 </html>
 </body>
-<script type="text/javascript"  src="/index.js"></script>
-`;
+<script type="text/javascript"  src="/index.js"></script>`;
 
     await next();
 }
