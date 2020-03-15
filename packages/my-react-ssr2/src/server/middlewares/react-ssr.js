@@ -29,7 +29,6 @@ export default  (ctx,next)=>{
     <div id="root">${html}</div>
 </body>
 </html>
-</body>
 <script type="text/javascript"  src="/index.js"></script>
 `;
 

@@ -108,7 +108,6 @@ export default async (ctx, next) => {
     </textarea>
 </body>
 </html>
-</body>
 <script>
 window.__IS__SSR__=${proConfig.__IS_SSR__};
 </script>

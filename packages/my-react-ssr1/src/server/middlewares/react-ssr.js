@@ -24,7 +24,6 @@ export default  (ctx,next)=>{
     </div>
 </body>
 </html>
-</body>
 <script type="text/javascript"  src="index.js"></script>
 `;
 

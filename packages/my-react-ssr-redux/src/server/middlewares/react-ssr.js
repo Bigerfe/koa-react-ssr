@@ -110,7 +110,6 @@ export default async (ctx, next) => {
     </textarea>
 </body>
 </html>
-</body>
  ${assetsMap.js.join('')}
 `;
 

@@ -81,7 +81,6 @@ export default  async (ctx,next)=>{
     </textarea>
 </body>
 </html>
-</body>
 <script type="text/javascript"  src="/index.js"></script>
 `;
 

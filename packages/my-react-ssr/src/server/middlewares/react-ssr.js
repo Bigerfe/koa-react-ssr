@@ -20,9 +20,7 @@ export default  (ctx,next)=>{
        ${html} <span>测试内容</span>
     </div>
 </body>
-</html>
-</body>
-<script type="text/javascript"  src="index.js"></script>
+</html><script type="text/javascript"  src="index.js"></script>
 `;
 
     return next();

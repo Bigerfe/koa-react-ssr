@@ -35,9 +35,7 @@ http.createServer((req, res) => {
        ${html}
     </div>
 </body>
-</html>
-</body>
-`);
+</html>`);
 
     }
 ).listen(9001);

@@ -63,9 +63,7 @@ export default  async (ctx,next)=>{
     ${JSON.stringify(fetchResult)}
     </textarea>
 </body>
-</html>
-</body>
-<script type="text/javascript"  src="/index.js"></script>`;
+</html><script type="text/javascript"  src="/index.js"></script>`;
 
     await next();
 }
