@@ -99,15 +99,10 @@ export default async (ctx, next) => {
      ${assetsMap.css.join('')}
 </head>
 <body>
-    <div id="root">
-       ${html}
-    </div>
-    <textarea id="ssrTextInitData" style="display:none;">
-    ${JSON.stringify(fetchResult)}
-    </textarea>
+    <div id="root">${html}</div>
+    <textarea id="ssrTextInitData" style="display:none;">${JSON.stringify(fetchResult)}</textarea>
 </body>
 </html>
-</body>
 <script>
 window.__IS__SSR__=${proConfig.__IS_SSR__};
 </script>

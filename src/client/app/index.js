@@ -32,14 +32,16 @@ function clientRender(routeList) {
                 if (targetRoute.component[proConfig.asyncComponentKey]) {
                         targetRoute.component().props.load().then(res => {
                                 //异步组件加载完成后再渲染页面
-                                console.log('异步组件加载完成.....');
+                                console.log('异步组件加载完成.');
+                                //设置已加载完的组件，否则需要重新请求
+                                targetRoute.component = res?res.default:null;
                                 renderDom(routeList);
+                               
                         });
                 }
 
         } else {
                 renderDom(routeList);
-
         }
 }
 
