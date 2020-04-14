@@ -27,7 +27,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-node-externals": "^1.7.2",
     "xl_close_port": "^1.0.1",
-      "koa-static": "^5.0.0",
-      "cross-env": "^6.0.3"
+    "koa-static": "^5.0.0",
+    "cross-env": "^6.0.3"
   }
 }
